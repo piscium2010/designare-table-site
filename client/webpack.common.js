@@ -11,6 +11,10 @@ module.exports = {
         path: path.resolve(__dirname, 'public')
     },
     resolve: {
+        alias: {
+            'designare': path.join(__dirname, '../../designare/src')
+        },
+        modules:[path.join(__dirname, './node_modules')],
         extensions: ['.js', '.jsx']
     },
     module: {
@@ -29,6 +33,7 @@ module.exports = {
             {
                 test: /\.jsx?/,
                 exclude: /node_modules/,
+                // include: /designare/,
                 loader: 'babel-loader',
             }
         ]

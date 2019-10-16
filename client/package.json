@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "webpack --config webpack.dev.js && webpack-dev-server --config webpack.dev.js --open",
+		"start": "webpack-dev-server --config webpack.dev.js",
 		"build": "webpack --config webpack.prod.js && npm run toWebapp",
 		"toWebapp": "babel ./public --out-dir ../server/src/main/webapp --copy-files"
 	},
@@ -12,9 +12,9 @@
 	"license": "ISC",
 	"description": "",
 	"dependencies": {
-		"react": "^16.8.6",
-		"react-dom": "^16.8.6",
-		"react-router-dom": "^5.0.0"
+		"@piscium2010/lime": "^2.2.4",
+		"react": "^16.9.0",
+		"react-dom": "^16.9.0"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.2.3",
@@ -22,6 +22,9 @@
 		"@babel/plugin-proposal-class-properties": "^7.4.0",
 		"@babel/plugin-syntax-object-rest-spread": "^7.2.0",
 		"@babel/preset-react": "^7.0.0",
+		"@babel/plugin-proposal-decorators": "^7.4.0",
+		"@babel/plugin-syntax-dynamic-import": "^7.2.0",
+		"@babel/runtime": "^7.4.3",
 		"babel-loader": "^8.0.5",
 		"clean-webpack-plugin": "^2.0.1",
 		"css-loader": "^2.1.1",
