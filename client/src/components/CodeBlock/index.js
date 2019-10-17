@@ -1,9 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Markdown from '../Markdown'
+import Icons from '../Icons'
+import MessageBox from '../MessageBox'
 
 export default function CodeBlock(props) {
+    const [expansion, setExpansion] = useState(false)
+    const onClickCode = evt => setExpansion(!expansion)
+    const onClickClone = evt => {
+        MessageBox.show('Code Copied')
+    }
     return (
         <section>
             {props.children}
+            <div style={{ display: 'flex', justifyContent: 'center', userSelect: 'none' }}>
+                <div role='button' style={{ width: 13, height: 13, margin: '0 5px' }} onClick={onClickClone}>
+                    <Icons.Clone />
+                </div>
+                <div role='button' style={{ width: 14, height: 14, margin: '0 5px' }} onClick={onClickCode}>
+                    <Icons.Code />
+                </div>
+            </div>
+            {
+                expansion &&
+                <div>
+                    <Markdown/>
+                </div>
+            }
         </section>
     )
+}
+
+function copyToClipboard(str) {
+    const el = document.createElement('textarea')
+    el.value = str                               
+    el.setAttribute('readonly', '')              
+    el.style.position = 'absolute'
+    el.style.left = '-9999px'                    
+    document.body.appendChild(el)                
+    const selected =
+        document.getSelection().rangeCount > 0      
+            ? document.getSelection().getRangeAt(0)   
+            : false                                  
+    el.select()                                  
+    document.execCommand('copy')                 
+    document.body.removeChild(el)                
+    if (selected) {                               
+        document.getSelection().removeAllRanges()  
+        document.getSelection().addRange(selected) 
+    }
 }

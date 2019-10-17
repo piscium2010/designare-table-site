@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import Table, {Header} from 'designare'
+import React, {useState} from './node_modules/react'
+import Table, {Header} from './node_modules/designare'
 import { data } from './data'
 
 export default function Basic(props) {
