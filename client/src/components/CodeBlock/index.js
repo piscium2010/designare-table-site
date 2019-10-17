@@ -4,9 +4,11 @@ import Icons from '../Icons'
 import MessageBox from '../MessageBox'
 
 export default function CodeBlock(props) {
+    const { md } = props
     const [expansion, setExpansion] = useState(false)
     const onClickCode = evt => setExpansion(!expansion)
     const onClickClone = evt => {
+        copyToClipboard(md)
         MessageBox.show('Code Copied')
     }
     return (
@@ -23,7 +25,7 @@ export default function CodeBlock(props) {
             {
                 expansion &&
                 <div>
-                    <Markdown/>
+                    <Markdown md={md}/>
                 </div>
             }
         </section>

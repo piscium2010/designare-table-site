@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
-import Table, {Header} from 'designare'
+const md = `import React, {useState} from './node_modules/react'
+import Table, {Header} from './node_modules/designare'
 import { data } from './data'
 
 export default function Basic(props) {
     const [a, b] = useState('a')
-    console.log(`table`, data)
+    console.log(\`table\`, data)
     return (
         <div>
             <Table
@@ -38,4 +38,5 @@ export default function Basic(props) {
             />
         </div>
     )
-}
+}`
+export default md

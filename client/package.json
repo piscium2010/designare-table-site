@@ -3,9 +3,10 @@
 	"version": "1.0.0",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "webpack-dev-server --config webpack.dev.js",
+		"start": "npm run build:md && webpack-dev-server --config webpack.dev.js",
 		"build": "webpack --config webpack.prod.js && npm run toWebapp",
-		"toWebapp": "babel ./public --out-dir ../server/src/main/webapp --copy-files"
+		"toWebapp": "babel ./public --out-dir ../server/src/main/webapp --copy-files",
+		"build:md": "node ./src/util/makeMD.js"
 	},
 	"keywords": [],
 	"author": "",

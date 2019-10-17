@@ -11,7 +11,7 @@ function makeMD(dirPath) {
         if (fs.statSync(filePath).isFile()) {
             if (filename.indexOf('example') > 0) {
                 const content = 'const md = `' + fs.readFileSync(filePath, 'utf8').replace(/`/g,'\\`').replace(/\$/g,'\\$') + '`\nexport default md\n'
-                const newfile = filePath.replace('example', 'md').replace('.js','js')
+                const newfile = filePath.replace('.example.', '.md.').replace('.js','.js')
                 fs.writeFileSync(newfile, content)
             }
         }
@@ -21,4 +21,4 @@ function makeMD(dirPath) {
     }
 }
 
-makeMD('../src/examples/')
+makeMD(path.join(__dirname,'../examples'))
