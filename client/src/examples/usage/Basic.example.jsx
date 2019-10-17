@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import Table, {Header} from 'designare'
+import React, { useState } from 'react'
+import Table, { Header } from 'designare'
 import { data } from './data'
 
 export default function Basic(props) {
@@ -34,7 +34,7 @@ export default function Basic(props) {
                         dataKey: 'ytd',
                     }
                 ]}
-                data={data} 
+                data={data}
             />
         </div>
     )
