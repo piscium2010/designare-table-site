@@ -1,40 +1,37 @@
-const md = `import React, {useState} from './node_modules/react'
-import Table, {Header} from './node_modules/designare'
-import { data } from './data'
+const md = `import React from 'react'
+import Table from 'designare-table'
+
+const data = [
+    { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
+    { name: 'Cisco Systems Inc.', last: 46.79, chg: 0.43, chgp: 0.93 },
+    { name: 'Walt Disney Co.', last: 130.86, chg: 1.10, chgp: 0.85 },
+    { name: 'Coca-Cola Co.', last: 53.49, chg: -0.02, chgp: -0.04 },
+    { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: -0.09 }
+]
 
 export default function Basic(props) {
-    const [a, b] = useState('a')
-    console.log(\`table\`, data)
     return (
         <div>
             <Table
                 columns={[
                     {
-                        Header: 'Name',
+                        Header: 'COMPANY',
                         dataKey: 'name'
                     },
                     {
-                        Header: 'PREV.CLOSE',
+                        Header: 'LAST',
                         dataKey: 'prev_close'
                     },
                     {
-                        Header: '-/+',
+                        Header: 'CHG',
                         dataKey: 'percent'
                     },
                     {
-                        Header: 'Time',
+                        Header: 'CHG %',
                         dataKey: 'time',
-                    },
-                    {
-                        Header: '3 MO.',
-                        dataKey: 'three_month',
-                    },
-                    {
-                        Header: 'YTD',
-                        dataKey: 'ytd',
                     }
                 ]}
-                data={data} 
+                data={data}
             />
         </div>
     )

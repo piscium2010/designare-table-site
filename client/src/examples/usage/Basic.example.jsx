@@ -1,37 +1,35 @@
-import React, { useState } from 'react'
-import Table, { Header } from 'designare'
-import { data } from './data'
+import React from 'react'
+import Table from 'designare-table'
+
+const data = [
+    { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
+    { name: 'Cisco Systems Inc.', last: 46.79, chg: 0.43, chgp: 0.93 },
+    { name: 'Walt Disney Co.', last: 130.86, chg: 1.10, chgp: 0.85 },
+    { name: 'Coca-Cola Co.', last: 53.49, chg: -0.02, chgp: -0.04 },
+    { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: -0.09 }
+]
 
 export default function Basic(props) {
-    const [a, b] = useState('a')
-    console.log(`table`, data)
     return (
         <div>
             <Table
                 columns={[
                     {
-                        Header: 'Name',
-                        dataKey: 'name'
+                        Header: 'COMPANY',
+                        dataKey: 'name',
+                        width: '*'
                     },
                     {
-                        Header: 'PREV.CLOSE',
-                        dataKey: 'prev_close'
+                        Header: 'LAST',
+                        dataKey: 'last'
                     },
                     {
-                        Header: '-/+',
-                        dataKey: 'percent'
+                        Header: 'CHG',
+                        dataKey: 'chg'
                     },
                     {
-                        Header: 'Time',
-                        dataKey: 'time',
-                    },
-                    {
-                        Header: '3 MO.',
-                        dataKey: 'three_month',
-                    },
-                    {
-                        Header: 'YTD',
-                        dataKey: 'ytd',
+                        Header: 'CHG %',
+                        dataKey: 'chgp' // jest *
                     }
                 ]}
                 data={data}

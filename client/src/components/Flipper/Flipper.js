@@ -32,14 +32,16 @@ export default function Flipper(props) {
                             </div>
                         </div>
                         <div className={animation ? 'flipOut more' : 'more'}>
-                            <span style={{ cursor: 'pointer' }} onClick={onClickMore}>
+                            <span role='button' style={{ cursor: 'pointer' }} onClick={onClickMore}>
                                 More
                             </span>
                         </div>
                     </div>
                 </div>
                 <div className="content">
-                    {props.children}
+                    <div style={{ width: '90%', margin: 'auto' }}>
+                        {props.children}
+                    </div>
                 </div>
             </div>
         </Context.Provider>

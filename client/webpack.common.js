@@ -12,7 +12,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'designare': path.join(__dirname, '../../designare/src')
+            'designare-table': path.join(__dirname, '../../designare-table/src')
         },
         modules:[path.join(__dirname, './node_modules')],
         extensions: ['.js', '.jsx']

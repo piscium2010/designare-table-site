@@ -5,6 +5,10 @@ body {
 
 *[role='button'] {
     cursor: pointer;
+    transition: color .3s;
+    &:hover {
+        color: #9dd411;
+    }
 }
 
 .flipper {
@@ -63,8 +67,7 @@ body {
       }
 
       .content {
-          padding: 12px 6px;
-          min-height: 300px;
+          padding: 30px 12px 0px 12px;
       }
   }
 
@@ -72,6 +75,7 @@ body {
       animation-name: flipOut;
       animation-duration: .25s;
       animation-fill-mode: forwards;
+      animation-timing-function: linear;
       transform-style: preserve-3d;
   }
 
@@ -79,6 +83,7 @@ body {
       animation-name: flipIn;
       animation-duration: .5s;
       animation-fill-mode: forwards;
+      animation-timing-function: linear;
       transform-style: preserve-3d;
   }
 
@@ -86,6 +91,7 @@ body {
       animation-name: flipShadow;
       animation-duration: .5s;
       animation-fill-mode: forwards;
+      animation-timing-function: linear;
   }
 
   @keyframes flipOut {
@@ -130,7 +136,12 @@ body {
   }
 
   .markdown {
+      margin-bottom: 12px;
       code {
           font-size: 13px !important;
+      }
+
+      pre {
+          margin: 0 !important;
       }
   }

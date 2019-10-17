@@ -13,8 +13,10 @@ export default function CodeBlock(props) {
     }
     return (
         <section>
-            {props.children}
-            <div style={{ display: 'flex', justifyContent: 'center', userSelect: 'none' }}>
+            <div>
+                {props.children}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', userSelect: 'none', marginTop: 20, height: 30, lineHeight: '30px' }}>
                 <div role='button' style={{ width: 13, height: 13, margin: '0 5px' }} onClick={onClickClone}>
                     <Icons.Clone />
                 </div>
@@ -25,7 +27,7 @@ export default function CodeBlock(props) {
             {
                 expansion &&
                 <div>
-                    <Markdown md={md}/>
+                    <Markdown md={md} />
                 </div>
             }
         </section>
@@ -34,20 +36,20 @@ export default function CodeBlock(props) {
 
 function copyToClipboard(str) {
     const el = document.createElement('textarea')
-    el.value = str                               
-    el.setAttribute('readonly', '')              
+    el.value = str
+    el.setAttribute('readonly', '')
     el.style.position = 'absolute'
-    el.style.left = '-9999px'                    
-    document.body.appendChild(el)                
+    el.style.left = '-9999px'
+    document.body.appendChild(el)
     const selected =
-        document.getSelection().rangeCount > 0      
-            ? document.getSelection().getRangeAt(0)   
-            : false                                  
-    el.select()                                  
-    document.execCommand('copy')                 
-    document.body.removeChild(el)                
-    if (selected) {                               
-        document.getSelection().removeAllRanges()  
-        document.getSelection().addRange(selected) 
+        document.getSelection().rangeCount > 0
+            ? document.getSelection().getRangeAt(0)
+            : false
+    el.select()
+    document.execCommand('copy')
+    document.body.removeChild(el)
+    if (selected) {
+        document.getSelection().removeAllRanges()
+        document.getSelection().addRange(selected)
     }
 }
