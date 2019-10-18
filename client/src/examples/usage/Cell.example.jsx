@@ -26,7 +26,8 @@ export default function Basic() {
                 },
                 {
                     Header: 'LAST',
-                    dataKey: 'last'
+                    dataKey: 'last',
+                    Cell: () => <Td>test</Td>
                 },
                 {
                     Header: 'CHG',
