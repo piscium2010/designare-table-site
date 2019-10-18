@@ -9,7 +9,7 @@ const data = [
     { name: 'Exxon Mobil Corp.', last: 68.14, chg: -0.09, chgp: -0.13 }
 ]
 
-export default function Basic(props) {
+export default function Basic() {
     const Cell = ({ value }) => (
         <Td style={{ color: value > 0 ? '#0f9d58' : '#b51a28' }}>
             {value}
