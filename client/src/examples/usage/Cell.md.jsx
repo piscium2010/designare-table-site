@@ -1,5 +1,5 @@
 const md = `import React from 'react'
-import Table from 'designare-table'
+import Table, { Td } from 'designare-table'
 
 const data = [
     { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
@@ -10,6 +10,12 @@ const data = [
 ]
 
 export default function Basic(props) {
+    const Cell = ({ value }) => (
+        <Td style={{ color: value > 0 ? '#0f9d58' : '#b51a28' }}>
+            {value}
+        </Td>
+    )
+
     return (
         <Table
             columns={[
@@ -24,11 +30,13 @@ export default function Basic(props) {
                 },
                 {
                     Header: 'CHG',
-                    dataKey: 'chg'
+                    dataKey: 'chg',
+                    Cell
                 },
                 {
                     Header: 'CHG %',
-                    dataKey: 'chgp' // jest *
+                    dataKey: 'chgp',
+                    Cell
                 }
             ]}
             data={data}

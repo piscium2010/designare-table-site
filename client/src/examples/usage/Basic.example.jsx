@@ -11,29 +11,27 @@ const data = [
 
 export default function Basic(props) {
     return (
-        <div>
-            <Table
-                columns={[
-                    {
-                        Header: 'COMPANY',
-                        dataKey: 'name',
-                        width: '*'
-                    },
-                    {
-                        Header: 'LAST',
-                        dataKey: 'last'
-                    },
-                    {
-                        Header: 'CHG',
-                        dataKey: 'chg'
-                    },
-                    {
-                        Header: 'CHG %',
-                        dataKey: 'chgp' // jest *
-                    }
-                ]}
-                data={data}
-            />
-        </div>
+        <Table
+            columns={[
+                {
+                    Header: 'COMPANY',
+                    dataKey: 'name',
+                    width: '*'
+                },
+                {
+                    Header: 'LAST',
+                    dataKey: 'last'
+                },
+                {
+                    Header: 'CHG',
+                    dataKey: 'chg'
+                },
+                {
+                    Header: 'CHG %',
+                    dataKey: 'chgp' // jest *
+                }
+            ]}
+            data={data}
+        />
     )
 }

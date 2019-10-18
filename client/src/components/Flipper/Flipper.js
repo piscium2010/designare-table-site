@@ -1,16 +1,18 @@
 import React, { useState, useContext, useEffect } from 'react'
 
-const Context = React.createContext({})
+export const FlipperContext = React.createContext({})
 
 export default function Flipper(props) {
-    const [activeIndex, setActiveIndex] = useState(0)
+    const { defaultActiveIndex = 0 } = props
+    const [activeIndex, setActiveIndex] = useState(defaultActiveIndex)
     const [titles, setTitles] = useState({})
     const [animation, setAnimation] = useState(false)
+    const [expansion, setExpansion] = useState(false)
     const onClickMore = evt => setAnimation(true)
     const onClickTab = index => setActiveIndex(index)
-    // const tabs = ['lorem 1', 'lorem 2', 'lorem 3']
+
     return (
-        <Context.Provider value={{ titles, setTitles, activeIndex }}>
+        <FlipperContext.Provider value={{ titles, setTitles, activeIndex, expansion, setExpansion }}>
             <div className='flipper'>
                 <div className='title'>
                     <div className={animation ? 'tabs flipShadow' : ''}>
@@ -32,7 +34,7 @@ export default function Flipper(props) {
                             </div>
                         </div>
                         <div className={animation ? 'flipOut more' : 'more'}>
-                            <span role='button' style={{ cursor: 'pointer' }} onClick={onClickMore}>
+                            <span className='secondary-text' role='button' onClick={onClickMore}>
                                 More
                             </span>
                         </div>
@@ -44,14 +46,14 @@ export default function Flipper(props) {
                     </div>
                 </div>
             </div>
-        </Context.Provider>
+        </FlipperContext.Provider>
     )
 }
 
 Flipper.Tab = Tab
 
 function Tab(props) {
-    const { activeIndex, titles, setTitles } = useContext(Context)
+    const { activeIndex, titles, setTitles } = useContext(FlipperContext)
     const { title, index } = props
 
     useEffect(() => {
