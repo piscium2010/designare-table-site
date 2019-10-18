@@ -16,19 +16,20 @@ export default function Basic(props) {
                 columns={[
                     {
                         Header: 'COMPANY',
-                        dataKey: 'name'
+                        dataKey: 'name',
+                        width: '*'
                     },
                     {
                         Header: 'LAST',
-                        dataKey: 'prev_close'
+                        dataKey: 'last'
                     },
                     {
                         Header: 'CHG',
-                        dataKey: 'percent'
+                        dataKey: 'chg'
                     },
                     {
                         Header: 'CHG %',
-                        dataKey: 'time',
+                        dataKey: 'chgp' // jest *
                     }
                 ]}
                 data={data}
