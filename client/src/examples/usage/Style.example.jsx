@@ -1,5 +1,5 @@
 import React from 'react'
-import Table from 'designare-table'
+import Table, { Thead, Tbody } from 'designare-table'
 
 const data = [
     { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
@@ -9,7 +9,7 @@ const data = [
     { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: -0.09 }
 ]
 
-export default function() {
+export default function () {
     return (
         <Table
             columns={[
@@ -32,6 +32,16 @@ export default function() {
                 }
             ]}
             data={data}
-        />
+        >
+            <Thead style={{ textAlign: 'left' }} />
+            <Tbody tr={
+                ({ rowIndex }) => (
+                    <tr style={{ backgroundColor: 'aliceblue' }}>
+                        <Tbody.Row  />
+                    </tr>
+                )
+            }
+            />
+        </Table>
     )
 }

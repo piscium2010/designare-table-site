@@ -9,7 +9,7 @@ const data = [
     { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: -0.09 }
 ]
 
-export default function Basic(props) {
+export default function() {
     return (
         <Table
             columns={[
@@ -28,7 +28,7 @@ export default function Basic(props) {
                 },
                 {
                     Header: 'CHG %',
-                    dataKey: 'chgp' // jest *
+                    dataKey: 'chgp'
                 }
             ]}
             data={data}

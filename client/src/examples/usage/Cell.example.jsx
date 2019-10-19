@@ -9,7 +9,7 @@ const data = [
     { name: 'Exxon Mobil Corp.', last: 68.14, chg: -0.09, chgp: -0.13 }
 ]
 
-export default function Basic() {
+export default function() {
     const Cell = ({ value }) => (
         <Td style={{ color: value > 0 ? '#0f9d58' : '#b51a28' }}>
             {value}
@@ -22,21 +22,21 @@ export default function Basic() {
             <Table
                 columns={[
                     {
-                        Header: <div style={headerStyle}>COMPANY</div>,
+                        Header: <Th style={headerStyle}>COMPANY</Th>,
                         dataKey: 'name',
                         width: '*'
                     },
                     {
-                        Header: <div style={headerStyle}>LAST</div>,
+                        Header: <Th style={headerStyle}>LAST</Th>,
                         dataKey: 'last'
                     },
                     {
-                        Header: <div style={headerStyle}>CHG</div>,
+                        Header: <Th style={headerStyle}>CHG</Th>,
                         dataKey: 'chg',
                         Cell
                     },
                     {
-                        Header: <div style={headerStyle}>CHG %</div>,
+                        Header: <Th style={headerStyle}>CHG %</Th>,
                         dataKey: 'chgp',
                         Cell
                     }
