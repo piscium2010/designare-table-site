@@ -1,5 +1,5 @@
 import React from 'react'
-import Table, { Td } from 'designare-table'
+import Table, { Td, Th } from 'designare-table'
 
 const data = [
     { name: 'Chevron Corp.', last: 115.35, chg: 0.24, chgp: 0.21 },
@@ -15,32 +15,34 @@ export default function Basic() {
             {value}
         </Td>
     )
+    const headerStyle = { textAlign: 'left' }
 
     return (
-        <Table
-            columns={[
-                {
-                    Header: 'COMPANY',
-                    dataKey: 'name',
-                    width: '*'
-                },
-                {
-                    Header: 'LAST',
-                    dataKey: 'last',
-                    Cell: () => <Td>test</Td>
-                },
-                {
-                    Header: 'CHG',
-                    dataKey: 'chg',
-                    Cell
-                },
-                {
-                    Header: 'CHG %',
-                    dataKey: 'chgp',
-                    Cell
-                }
-            ]}
-            data={data}
-        />
+        <div>
+            <Table
+                columns={[
+                    {
+                        Header: <div style={headerStyle}>COMPANY</div>,
+                        dataKey: 'name',
+                        width: '*'
+                    },
+                    {
+                        Header: <div style={headerStyle}>LAST</div>,
+                        dataKey: 'last'
+                    },
+                    {
+                        Header: <div style={headerStyle}>CHG</div>,
+                        dataKey: 'chg',
+                        Cell
+                    },
+                    {
+                        Header: <div style={headerStyle}>CHG %</div>,
+                        dataKey: 'chgp',
+                        Cell
+                    }
+                ]}
+                data={data}
+            />
+        </div>
     )
 }

@@ -9,6 +9,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
+                <h2>Usage</h2>
                 <Flipper defaultActiveIndex={1}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Usage.One />
