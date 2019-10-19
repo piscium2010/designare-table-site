@@ -4,6 +4,7 @@ import Flipper from './components/Flipper'
 import Usage from './examples/Usage'
 import GroupHeader from './examples/GroupHeader'
 import Selection from './examples/Selection'
+import Sorter from './examples/Sorter'
 import './app.less'
 
 class App extends React.Component {
@@ -33,6 +34,12 @@ class App extends React.Component {
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Selection.One />
+                    </Flipper.Tab>
+                </Flipper>
+                <h2>Sorter</h2>
+                <Flipper defaultActiveIndex={0}>
+                    <Flipper.Tab title='Basic' index={0}>
+                        <Sorter.One />
                     </Flipper.Tab>
                 </Flipper>
             </div>
