@@ -37,7 +37,7 @@ const d = [
     { name: 'Visa Inc. Cl A', last: 177.94, chg: 0.07, chgp: 0.04 },
     { name: 'Procter & Gamble Co.', last: 116.63, chg: -0.15, chgp: -0.13 },
     { name: 'Exxon Mobil Corp.', last: 68.14, chg: -0.09, chgp: -0.13 },
-    
+
     { name: 'Goldman Sachs Group Inc.', last: 206.46, chg: -0.96, chgp: -0.46 },
     { name: 'Microsoft Corp.', last: 139.69, chg: -0.72, chgp: -0.51 },
     { name: 'Merck & Co. Inc.', last: 83.80, chg: -0.65, chgp: -0.77 },
@@ -46,3 +46,13 @@ const d = [
     { name: 'Travelers Cos. Inc.', last: 140.48, chg: -2.09, chgp: -1.47 },
     { name: 'International Business Machines Corp.', last: 134.26, chg: -7.85, chgp: -5.52 }
 ]
+
+const d = [
+    { name: 'Adaptimmune Ther Ads', last: 0.97, chg: -0.03, chgp: -3.09, v: '1,076,90045', hight: -91.25, low: 2.00, time: '10/18/19' },
+    { name: 'Aileron Therapeutics Inc', last: 0.42, chg: 0.01, chgp: 1.28, v: '530,10020', hight: -83.88, low: 4.72, time: '10/18/19' },
+    { name: 'Andersons Inc', last: 17.84, chg: -0.54, chgp: -2.94, v: '209,40043', hight: -53.33, low: 0.17, time: '10/18/19' },
+    { name: 'Asia Pacific Wire & Cable', last: 1.38, chg: -0.04, chgp: -2.9, v: '34,10022', hight: -43.44, low: 3.76, time: '10/18/19' },
+    { name: 'Avalon Globocare', last: 1.59, chg: -0.01, chgp: -0.62, v: '19,00022', hight: -88.22, low: 0.63, time: '10/18/19' }
+]
+
+

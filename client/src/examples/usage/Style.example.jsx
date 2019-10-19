@@ -35,9 +35,9 @@ export default function () {
         >
             <Thead style={{ backgroundColor: 'white', textAlign: 'left' }} />
             <Tbody tr={
-                ({ rowIndex }) => (
+                ({ rowIndex, Cells }) => (
                     <tr style={{ backgroundColor: rowIndex % 2 === 0 ? '#f2f2f2' : 'white' }}>
-                        <Tbody.Row rowIndex={rowIndex} />
+                        <Cells />
                     </tr>
                 )
             }
