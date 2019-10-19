@@ -1,49 +1,48 @@
 const md = `import React from 'react'
-import Table, { Td, Th } from 'designare-table'
+import Table, { Thead, Tbody } from 'designare-table'
 
 const data = [
-    { name: 'Chevron Corp.', last: 115.35, chg: 0.24, chgp: 0.21 },
-    { name: 'Verizon Communications Inc.', last: 60.41, chg: 0.12, chgp: 0.20 },
-    { name: 'Visa Inc. Cl A', last: 177.94, chg: 0.07, chgp: 0.04 },
-    { name: 'Procter & Gamble Co.', last: 116.63, chg: -0.15, chgp: -0.13 },
-    { name: 'Exxon Mobil Corp.', last: 68.14, chg: -0.09, chgp: -0.13 }
+    { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
+    { name: 'Cisco Systems Inc.', last: 46.79, chg: 0.43, chgp: 0.93 },
+    { name: 'Walt Disney Co.', last: 130.86, chg: 1.10, chgp: 0.85 },
+    { name: 'Coca-Cola Co.', last: 53.49, chg: -0.02, chgp: -0.04 },
+    { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: -0.09 }
 ]
 
-export default function() {
-    const Cell = ({ value }) => (
-        <Td style={{ color: value > 0 ? '#0f9d58' : '#b51a28' }}>
-            {value}
-        </Td>
-    )
-    const headerStyle = { textAlign: 'left' }
-
+export default function () {
     return (
-        <div>
-            <Table
-                columns={[
-                    {
-                        Header: <Th style={headerStyle}>COMPANY</Th>,
-                        dataKey: 'name',
-                        width: '*'
-                    },
-                    {
-                        Header: <Th style={headerStyle}>LAST</Th>,
-                        dataKey: 'last'
-                    },
-                    {
-                        Header: <Th style={headerStyle}>CHG</Th>,
-                        dataKey: 'chg',
-                        Cell
-                    },
-                    {
-                        Header: <Th style={headerStyle}>CHG %</Th>,
-                        dataKey: 'chgp',
-                        Cell
-                    }
-                ]}
-                data={data}
+        <Table
+            columns={[
+                {
+                    Header: 'COMPANY',
+                    dataKey: 'name',
+                    width: '*'
+                },
+                {
+                    Header: 'LAST',
+                    dataKey: 'last'
+                },
+                {
+                    Header: 'CHG',
+                    dataKey: 'chg'
+                },
+                {
+                    Header: 'CHG %',
+                    dataKey: 'chgp'
+                }
+            ]}
+            data={data}
+        >
+            <Thead style={{ textAlign: 'left' }} />
+            <Tbody tr={
+                ({ rowIndex }) => (
+                    <tr style={{ backgroundColor: rowIndex % 2 === 0 ? '#f2f2f2' : 'white' }}>
+                        <Tbody.Row  rowIndex={rowIndex}/>
+                    </tr>
+                )
+            }
             />
-        </div>
+        </Table>
     )
 }`
 export default md
