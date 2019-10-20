@@ -43,7 +43,6 @@ export default function () {
             }}
             sorter={sorter}
             onChangeSorter={({ dataKey, direction }) => {
-                console.log(`set`,dataKey, direction)
                 setSorter({ dataKey, direction })
             }}
             data={data}
