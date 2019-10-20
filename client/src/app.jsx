@@ -37,15 +37,18 @@ class App extends React.Component {
                     </Flipper.Tab>
                 </Flipper>
                 <h2>Sorter</h2> */}
-                <Flipper defaultActiveIndex={2}>
+                <Flipper defaultActiveIndex={3}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Sorter.One />
                     </Flipper.Tab>
-                    <Flipper.Tab title='Default Sorter' index={1}>
+                    <Flipper.Tab title='Default' index={1}>
                         <Sorter.Two />
                     </Flipper.Tab>
-                    <Flipper.Tab title='Default Sorter' index={2}>
+                    <Flipper.Tab title='Control' index={2}>
                         <Sorter.Three />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Sort by Server' index={3}>
+                        <Sorter.Four />
                     </Flipper.Tab>
                 </Flipper>
             </div>

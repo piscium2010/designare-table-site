@@ -1,4 +1,4 @@
-const md = `import React from 'react'
+const md = `import React, { useState } from 'react'
 import Table, { Th, Sorter } from 'designare-table'
 
 const data = [
@@ -15,6 +15,7 @@ export default function () {
         const right = b.replace('%', '') / 1
         return left - right
     }
+    const [sorter, setSorter] = useState({ dataKey: 'name', direction: 'asc' })
     return (
         <Table
             columns={[
@@ -39,6 +40,10 @@ export default function () {
             defaultSorter={{
                 dataKey: 'last',
                 direction: 'des'
+            }}
+            sorter={sorter}
+            onChangeSorter={({ dataKey, direction }) => {
+                setSorter({ dataKey, direction })
             }}
             data={data}
         />
