@@ -13,7 +13,7 @@ class App extends React.Component {
         return (
             <div>
                 <h2>Usage</h2>
-                {/* <Flipper defaultActiveIndex={0}>
+                <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Usage.One />
                     </Flipper.Tab>
@@ -36,8 +36,8 @@ class App extends React.Component {
                         <Selection.One />
                     </Flipper.Tab>
                 </Flipper>
-                <h2>Sorter</h2> */}
-                <Flipper defaultActiveIndex={3}>
+                <h2>Sorter</h2>
+                <Flipper defaultActiveIndex={5}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Sorter.One />
                     </Flipper.Tab>
@@ -49,6 +49,12 @@ class App extends React.Component {
                     </Flipper.Tab>
                     <Flipper.Tab title='Sort by Server' index={3}>
                         <Sorter.Four />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Color' index={4}>
+                        <Sorter.Five />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Style' index={5}>
+                        <Sorter.Six />
                     </Flipper.Tab>
                 </Flipper>
             </div>
