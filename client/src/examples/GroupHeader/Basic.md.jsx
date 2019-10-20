@@ -46,7 +46,7 @@ export default function () {
             ]}
             data={data}
         >
-            <Thead tr={({ Cells }) => <tr style={{height: 30}}><Cells /></tr>} />
+            <Thead tr={({ cells }) => <tr style={{height: 30}}>{cells}</tr>} />
             <Tbody />
         </Table>
     )
