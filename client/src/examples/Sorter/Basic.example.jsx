@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Table, { Th, Td, Sorter } from 'designare-table'
+import Table, { Th, Td, Sorter, Tbody } from 'designare-table'
 
 const data = [
     { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
@@ -40,8 +40,9 @@ export default function () {
         <Table
             columns={[
                 {
-                    Header: <Th><span style={{display:'table-cell'}}>COMPANY</span><Sorter/></Th>,
-                    dataKey: 'name',
+                    // Header: <Th><span style={{display:'table-cell'}}>COMPANY</span><Sorter/></Th>,
+                    Header: 'tst',
+                    dataKey:'name',
                     width: '*'
                 },
                 {
@@ -58,6 +59,15 @@ export default function () {
                 }
             ]}
             data={data}
-        />
+        >
+            <Tbody tr={
+                ({ rowIndex }) => (
+                    <tr>
+                        <Tbody.Row />
+                    </tr>
+                )
+            }
+            />
+        </Table>
     )
 }
