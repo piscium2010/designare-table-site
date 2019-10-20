@@ -10,6 +10,32 @@ const data = [
 ]
 
 export default function () {
+    const render = ( direction, directions, defaultColor, activeColor ) => {
+            const icons = directions.filter(d => d !== 'default')
+            return (
+                <React.Fragment>
+                    {
+                        icons.length === 2
+                            ? <React.Fragment>
+                                <div className={`designare-table-sorter ${direction === 'asc' ? 'active' : 'default'}`} style={{  color: direction === 'asc' ? activeColor : defaultColor }}>
+                                    <span>t</span>
+                                </div>
+                                <div className={`designare-table-sorter ${direction === 'des' ? 'active' : 'default'}`} style={{  color: direction === 'des' ? activeColor : defaultColor }}>
+                                    <span>t</span>
+                                </div>
+                            </React.Fragment>
+                            :
+                            <div className={`designare-table-sorter ${direction === icons[0] ? 'active' : 'default'}`} style={{
+                                
+                                top: '50%', transform: icons[0] === 'asc' ? 'translateY(-30%)' : 'translateY(-55%)'
+                            }}
+                            >
+                                {icons[0] === 'asc' ? <span>t</span> : icons[0] === 'des' ? <span>t</span> : null}
+                            </div>
+                    }
+                </React.Fragment>
+            )
+        }
     return (
         <Table
             columns={[

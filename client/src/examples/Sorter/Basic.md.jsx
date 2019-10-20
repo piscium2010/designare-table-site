@@ -1,5 +1,5 @@
 const md = `import React, { useState } from 'react'
-import Table, { Th, Td } from 'designare-table'
+import Table, { Th, Td, Sorter } from 'designare-table'
 
 const data = [
     { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
@@ -10,46 +10,11 @@ const data = [
 ]
 
 export default function () {
-    const [selectAll, setSelectAll] = useState(false)
-    const [selectedKeys, setSelectedKeys] = useState([])
-
-    const onToggleAll = evt => {
-        const checked = evt.target.checked
-        setSelectAll(checked)
-        checked ? undefined : setSelectedKeys([])
-    }
-
-    const onToggle = (evt, index) => {
-        const s = new Set(selectedKeys)
-        evt.target.checked ? s.add(index) : s.delete(index)
-        setSelectedKeys([...s])
-    }
-
     return (
         <Table
             columns={[
                 {
-                    Header: () => (
-                        <Th>
-                            <input
-                                type='checkbox'
-                                onChange={onToggleAll}
-                                checked={selectAll}
-                            />
-                        </Th>
-                    ),
-                    Cell: ({ rowIndex }) => (
-                        <Td style={{ textAlign: 'center' }} >
-                            <input
-                                type='checkbox'
-                                onChange={evt => onToggle(evt, rowIndex)}
-                                checked={selectAll || selectedKeys.includes(rowIndex)}
-                            />
-                        </Td>
-                    ),
-                },
-                {
-                    Header: 'COMPANY',
+                    Header: <Th><span style={{display:'table-cell'}}>COMPANY</span><Sorter/></Th>,
                     dataKey: 'name',
                     width: '*'
                 },
