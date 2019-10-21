@@ -18,6 +18,7 @@ export default function () {
     }
 
     return (
+        <div>
         <Table
             columns={[
                 {
@@ -66,5 +67,52 @@ export default function () {
                 }}
             />
         </Table>
+        
+        <Table
+            columns={[
+                {
+                    Header: '',
+                    Cell: ({ rowIndex }) => {
+                        const checked = selectedKeys.includes(rowIndex)
+                        return (
+                            <Td>
+                                <input
+                                    type='checkbox'
+                                    onChange={evt => onToggle(evt, rowIndex)}
+                                    checked={checked}
+                                />
+                            </Td>
+                        )
+                    },
+                    width: 30
+                },
+                {
+                    Header: 'COMPANY',
+                    dataKey: 'name'
+                },
+                {
+                    Header: 'LAST',
+                    dataKey: 'last'
+                },
+                {
+                    Header: 'CHG',
+                    dataKey: 'chg'
+                },
+                {
+                    Header: 'CHG %',
+                    dataKey: 'chgp'
+                }
+            ]}
+            data={data}
+        >
+            <Thead />
+            <Tbody
+                tr={({ row, rowIndex, cells, getColumns }) => {
+                    const Desc = () =>  <tr><td colSpan={getColumns().length}>{row['desc']}</td></tr>
+                    return [<tr key={0}>{cells}</tr>, <Desc key={1} />]
+                }}
+            />
+        </Table>
+        </div>
     )
 }
