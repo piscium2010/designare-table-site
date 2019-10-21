@@ -1,5 +1,5 @@
-const md = `import React from 'react'
-import Table, { Thead, Tbody } from 'designare-table'
+const md = `import React, { useState } from 'react'
+import Table, { Thead, Tbody, Td } from 'designare-table'
 
 const data = [
     { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
@@ -10,9 +10,23 @@ const data = [
 ]
 
 export default function () {
+    const [selectedKeys, setSelectedKeys] = useState([])
+    const onToggle = (evt, index) => {
+        const s = new Set(selectedKeys)
+        evt.target.checked ? s.add(index) : s.delete(index)
+        setSelectedKeys([...s])
+    }
+
     return (
         <Table
             columns={[
+                {
+                    Header: '',
+                    Cell: ({ rowIndex }) => {
+                        const checked = selectedKeys.includes(rowIndex)
+                        return <Td><input type='checkbox' onChange={evt => onToggle(evt, rowIndex)} checked={checked} /></Td>
+                    }
+                },
                 {
                     Header: 'COMPANY',
                     dataKey: 'name',
@@ -33,10 +47,12 @@ export default function () {
             ]}
             data={data}
         >
-            <div style={{ padding: '0 16px', borderBottom: '1px solid rgba(0,0,0,.12)' }}><h3>Dow Jones</h3></div>
-            <Thead tr={({ cells }) => <tr style={{ height: 50 }}>{cells}</tr>} />
-            <Tbody />
-            <div style={{ padding: '6px 16px', fontSize: 12 }}>Powered by designare</div>
+            <Thead />
+            <Tbody
+                tr={({ rowIndex, cells }) => {
+                    return <tr>{cells}</tr>
+                }}
+            />
         </Table>
     )
 }`
