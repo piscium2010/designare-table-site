@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Table, { Thead, Tbody, Td } from 'designare-table'
 
 
@@ -32,12 +32,18 @@ export default function () {
                 },
                 {
                     Header: '52W',
-                    Cell: ({row}) => <Td><span>test</span></Td>
+                    colSpan: 2,
+                    Cell: ({ row }) => (
+                        <Fragment>
+                            <Td><span>test</span></Td>
+                            <Td><span>test</span></Td>
+                        </Fragment>
+                    )
                 }
             ]}
             data={data}
         >
-            <Thead tr={({ cells }) => <tr style={{height: 30}}>{cells}</tr>} />
+            <Thead tr={({ cells }) => <tr style={{ height: 30 }}>{cells}</tr>} />
             <Tbody />
         </Table>
     )
