@@ -9,32 +9,33 @@ const data = [
     { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: -0.09, desc: 'Lorem ipsum, dolor sit amet.' }
 ]
 
-const style={display: 'flex', alignItems: 'center', userSelect: 'none', cursor:'pointer'}
+const style = { display: 'flex', alignItems: 'center', userSelect: 'none', cursor: 'pointer' }
 
 export default function () {
-    const [selectedKeys, setSelectedKeys] = useState([])
-    const onToggle = (evt, index) => {
-        const s = new Set(selectedKeys)
-        s.has(index) ? s.delete(index) : s.add(index)
-        setSelectedKeys([...s])
+    const [keys, setKeys] = useState(new Set())
+
+    const onToggle = index => {
+        keys.has(index) ? keys.delete(index) : keys.add(index)
+        setKeys(new Set(keys))
     }
+
     return (
         <Table
             columns={[
                 {
                     Header: '',
                     Cell: ({ rowIndex }) => {
-                        const collapsed = selectedKeys.includes(rowIndex)
+                        const collapsed = keys.has(rowIndex)
                         return (
                             <Td>
                                 <div
                                     className='designare-transition'
-                                    style={{...style, color: collapsed ? '#1890ff':'gray'}}
-                                    onClick={evt => onToggle(evt, rowIndex)}>
+                                    style={{ ...style, color: collapsed ? '#1890ff' : 'gray' }}
+                                    onClick={evt => onToggle(rowIndex)}>
                                     {
                                         collapsed
-                                            ? <Icons.MinusSquare style={{ width: 14 }} />
-                                            : <Icons.PlusSquare style={{ width: 14 }} />
+                                            ? <Icons.MinusSquare />
+                                            : <Icons.PlusSquare />
                                     }
                                 </div>
                             </Td>
@@ -64,7 +65,7 @@ export default function () {
             <Thead />
             <Tbody
                 tr={({ row, rowIndex, cells, getColumns }) => {
-                    const Desc = () => selectedKeys.includes(rowIndex)
+                    const Desc = () => keys.has(rowIndex)
                         ? <tr><td colSpan={getColumns().length}>{row['desc']}</td></tr>
                         : null
                     return [<tr key={0}>{cells}</tr>, <Desc key={1} />]
@@ -73,3 +74,4 @@ export default function () {
         </Table>
     )
 }
+

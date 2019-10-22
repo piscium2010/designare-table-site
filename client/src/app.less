@@ -3,11 +3,13 @@ body {
     font-family: sans-serif;
 }
 
+@primaryColor: #1890ff; //9dd411
+
 *[role='button'] {
     cursor: pointer;
     transition: color .3s;
     &:hover {
-        color: #9dd411;
+        color: @primaryColor;
     }
 }
 
@@ -62,7 +64,7 @@ body {
               transition: background-color .3s;
               padding: 0 8px;
               &.active {
-                border-bottom: 1px solid #9dd411;
+                border-bottom: 1px solid @primaryColor;
               }
               &:hover {
                 background-color: rgba(0,0,0,0.03);

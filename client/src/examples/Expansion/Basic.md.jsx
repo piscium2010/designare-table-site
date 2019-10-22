@@ -1,5 +1,5 @@
 const md = `import React, { useState } from 'react'
-import Table, { Thead, Tbody, Td } from 'designare-table'
+import Table, { Thead, Tbody, Td, Icons } from 'designare-table'
 
 const data = [
     { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75, desc: 'Lorem ipsum, dolor sit amet.' },
@@ -9,12 +9,14 @@ const data = [
     { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: -0.09, desc: 'Lorem ipsum, dolor sit amet.' }
 ]
 
+const style = { display: 'flex', alignItems: 'center', userSelect: 'none', cursor: 'pointer' }
+
 export default function () {
-    const [selectedKeys, setSelectedKeys] = useState([])
-    const onToggle = (evt, index) => {
-        const s = new Set(selectedKeys)
-        evt.target.checked ? s.add(index) : s.delete(index)
-        setSelectedKeys([...s])
+    const [keys, setKeys] = useState(new Set())
+
+    const onToggle = index => {
+        keys.has(index) ? keys.delete(index) : keys.add(index)
+        setKeys(new Set(keys))
     }
 
     return (
@@ -23,13 +25,19 @@ export default function () {
                 {
                     Header: '',
                     Cell: ({ rowIndex }) => {
+                        const collapsed = keys.has(rowIndex)
                         return (
                             <Td>
-                                <input
-                                    type='checkbox'
-                                    onChange={evt => onToggle(evt, rowIndex)}
-                                    checked={selectedKeys.includes(rowIndex)}
-                                />
+                                <div
+                                    className='designare-transition'
+                                    style={{ ...style, color: collapsed ? '#1890ff' : 'gray' }}
+                                    onClick={evt => onToggle(rowIndex)}>
+                                    {
+                                        collapsed
+                                            ? <Icons.MinusSquare />
+                                            : <Icons.PlusSquare />
+                                    }
+                                </div>
                             </Td>
                         )
                     }
@@ -57,7 +65,7 @@ export default function () {
             <Thead />
             <Tbody
                 tr={({ row, rowIndex, cells, getColumns }) => {
-                    const Desc = () => selectedKeys.includes(rowIndex)
+                    const Desc = () => keys.has(rowIndex)
                         ? <tr><td colSpan={getColumns().length}>{row['desc']}</td></tr>
                         : null
                     return [<tr key={0}>{cells}</tr>, <Desc key={1} />]
@@ -66,5 +74,6 @@ export default function () {
         </Table>
     )
 }
+
 `
 export default md

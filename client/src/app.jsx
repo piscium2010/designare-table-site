@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Flipper from './components/Flipper'
 import Usage from './examples/Usage'
-import GroupHeader from './examples/GroupHeader'
+import GroupHeader from './examples/Group'
 import Selection from './examples/Selection'
 import Sorter from './examples/Sorter'
 import RowHeight from './examples/RowHeight'
@@ -26,14 +26,17 @@ class App extends React.Component {
                     <Flipper.Tab title='Style' index={2}>
                         <Usage.Three />
                     </Flipper.Tab>
-                </Flipper>
-                <h2>Group Header</h2>
-                <Flipper defaultActiveIndex={0}>
-                    <Flipper.Tab title='Basic' index={0}>
+                </Flipper> */}
+                <h2>Group</h2>
+                <Flipper defaultActiveIndex={1}>
+                    <Flipper.Tab title='Header' index={0}>
                         <GroupHeader.One />
                     </Flipper.Tab>
+                    <Flipper.Tab title='Row' index={1}>
+                        <GroupHeader.Two />
+                    </Flipper.Tab>
                 </Flipper>
-                <h2>Selection</h2>
+                {/* <h2>Selection</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Selection.One />
@@ -75,12 +78,12 @@ class App extends React.Component {
                         <Title.One />
                     </Flipper.Tab>
                 </Flipper> */}
-                <h2>Expansion</h2>
+                {/* <h2>Expansion</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Expansion.One />
                     </Flipper.Tab>
-                </Flipper>
+                </Flipper> */}
             </div>
         )
     }
