@@ -1,5 +1,5 @@
-import React from 'react'
-import Table, { Thead, Tbody } from 'designare-table'
+const md = `import React from 'react'
+import Table, { Thead, Tbody } from './node_modules/designare-table'
 
 
 const data = [
@@ -16,8 +16,7 @@ export default function () {
             columns={[
                 {
                     Header: 'COMPANY',
-                    dataKey: 'name',
-                    width: '*'
+                    dataKey: 'name'
                 },
                 {
                     Header: 'LAST',
@@ -36,21 +35,20 @@ export default function () {
                     children: [
                         {
                             Header: 'High',
-                            dataKey: 'high',
-                            width: 75
+                            dataKey: 'high'
                         },
                         {
                             Header: 'Low',
-                            dataKey: 'low',
-                            width: 75
+                            dataKey: 'low'
                         }
                     ]
                 }
             ]}
             data={data}
         >
-            <Thead tr={({ cells }) => <tr style={{ height: 30 }}>{cells}</tr>} />
+            <Thead tr={({ cells }) => <tr style={{height: 30}}>{cells}</tr>} />
             <Tbody />
         </Table>
     )
-}
+}`
+export default md

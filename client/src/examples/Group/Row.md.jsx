@@ -1,5 +1,5 @@
-const md = `import React from 'react'
-import Table, { Thead, Tbody } from 'designare-table'
+const md = `import React, { Fragment } from 'react'
+import Table, { Thead, Tbody, Td } from 'designare-table'
 
 
 const data = [
@@ -32,21 +32,18 @@ export default function () {
                 },
                 {
                     Header: '52W',
-                    children: [
-                        {
-                            Header: 'High',
-                            dataKey: 'high'
-                        },
-                        {
-                            Header: 'Low',
-                            dataKey: 'low'
-                        }
-                    ]
+                    colSpan: 2,
+                    Cell: ({ row }) => (
+                        <Fragment>
+                            <Td><span>test</span></Td>
+                            <Td><span>test</span></Td>
+                        </Fragment>
+                    )
                 }
             ]}
             data={data}
         >
-            <Thead tr={({ cells }) => <tr style={{height: 30}}>{cells}</tr>} />
+            <Thead tr={({ cells }) => <tr style={{ height: 30 }}>{cells}</tr>} />
             <Tbody />
         </Table>
     )

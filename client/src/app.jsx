@@ -8,6 +8,7 @@ import Sorter from './examples/Sorter'
 import RowHeight from './examples/RowHeight'
 import Title from './examples/Title'
 import Expansion from './examples/Expansion'
+import Tree from './examples/Tree'
 import './app.less'
 
 class App extends React.Component {
@@ -15,7 +16,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                {/* <h2>Usage</h2>
+                <h2>Usage</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Usage.One />
@@ -26,9 +27,9 @@ class App extends React.Component {
                     <Flipper.Tab title='Style' index={2}>
                         <Usage.Three />
                     </Flipper.Tab>
-                </Flipper> */}
+                </Flipper>
                 <h2>Group</h2>
-                <Flipper defaultActiveIndex={1}>
+                <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Header' index={0}>
                         <GroupHeader.One />
                     </Flipper.Tab>
@@ -36,7 +37,7 @@ class App extends React.Component {
                         <GroupHeader.Two />
                     </Flipper.Tab>
                 </Flipper>
-                {/* <h2>Selection</h2>
+                <h2>Selection</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Selection.One />
@@ -77,13 +78,22 @@ class App extends React.Component {
                     <Flipper.Tab title='Basic' index={0}>
                         <Title.One />
                     </Flipper.Tab>
-                </Flipper> */}
-                {/* <h2>Expansion</h2>
+                </Flipper>
+                <h2>Expansion</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Expansion.One />
                     </Flipper.Tab>
-                </Flipper> */}
+                </Flipper>
+                <h2>Tree</h2>
+                <Flipper defaultActiveIndex={1}>
+                    <Flipper.Tab title='Basic' index={0}>
+                        <Tree.One />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Basic' index={1}>
+                        <Tree.One />
+                    </Flipper.Tab>
+                </Flipper>
             </div>
         )
     }
