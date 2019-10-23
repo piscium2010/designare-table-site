@@ -33,7 +33,7 @@ export default function () {
                 },
                 {
                     Header: '52W',
-                    colSpan: "2",
+                    colSpan: 2,
                     Cell: ({ row }) => (
                         <Fragment>
                             <Td>{row['low']}</Td>

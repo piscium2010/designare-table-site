@@ -5,6 +5,7 @@ import Usage from './examples/Usage'
 import GroupHeader from './examples/Group'
 import Selection from './examples/Selection'
 import Sorter from './examples/Sorter'
+import Filter from './examples/Filter'
 import RowHeight from './examples/RowHeight'
 import Title from './examples/Title'
 import Expansion from './examples/Expansion'
@@ -16,7 +17,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <h2>Usage</h2>
+                {/* <h2>Usage</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Usage.One />
@@ -63,8 +64,29 @@ class App extends React.Component {
                     <Flipper.Tab title='Style' index={5}>
                         <Sorter.Six />
                     </Flipper.Tab>
+                </Flipper> */}
+                <h2>Filter</h2>
+                <Flipper defaultActiveIndex={0}>
+                    <Flipper.Tab title='Basic' index={0}>
+                        <Filter.One />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Default' index={1}>
+                        <Filter.Two />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Control' index={2}>
+                        <Filter.Three />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Sort by Server' index={3}>
+                        <Filter.Four />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Color' index={4}>
+                        <Filter.Five />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Style' index={5}>
+                        <Filter.Six />
+                    </Flipper.Tab>
                 </Flipper>
-                <h2>RowHeight</h2>
+                {/* <h2>RowHeight</h2>
                 <Flipper defaultActiveIndex={1}>
                     <Flipper.Tab title='Basic' index={0}>
                         <RowHeight.One />
@@ -93,7 +115,7 @@ class App extends React.Component {
                     <Flipper.Tab title='Basic' index={1}>
                         <Tree.One />
                     </Flipper.Tab>
-                </Flipper>
+                </Flipper> */}
             </div>
         )
     }

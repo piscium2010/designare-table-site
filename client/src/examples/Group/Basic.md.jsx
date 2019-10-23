@@ -16,7 +16,8 @@ export default function () {
             columns={[
                 {
                     Header: 'COMPANY',
-                    dataKey: 'name'
+                    dataKey: 'name',
+                    width: '*'
                 },
                 {
                     Header: 'LAST',
@@ -35,18 +36,20 @@ export default function () {
                     children: [
                         {
                             Header: 'High',
-                            dataKey: 'high'
+                            dataKey: 'high',
+                            width: 75
                         },
                         {
                             Header: 'Low',
-                            dataKey: 'low'
+                            dataKey: 'low',
+                            width: 75
                         }
                     ]
                 }
             ]}
             data={data}
         >
-            <Thead tr={({ cells }) => <tr style={{height: 30}}>{cells}</tr>} />
+            <Thead tr={({ cells }) => <tr style={{ height: 30 }}>{cells}</tr>} />
             <Tbody />
         </Table>
     )

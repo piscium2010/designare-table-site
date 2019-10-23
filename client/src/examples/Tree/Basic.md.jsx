@@ -1,79 +1,106 @@
 const md = `import React, { useState } from 'react'
-import Table, { Thead, Tbody, Td, Icons } from 'designare-table'
-
-const data = [
-    { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75, desc: 'Lorem ipsum, dolor sit amet.' },
-    { name: 'Cisco Systems Inc.', last: 46.79, chg: 0.43, chgp: 0.93, desc: 'Lorem ipsum, dolor sit amet.' },
-    { name: 'Walt Disney Co.', last: 130.86, chg: 1.10, chgp: 0.85, desc: 'Lorem ipsum, dolor sit amet.' },
-    { name: 'Coca-Cola Co.', last: 53.49, chg: -0.02, chgp: -0.04, desc: 'Lorem ipsum, dolor sit amet.' },
-    { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: -0.09, desc: 'Lorem ipsum, dolor sit amet.' }
-]
+import Table, { Td, Icons, Tree } from 'designare-table'
 
 const style = { display: 'flex', alignItems: 'center', userSelect: 'none', cursor: 'pointer' }
+const Button = props => <button style={{margin: '10px 10px 10px 0', padding: 5}} {...props}></button>
+const treeData = [
+    {
+        name: 'AMERICAS', last: '26,827.64', chg: '57.44', chgp: '0.21',
+        children: [
+            {
+                name: 'Key', last: '8,162.99', chg: '73.44', chgp: '0.91',
+                children: [
+                    { name: 'UnitedHealth Group Inc.', last: '43.67', chg: '6.68', chgp: '2.82' },
+                    { name: 'Walgreens Boots Alliance Inc.', last: '55.94', chg: '1.28', chgp: '2.34' },
+                ]
+            },
+            {
+                name: 'Other', last: '1,550.14', chg: '14.66', chgp: '0.95',
+                children: [
+                    { name: 'Dow Inc.', last: '47.81', chg: '0.69', chgp: '1.46' },
+                    { name: 'Caterpillar Inc.', last: '131.04', chg: '1.88', chgp: '1.46' },
+                    { name: 'American Express Co.', last: '119.10', chg: '1.69', chgp: '1.44' },
+                ]
+            },
+        ]
+    },
+    { name: 'STOXX Europe 50 Index', last: '3,237.42', chg: '4.95', chgp: '0.14' },
+    { name: 'STOXX Europe 600 Index', last: '394.34', chg: '0.14', chgp: '0.04' }
+]
 
 export default function () {
-    const [keys, setKeys] = useState(new Set())
-
+    const [selection, setSelection] = useState([])
     const onToggle = index => {
-        keys.has(index) ? keys.delete(index) : keys.add(index)
-        setKeys(new Set(keys))
+        const s = new Set(selection)
+        s.has(index) ? s.delete(index) : s.add(index)
+        setSelection([...s])
     }
 
+    const tree = Tree({
+        'treeId': ({ row, index, parentKey }) => row.name
+    })
+    const data = tree.flatten(treeData, selection)
+
     return (
-        <Table
-            columns={[
-                {
-                    Header: '',
-                    Cell: ({ rowIndex }) => {
-                        const collapsed = keys.has(rowIndex)
-                        return (
-                            <Td>
-                                <div
-                                    className='designare-transition'
-                                    style={{ ...style, color: collapsed ? '#1890ff' : 'gray' }}
-                                    onClick={evt => onToggle(rowIndex)}>
+        <div>
+            <Button onClick={evt => setSelection(tree.getAllParentKeys(treeData))}>Expand All</Button>
+            <Button onClick={evt => setSelection([])}>Close All</Button>
+            <Table
+                columns={[
+                    {
+                        Header: '',
+                        Cell: ({ row }) => {
+                            const { treeId } = row // injected by tree.flatten
+                            const collapsed = selection.includes(treeId)
+                            return (
+                                <Td>
                                     {
-                                        collapsed
-                                            ? <Icons.MinusSquare />
-                                            : <Icons.PlusSquare />
+                                        row.children &&
+                                        <div
+                                            className='designare-transition'
+                                            style={{ ...style, color: collapsed ? '#1890ff' : 'gray' }}
+                                            onClick={evt => onToggle(treeId)}>
+                                            {
+                                                collapsed
+                                                    ? <Icons.MinusSquare />
+                                                    : <Icons.PlusSquare />
+                                            }
+                                        </div>
                                     }
-                                </div>
-                            </Td>
-                        )
+                                </Td>
+                            )
+                        }
+                    },
+                    {
+                        Header: 'COMPANY',
+                        dataKey: 'name',
+                        Cell: ({ value, row }) => {
+                            const { depth } = row // injected by tree.flatten
+                            return (
+                                <Td>
+                                    <span style={{ marginLeft: 10 + 20 * depth }}>{value}</span>
+                                </Td>
+                            )
+                        },
+                        width: '*'
+                    },
+                    {
+                        Header: 'LAST',
+                        dataKey: 'last'
+                    },
+                    {
+                        Header: 'CHG',
+                        dataKey: 'chg'
+                    },
+                    {
+                        Header: 'CHG %',
+                        dataKey: 'chgp'
                     }
-                },
-                {
-                    Header: 'COMPANY',
-                    dataKey: 'name',
-                    width: '*'
-                },
-                {
-                    Header: 'LAST',
-                    dataKey: 'last'
-                },
-                {
-                    Header: 'CHG',
-                    dataKey: 'chg'
-                },
-                {
-                    Header: 'CHG %',
-                    dataKey: 'chgp'
-                }
-            ]}
-            data={data}
-        >
-            <Thead />
-            <Tbody
-                tr={({ row, rowIndex, cells, getColumns }) => {
-                    const Desc = () => keys.has(rowIndex)
-                        ? <tr><td colSpan={getColumns().length}>{row['desc']}</td></tr>
-                        : null
-                    return [<tr key={0}>{cells}</tr>, <Desc key={1} />]
-                }}
+                ]}
+                data={data}
             />
-        </Table>
+        </div>
     )
 }
-
 `
 export default md

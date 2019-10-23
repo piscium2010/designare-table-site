@@ -16,7 +16,8 @@ export default function () {
             columns={[
                 {
                     Header: 'COMPANY',
-                    dataKey: 'name'
+                    dataKey: 'name',
+                    width: '*'
                 },
                 {
                     Header: 'LAST',
@@ -28,24 +29,23 @@ export default function () {
                 },
                 {
                     Header: 'CHG %',
-                    dataKey: 'chgp'
+                    dataKey: 'chgp',
                 },
                 {
                     Header: '52W',
-                    colSpan: 2,
+                    colSpan: "2",
                     Cell: ({ row }) => (
                         <Fragment>
-                            <Td><span>test</span></Td>
-                            <Td><span>test</span></Td>
+                            <Td>{row['low']}</Td>
+                            <Td>{row['high']}</Td>
                         </Fragment>
-                    )
-                }
+                    ),
+                    width: 150
+                },
             ]}
+            rowHeight={38}
             data={data}
-        >
-            <Thead tr={({ cells }) => <tr style={{ height: 30 }}>{cells}</tr>} />
-            <Tbody />
-        </Table>
+        />
     )
 }`
 export default md
