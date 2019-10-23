@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Table, { Th, Sorter, Filter } from 'designare-table'
 
 const data = [
@@ -10,7 +10,6 @@ const data = [
 ]
 
 export default function () {
-
     return (
         <Table
             columns={[
@@ -18,64 +17,68 @@ export default function () {
                     Header: (
                         <Th>
                             COMPANY
-                        <Sorter directions={['asc']} />
-                            <Filter by={({ dataKey, row, filterValue }) => filterValue == 'positive' ? row[dataKey] > 0 : row[dataKey] < 0}>
+                        <Sorter />
+                            <Filter by={({ dataKey, row, filterValue }) => row[dataKey].toLowerCase().indexOf(filterValue) > -1}>
                                 {
-                                    ({ trigger }) => null
+                                    ({ filterValue = '', trigger }) => (
+                                        <div style={{ padding: 10 }}>
+                                            <input value={filterValue} onChange={evt => {
+                                                const value = evt.target.value
+                                                value ? trigger(value) : trigger()
+                                            }}
+                                            />
+                                        </div>
+                                    )
                                 }
                             </Filter>
                         </Th>
                     ),
-                    dataKey: 'name',
-                    width: '*'
+                    dataKey: 'name'
                 },
                 {
-                    Header: <Th>LAST<Sorter directions={['des']} /></Th>,
+                    Header: <Th>LAST<Sorter /></Th>,
                     dataKey: 'last'
                 },
                 {
                     Header: (
                         <Th>
                             CHG
-                            <Sorter directions={['asc', 'des']} />
+                            <Sorter />
                             <Filter by={({ dataKey, row, filterValue }) => filterValue == 'positive' ? row[dataKey] > 0 : row[dataKey] < 0}>
                                 {
-                                    ({ filterValue, trigger }) => {
-                                        return (
-                                            <div style={{fontSize:'small'}}>
-                                                <div style={{ padding: '10px 10px', borderBottom:'1px dashed rgba(0,0,0,.12)' }}>
-                                                    <input
-                                                        id='p'
-                                                        checked={filterValue === 'positive'}
-                                                        type='radio'
-                                                        name='chg'
-                                                        value='positive'
-                                                        onChange={evt => trigger(evt.target.value)}
-                                                    />
-                                                    <label for='p' style={{ cursor: 'pointer' }}>Positive</label>
-                                                    <br />
-                                                    <input
-                                                        id='n'
-                                                        checked={filterValue === 'negtive'}
-                                                        type='radio'
-                                                        name='chg'
-                                                        value='negtive'
-                                                        onChange={evt => trigger(evt.target.value)}
-                                                    />
-                                                    <label for='n' style={{ cursor: 'pointer' }}>Negative</label>
-                                                </div>
-                                                <div style={{  padding: '6px 10px', textAlign: 'right', color: '#bfbfbf' }}>
-                                                    <span
-                                                        role='button'
-                                                        style={{ cursor: 'pointer' }}
-                                                        onClick={evt => trigger(/* pass undefined to cancel filter */)}
-                                                    >
-                                                        Reset
-                                                    </span>
-                                                </div>
+                                    ({ filterValue, trigger }) => (
+                                        <div style={{ fontSize: 'small' }}>
+                                            <div style={{ padding: 10, borderBottom: '1px dashed rgba(0,0,0,.12)' }}>
+                                                <input
+                                                    id='p'
+                                                    checked={filterValue === 'positive'}
+                                                    type='radio'
+                                                    name='chg'
+                                                    value='positive'
+                                                    onChange={evt => trigger(evt.target.value)}
+                                                />
+                                                <label htmlFor='p' style={{ cursor: 'pointer', marginLeft: 5 }}>Positive</label>
+                                                <br />
+                                                <input
+                                                    id='n'
+                                                    checked={filterValue === 'negtive'}
+                                                    type='radio'
+                                                    name='chg'
+                                                    value='negtive'
+                                                    onChange={evt => trigger(evt.target.value)}
+                                                />
+                                                <label htmlFor='n' style={{ cursor: 'pointer', marginLeft: 5 }}>Negative</label>
                                             </div>
-                                        )
-                                    }
+                                            <div style={{ padding: '6px 10px', textAlign: 'right', color: '#bfbfbf' }}>
+                                                <span
+                                                    role='button'
+                                                    onClick={evt => trigger(/* pass undefined to cancel filter */)}
+                                                >
+                                                    Reset
+                                                    </span>
+                                            </div>
+                                        </div>
+                                    )
                                 }
                             </Filter>
                         </Th>
@@ -83,7 +86,7 @@ export default function () {
                     dataKey: 'chg'
                 },
                 {
-                    Header: <Th>CHG%<Sorter directions={['asc', 'des']} /><Filter /></Th>,
+                    Header: <Th>CHG%<Sorter /></Th>,
                     dataKey: 'chgp'
                 }
             ]}

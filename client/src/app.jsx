@@ -66,7 +66,7 @@ class App extends React.Component {
                     </Flipper.Tab>
                 </Flipper> */}
                 <h2>Filter</h2>
-                <Flipper defaultActiveIndex={0}>
+                <Flipper defaultActiveIndex={2}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Filter.One />
                     </Flipper.Tab>
