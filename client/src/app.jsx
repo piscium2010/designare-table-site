@@ -17,7 +17,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                {/* <h2>Usage</h2>
+                <h2>Usage</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Usage.One />
@@ -64,9 +64,9 @@ class App extends React.Component {
                     <Flipper.Tab title='Style' index={5}>
                         <Sorter.Six />
                     </Flipper.Tab>
-                </Flipper> */}
+                </Flipper>
                 <h2>Filter</h2>
-                <Flipper defaultActiveIndex={3}>
+                <Flipper defaultActiveIndex={5}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Filter.One />
                     </Flipper.Tab>

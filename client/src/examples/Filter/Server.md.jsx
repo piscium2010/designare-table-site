@@ -1,73 +1,98 @@
 const md = `import React, { useState } from 'react'
-import Table, { Th, Sorter } from 'designare-table'
+import Table, { Th, Sorter, Filter } from 'designare-table'
 
 const serverData = [
     { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
     { name: 'Cisco Systems Inc.', last: 46.79, chg: 0.43, chgp: 0.93 },
-    { name: 'Coca-Cola Co.', last: 53.49, chg: -0.02, chgp: 0.04 },
     { name: 'Walt Disney Co.', last: 130.8, chg: 1.10, chgp: 0.85 },
-    { name: 'Walmart Inc.', last: 119.4, chg: -0.11, chgp: 0.09 }
+    { name: 'Coca-Cola Co.', last: 53.49, chg: -0.02, chgp: 0.04 },
+    { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: 0.09 }
 ]
 
-const byNumber = (a, b) => {
-    return a - b
-}
+function fakeFetch(filters) {
+    const url = '?' + filters.map(
+        f => \`k=\${f.dataKey}&op=\${f.operator}&v=\${f.filterValue}\`
+    ).join('&')
 
-const byStr = (a, b) => {
-    if (a > b) return 1
-    if (a == b) return 0
-    if (a < b) return -1
-}
-
-const fakeFetch = (dataKey, direction) => {
-    const by = (a, b) => dataKey === 'name'
-        ? byStr(a[dataKey], b[dataKey])
-        : byNumber(a[dataKey], b[dataKey])
+    console.log(\`url\`, url) // example of getting url
 
     return new Promise(resolve => {
-        let result = Array.from(serverData)
-        result = direction === 'default'
-            ? result
-            : direction === 'asc'
-                ? result.sort(by)
-                : result.sort(by).reverse()
-        resolve(result)
+        setTimeout(() => {
+            const { filterValue, dataKey } = filters[0]
+            const result = serverData.filter(
+                d => !filterValue || d[dataKey].toLowerCase().indexOf(filterValue) >= 0
+            )
+            resolve(result)
+        }, 1000)
     })
 }
 
 export default function () {
     const [data, setData] = useState(serverData)
-    const [sorter, setSorter] = useState()
+    const [filters, setFilters] = useState([])
+    const [loading, setLoading] = useState(false)
 
     return (
         <Table
+            loading={loading}
+            filters={filters}
+            onChangeFilters={nextFilters => {
+                setFilters(nextFilters)
+                setLoading(true)
+                fakeFetch(nextFilters).then(result => {
+                    setData(result)
+                    setLoading(false)
+                })
+            }}
             columns={[
                 {
-                    Header: <Th>COMPANY<Sorter by='server' /></Th>,
-                    dataKey: 'name',
-                    width: '*'
+                    Header: (
+                        <Th>
+                            COMPANY
+                            <Sorter />
+                            <Filter
+                                operator='contains' // user defined prop
+                            >
+                                {
+                                    ({ filterValue = '', trigger }) => (
+                                        <div style={{ fontSize: 'small' }}>
+                                            <div style={{ padding: 10, borderBottom: '1px dashed rgba(0,0,0,.12)' }}>
+                                                <input value={filterValue} onChange={evt => {
+                                                    const value = evt.target.value
+                                                    value ? trigger(value) : trigger()
+                                                }}
+                                                />
+                                            </div>
+                                            <div style={{ padding: '0 10px', height: 28, textAlign: 'right', color: '#bfbfbf' }}>
+                                                <span
+                                                    role='button'
+                                                    style={{ lineHeight: '28px' }}
+                                                    onClick={evt => trigger(/* pass undefined to cancel filter */)}
+                                                >
+                                                    Reset
+                                                    </span>
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                            </Filter>
+                        </Th>
+                    ),
+                    dataKey: 'name'
                 },
                 {
-                    Header: <Th>LAST<Sorter by='server' /></Th>,
+                    Header: 'LAST',
                     dataKey: 'last'
                 },
                 {
-                    Header: <Th>CHG<Sorter by='server' /></Th>,
+                    Header: 'CHG',
                     dataKey: 'chg'
                 },
                 {
-                    Header: <Th>CHG %<Sorter by='server' /></Th>,
+                    Header: 'CHG %',
                     dataKey: 'chgp'
                 }
             ]}
-            sorter={sorter}
-            onChangeSorter={({ dataKey, direction, by }) => {
-                if (by === 'server')
-                    fakeFetch(dataKey, direction).then(data => {
-                        setData(data)
-                        setSorter({ dataKey, direction })
-                    })
-            }}
             data={data}
         />
     )

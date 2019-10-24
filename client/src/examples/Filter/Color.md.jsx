@@ -1,41 +1,74 @@
-const md = `import React from 'react'
-import Table, { Th, Sorter } from 'designare-table'
+const md = `import React, {useEffect} from 'react'
+import Table, { Th, Filter } from 'designare-table'
 
 const data = [
-    { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: '1.75%' },
-    { name: 'Cisco Systems Inc.', last: 46.79, chg: 0.43, chgp: '0.93%' },
-    { name: 'Walt Disney Co.', last: 130.86, chg: 1.10, chgp: '0.85%' },
-    { name: 'Coca-Cola Co.', last: 53.49, chg: -0.02, chgp: '-0.04%' },
-    { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: '-0.09%' }
+    { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
+    { name: 'Cisco Systems Inc.', last: 46.79, chg: 0.43, chgp: 0.93 },
+    { name: 'Walt Disney Co.', last: 130.8, chg: 1.10, chgp: 0.85 },
+    { name: 'Coca-Cola Co.', last: 53.49, chg: -0.02, chgp: 0.04 },
+    { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: 0.09 }
 ]
 
+const by = ({ dataKey, row, filterValue }) => row[dataKey].toLowerCase().indexOf(filterValue) >= 0
+
 export default function () {
-    const colors = { activeColor: '#9dd411', defaultColor: '#bfbfbf' }
     return (
         <Table
+            defaultFilters={[{ dataKey: 'name', filterValue: 'c' }]}
             columns={[
                 {
-                    Header: <Th><Sorter {...colors}/>COMPANY</Th>,
-                    dataKey: 'name',
-                    width: '*'
+                    Header: (
+                        <Th>
+                            COMPANY
+                            <Filter
+                                activeColor='#9dd411'
+                                defaultColor='#bfbfbf'
+                                by={by}>
+                                {
+                                    ({ filterValue = '', trigger }) => {
+                                        useEffect(()=>{
+                                            console.log(\`layer did mount\`,)
+                                            return ()=>{
+                                                console.log(\`layer unmount\`,)
+                                            }
+                                        },[])
+                                        return (<div>
+                                            <div style={{ padding: 10, borderBottom: '1px dashed rgba(0,0,0,.12)' }}>
+                                                <input value={filterValue} onChange={evt => {
+                                                    trigger(evt.target.value || undefined)
+                                                }}
+                                                />
+                                            </div>
+                                            <div style={{ padding: '0 10px', textAlign: 'right', color: '#bfbfbf' }}>
+                                                <span
+                                                    role='button'
+                                                    style={{ lineHeight: '28px', fontSize: 'small' }}
+                                                    onClick={evt => trigger(/* pass undefined to cancel filter */)}
+                                                >
+                                                    Reset
+                                                </span>
+                                            </div>
+                                        </div>)
+                                    }
+                                }
+                            </Filter>
+                        </Th>
+                    ),
+                    dataKey: 'name'
                 },
                 {
-                    Header: <Th><Sorter {...colors}/>LAST</Th>,
+                    Header: 'LAST',
                     dataKey: 'last'
                 },
                 {
-                    Header: <Th><Sorter {...colors}/>CHG</Th>,
+                    Header: 'CHG',
                     dataKey: 'chg'
                 },
                 {
-                    Header: <Th><Sorter {...colors}/>CHG %</Th>,
+                    Header: 'CHG %',
                     dataKey: 'chgp'
                 }
             ]}
-            defaultSorter={{
-                dataKey: 'name',
-                direction: 'asc'
-            }}
             data={data}
         />
     )

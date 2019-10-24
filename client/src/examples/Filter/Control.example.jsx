@@ -17,7 +17,6 @@ export default function () {
         <Table
             filters={filters}
             onChangeFilters={nextFilters => {
-                console.log(`next`)
                 setFilters(nextFilters)
             }}
             columns={[
@@ -29,18 +28,17 @@ export default function () {
                             <Filter by={({ dataKey, row, filterValue }) => row[dataKey].toLowerCase().indexOf(filterValue) > -1}>
                                 {
                                     ({ filterValue = '', trigger }) => (
-                                        <div style={{ fontSize: 'small' }}>
+                                        <div>
                                             <div style={{ padding: 10, borderBottom: '1px dashed rgba(0,0,0,.12)' }}>
                                                 <input value={filterValue} onChange={evt => {
-                                                    const value = evt.target.value
-                                                    value ? trigger(value) : trigger()
+                                                    trigger(evt.target.value || undefined)
                                                 }}
                                                 />
                                             </div>
-                                            <div style={{ padding: '0 10px', height: 28, textAlign: 'right', color: '#bfbfbf' }}>
+                                            <div style={{ padding: '0 10px', textAlign: 'right', color: '#bfbfbf' }}>
                                                 <span
                                                     role='button'
-                                                    style={{ lineHeight: '28px' }}
+                                                    style={{ lineHeight: '28px', fontSize: 'small' }}
                                                     onClick={evt => trigger(/* pass undefined to cancel filter */)}
                                                 >
                                                     Reset
@@ -88,14 +86,14 @@ export default function () {
                                                 />
                                                 <label htmlFor='n' style={{ cursor: 'pointer', marginLeft: 5 }}>Negative</label>
                                             </div>
-                                            <div style={{ padding: '0 10px', height: 28, textAlign: 'right', color: '#bfbfbf' }}>
+                                            <div style={{ padding: '0 10px', textAlign: 'right', color: '#bfbfbf' }}>
                                                 <span
                                                     role='button'
                                                     style={{ lineHeight: '28px' }}
                                                     onClick={evt => trigger(/* pass undefined to cancel filter */)}
                                                 >
                                                     Reset
-                                                    </span>
+                                                </span>
                                             </div>
                                         </div>
                                     )
