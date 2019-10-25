@@ -1,18 +1,18 @@
-const md = `import React from 'react'
+import React from 'react'
 import Table, { Thead, Tbody } from 'designare-table'
 
 const one = {
     'exg': 'NASDAQ',
     'sec': 'Consumer Services',
     'instry': 'Catalog',
-    '1YT': '\$2,250.00',
+    '1YT': '$2,250.00',
     'sv': '5,123,142',
     '50DAvg': '2,984,212',
-    'Prev': '\$1,762.17',
+    'Prev': '$1,762.17',
     'MC': '880,873,538,392',
     'PE': '73.89',
     'FPE1.': '74.66822033898305',
-    'EPS': '\$24.10',
+    'EPS': '$24.10',
     'AD': 'N/A',
     'Ex': 'N/A',
     'Dividend': 'N/A',
@@ -30,7 +30,7 @@ const data = (function () {
 export default function () {
     return (
         <Table
-            style={{ height: 440 }}
+            style={{ height: 402 }}
             columns={[
                 { Header: 'Exchange', dataKey: 'exg' },
                 { Header: 'Sector', dataKey: 'sec', width: 200 },
@@ -54,5 +54,4 @@ export default function () {
             <Tbody/>
         </Table>
     )
-}`
-export default md
+}

@@ -131,21 +131,24 @@ class App extends React.Component {
                     </Flipper.Tab>
                 </Flipper> */}
                 <h2>Fixed</h2>
-                <Flipper defaultActiveIndex={1}>
+                <Flipper defaultActiveIndex={2}>
                     <Flipper.Tab title='Header' index={0}>
                         <Fixed.One />
                     </Flipper.Tab>
-                    <Flipper.Tab title='Left' index={1}>
+                    <Flipper.Tab title='Body' index={1}>
                         <Fixed.Two />
                     </Flipper.Tab>
-                    <Flipper.Tab title='Control' index={2}>
+                    <Flipper.Tab title='Left' index={2}>
                         <Fixed.Three />
                     </Flipper.Tab>
-                    <Flipper.Tab title='By Server' index={3}>
+                    <Flipper.Tab title='Right' index={3}>
                         <Fixed.Four />
                     </Flipper.Tab>
-                    <Flipper.Tab title='Color' index={4}>
+                    <Flipper.Tab title='Both' index={4}>
                         <Fixed.Five />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Expansion' index={5}>
+                        <Fixed.Six />
                     </Flipper.Tab>
                 </Flipper>
             </div>
