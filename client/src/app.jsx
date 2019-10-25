@@ -19,6 +19,28 @@ class App extends React.Component {
     render() {
         return (
             <div>
+                 <table style={{minWidth: 0}}>
+                <tbody>
+                    <tr style={{height: 38}}>
+                        <td style={{height: 38}}>
+                            NASDAQ
+                    </td>
+                        <td style={{height: 38}}>
+                            Consumer Services</td>
+                        <td style={{height: 38}}>
+                            Catalog</td></tr></tbody>
+                <colgroup>
+                    <col style={{width: 93}}>
+
+                    </col>
+                    <col style={{width: 205}}>
+
+                    </col>
+                    <col style={{width: 80}}>
+
+                    </col>
+                </colgroup>
+            </table>
                 {/* <h2>Usage</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>

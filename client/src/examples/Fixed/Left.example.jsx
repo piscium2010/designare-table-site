@@ -29,29 +29,53 @@ const data = (function () {
 
 export default function () {
     return (
-        <Table
-            style={{ height: 402 }}
-            columns={[
-                { Header: 'Exchange', dataKey: 'exg' },
-                { Header: 'Sector', dataKey: 'sec', width: 200, fixed: 'left' },
-                { Header: 'Industry', dataKey: 'instry' },
-                { Header: '1 Year Target', dataKey: '1YT' },
-                { Header: 'Share Volume', dataKey: 'sv' },
-                { Header: '50 Day Average Vol.', dataKey: '50DAvg' },
-                { Header: 'Previous Close', dataKey: 'Prev' },
-                { Header: 'Market Cap', dataKey: 'MC' },
-                { Header: 'P/E Ratio', dataKey: 'PE' },
-                { Header: 'Forward P/E 1 Yr', dataKey: 'FPE1.' },
-                { Header: 'Earnings Per Share', dataKey: 'EPS' },
-                { Header: 'Annualized Dividend', dataKey: 'AD' },
-                { Header: 'Ex Dividend Date', dataKey: 'Ex' },
-                { Header: 'Dividend Pay Date', dataKey: 'Dividend' },
-                { Header: 'Current Yield', dataKey: 'CYield' }
-            ]}
-            data={data}
-        >
-            <Thead tr={({cells})=><tr style={{height: 80}}>{cells}</tr>}/>
-            <Tbody/>
-        </Table>
+        <div>
+            <table style={{minWidth: 0}}>
+                <tbody>
+                    <tr style={{height: 38}}>
+                        <td style={{height: 38}}>
+                            NASDAQ
+                    </td>
+                        <td style={{height: 38}}>
+                            Consumer Services</td>
+                        <td style={{height: 38}}>
+                            Catalog</td></tr></tbody>
+                <colgroup>
+                    <col style={{width: 93}}>
+
+                    </col>
+                    <col style={{width: 205}}>
+
+                    </col>
+                    <col style={{width: 80}}>
+
+                    </col>
+                </colgroup>
+            </table>
+            <Table
+                style={{ height: 400 }}
+                columns={[
+                    { Header: 'Exchange', dataKey: 'exg' },
+                    { Header: 'Sector', dataKey: 'sec', width: 200, fixed: 'left' },
+                    { Header: 'Industry', dataKey: 'instry' },
+                    { Header: '1 Year Target', dataKey: '1YT' },
+                    { Header: 'Share Volume', dataKey: 'sv' },
+                    { Header: '50 Day Average Vol.', dataKey: '50DAvg' },
+                    { Header: 'Previous Close', dataKey: 'Prev' },
+                    { Header: 'Market Cap', dataKey: 'MC', fixed: 'right' },
+                    { Header: 'P/E Ratio', dataKey: 'PE' },
+                    { Header: 'Forward P/E 1 Yr', dataKey: 'FPE1.' },
+                    { Header: 'Earnings Per Share', dataKey: 'EPS' },
+                    { Header: 'Annualized Dividend', dataKey: 'AD' },
+                    { Header: 'Ex Dividend Date', dataKey: 'Ex' },
+                    { Header: 'Dividend Pay Date', dataKey: 'Dividend' },
+                    { Header: 'Current Yield', dataKey: 'CYield' }
+                ]}
+                data={data}
+            >
+                <Thead tr={({ cells }) => <tr style={{ height: 80 }}>{cells}</tr>} />
+                <Tbody />
+            </Table>
+        </div>
     )
 }
