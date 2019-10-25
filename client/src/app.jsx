@@ -4,6 +4,7 @@ import Flipper from './components/Flipper'
 import Usage from './examples/Usage'
 import GroupHeader from './examples/Group'
 import Selection from './examples/Selection'
+import Loading from './examples/Loading'
 import Sorter from './examples/Sorter'
 import Filter from './examples/Filter'
 import RowHeight from './examples/RowHeight'
@@ -17,7 +18,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <h2>Usage</h2>
+                {/* <h2>Usage</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Usage.One />
@@ -42,6 +43,18 @@ class App extends React.Component {
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Selection.One />
+                    </Flipper.Tab>
+                </Flipper> */}
+                <h2>Loading</h2>
+                <Flipper defaultActiveIndex={2}>
+                    <Flipper.Tab title='Basic' index={0}>
+                        <Loading.One />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Custom' index={1}>
+                        <Loading.Two />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Custom' index={2}>
+                        <Loading.Three />
                     </Flipper.Tab>
                 </Flipper>
                 <h2>Sorter</h2>
@@ -82,7 +95,7 @@ class App extends React.Component {
                     <Flipper.Tab title='Color' index={4}>
                         <Filter.Five />
                     </Flipper.Tab>
-                    <Flipper.Tab title='Style' index={5}>
+                    <Flipper.Tab title='Custom' index={5}>
                         <Filter.Six />
                     </Flipper.Tab>
                 </Flipper>
