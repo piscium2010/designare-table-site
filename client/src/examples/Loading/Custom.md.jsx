@@ -1,5 +1,5 @@
-const md = `import React, { useState } from 'react'
-import Table, { Th, Td } from 'designare-table'
+const md = `import React from 'react'
+import Table from 'designare-table'
 
 const data = [
     { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },

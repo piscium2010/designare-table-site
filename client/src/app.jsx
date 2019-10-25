@@ -11,6 +11,7 @@ import RowHeight from './examples/RowHeight'
 import Title from './examples/Title'
 import Expansion from './examples/Expansion'
 import Tree from './examples/Tree'
+import Fixed from './examples/Fixed'
 import './app.less'
 
 class App extends React.Component {
@@ -45,7 +46,7 @@ class App extends React.Component {
                         <Selection.One />
                     </Flipper.Tab>
                 </Flipper> */}
-                <h2>Loading</h2>
+                {/* <h2>Loading</h2>
                 <Flipper defaultActiveIndex={2}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Loading.One />
@@ -99,7 +100,7 @@ class App extends React.Component {
                         <Filter.Six />
                     </Flipper.Tab>
                 </Flipper>
-                {/* <h2>RowHeight</h2>
+                <h2>RowHeight</h2>
                 <Flipper defaultActiveIndex={1}>
                     <Flipper.Tab title='Basic' index={0}>
                         <RowHeight.One />
@@ -129,6 +130,24 @@ class App extends React.Component {
                         <Tree.One />
                     </Flipper.Tab>
                 </Flipper> */}
+                <h2>Fixed</h2>
+                <Flipper defaultActiveIndex={1}>
+                    <Flipper.Tab title='Header' index={0}>
+                        <Fixed.One />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Left' index={1}>
+                        <Fixed.Two />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Control' index={2}>
+                        <Fixed.Three />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='By Server' index={3}>
+                        <Fixed.Four />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Color' index={4}>
+                        <Fixed.Five />
+                    </Flipper.Tab>
+                </Flipper>
             </div>
         )
     }
