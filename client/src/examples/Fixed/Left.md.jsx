@@ -21,7 +21,7 @@ const one = {
 
 const data = (function () {
     const r = []
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 5; i++) {
         r.push(one)
     }
     return r
@@ -29,30 +29,32 @@ const data = (function () {
 
 export default function () {
     return (
-        <Table
-            style={{ height: 440 }}
-            columns={[
-                { Header: 'Exchange', dataKey: 'exg' },
-                { Header: 'Sector', dataKey: 'sec', width: 200 },
-                { Header: 'Industry', dataKey: 'instry' },
-                { Header: '1 Year Target', dataKey: '1YT' },
-                { Header: 'Share Volume', dataKey: 'sv' },
-                { Header: '50 Day Average Vol.', dataKey: '50DAvg' },
-                { Header: 'Previous Close', dataKey: 'Prev' },
-                { Header: 'Market Cap', dataKey: 'MC' },
-                { Header: 'P/E Ratio', dataKey: 'PE' },
-                { Header: 'Forward P/E 1 Yr', dataKey: 'FPE1.' },
-                { Header: 'Earnings Per Share', dataKey: 'EPS' },
-                { Header: 'Annualized Dividend', dataKey: 'AD' },
-                { Header: 'Ex Dividend Date', dataKey: 'Ex' },
-                { Header: 'Dividend Pay Date', dataKey: 'Dividend' },
-                { Header: 'Current Yield', dataKey: 'CYield' }
-            ]}
-            data={data}
-        >
-            <Thead tr={({cells})=><tr style={{height: 80}}>{cells}</tr>}/>
-            <Tbody/>
-        </Table>
+        <div>
+            <Table
+                style={{ height: 300 }}
+                columns={[
+                    { Header: 'Exchange', dataKey: 'exg' },
+                    { Header: 'Sector', dataKey: 'sec', width: 200, fixed: 'left' },
+                    { Header: 'Industry', dataKey: 'instry' },
+                    { Header: '1 Year Target', dataKey: '1YT' },
+                    { Header: 'Share Volume', dataKey: 'sv' },
+                    { Header: '50 Day Average Vol.', dataKey: '50DAvg' },
+                    { Header: 'Previous Close', dataKey: 'Prev' },
+                    { Header: 'Market Cap', dataKey: 'MC' },
+                    { Header: 'P/E Ratio', dataKey: 'PE' },
+                    { Header: 'Forward P/E 1 Yr', dataKey: 'FPE1.' },
+                    { Header: 'Earnings Per Share', dataKey: 'EPS' },
+                    { Header: 'Annualized Dividend', dataKey: 'AD' },
+                    { Header: 'Ex Dividend Date', dataKey: 'Ex' },
+                    { Header: 'Dividend Pay Date', dataKey: 'Dividend' },
+                    { Header: 'Current Yield', dataKey: 'CYield' }
+                ]}
+                data={data}
+            >
+                <Thead tr={({ cells }) => <tr style={{ height: 80 }}>{cells}</tr>} />
+                <Tbody />
+            </Table>
+        </div>
     )
 }`
 export default md

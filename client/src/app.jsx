@@ -12,6 +12,8 @@ import Title from './examples/Title'
 import Expansion from './examples/Expansion'
 import Tree from './examples/Tree'
 import Fixed from './examples/Fixed'
+import Events from './examples/Events'
+import EditCell from './examples/EditCell'
 import './app.less'
 
 class App extends React.Component {
@@ -19,29 +21,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                 <table style={{minWidth: 0}}>
-                <tbody>
-                    <tr style={{height: 38}}>
-                        <td style={{height: 38}}>
-                            NASDAQ
-                    </td>
-                        <td style={{height: 38}}>
-                            Consumer Services</td>
-                        <td style={{height: 38}}>
-                            Catalog</td></tr></tbody>
-                <colgroup>
-                    <col style={{width: 93}}>
-
-                    </col>
-                    <col style={{width: 205}}>
-
-                    </col>
-                    <col style={{width: 80}}>
-
-                    </col>
-                </colgroup>
-            </table>
-                {/* <h2>Usage</h2>
+                <h2>Usage</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Usage.One />
@@ -67,7 +47,7 @@ class App extends React.Component {
                     <Flipper.Tab title='Basic' index={0}>
                         <Selection.One />
                     </Flipper.Tab>
-                </Flipper> */}
+                </Flipper>
                 {/* <h2>Loading</h2>
                 <Flipper defaultActiveIndex={2}>
                     <Flipper.Tab title='Basic' index={0}>
@@ -153,24 +133,30 @@ class App extends React.Component {
                     </Flipper.Tab>
                 </Flipper> */}
                 <h2>Fixed</h2>
-                <Flipper defaultActiveIndex={2}>
+                <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Header' index={0}>
                         <Fixed.One />
                     </Flipper.Tab>
-                    <Flipper.Tab title='Body' index={1}>
+                    <Flipper.Tab title='Left' index={1}>
                         <Fixed.Two />
                     </Flipper.Tab>
-                    <Flipper.Tab title='Left' index={2}>
+                    <Flipper.Tab title='Right' index={2}>
                         <Fixed.Three />
                     </Flipper.Tab>
-                    <Flipper.Tab title='Right' index={3}>
+                    <Flipper.Tab title='Expansion' index={3}>
                         <Fixed.Four />
                     </Flipper.Tab>
-                    <Flipper.Tab title='Both' index={4}>
-                        <Fixed.Five />
+                </Flipper>
+                <h2>Click Row</h2>
+                <Flipper defaultActiveIndex={0}>
+                    <Flipper.Tab title='Basic' index={0}>
+                        <Events.One />
                     </Flipper.Tab>
-                    <Flipper.Tab title='Expansion' index={5}>
-                        <Fixed.Six />
+                </Flipper>
+                <h2>Edit Cell</h2>
+                <Flipper defaultActiveIndex={0}>
+                    <Flipper.Tab title='Basic' index={0}>
+                        <EditCell.One />
                     </Flipper.Tab>
                 </Flipper>
             </div>

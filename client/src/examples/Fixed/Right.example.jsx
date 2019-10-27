@@ -1,51 +1,59 @@
-import React, { useState } from 'react'
-import Table, { Th, Sorter } from 'designare-table'
+import React from 'react'
+import Table, { Thead, Tbody } from 'designare-table'
 
-const data = [
-    { name: 'Johnson & Johnson', last: '135.7', chg: 2.33, chgp: '1.75%' },
-    { name: 'Cisco Systems Inc.', last: '46.79', chg: 0.43, chgp: '0.93%' },
-    { name: 'Walt Disney Co.', last: '130.86', chg: 1.10, chgp: '0.85%' },
-    { name: 'Coca-Cola Co.', last: '53.49', chg: -0.02, chgp: '-0.04%' },
-    { name: 'Walmart Inc.', last: '119.42', chg: -0.11, chgp: '-0.09%' }
-]
+const one = {
+    'exg': 'NASDAQ',
+    'sec': 'Consumer Services',
+    'instry': 'Catalog',
+    '1YT': '$2,250.00',
+    'sv': '5,123,142',
+    '50DAvg': '2,984,212',
+    'Prev': '$1,762.17',
+    'MC': '880,873,538,392',
+    'PE': '73.89',
+    'FPE1.': '74.66822033898305',
+    'EPS': '$24.10',
+    'AD': 'N/A',
+    'Ex': 'N/A',
+    'Dividend': 'N/A',
+    'CYield': '0%'
+}
+
+const data = (function () {
+    const r = []
+    for (let i = 0; i < 14; i++) {
+        r.push(one)
+    }
+    return r
+})()
 
 export default function () {
-    const custom = (a, b) => {
-        const left = a.replace('%', '') / 1
-        const right = b.replace('%', '') / 1
-        return left - right
-    }
-    const [sorter, setSorter] = useState({ dataKey: 'name', direction: 'asc' })
     return (
-        <Table
-            columns={[
-                {
-                    Header: <Th>COMPANY<Sorter directions={['asc']} /></Th>,
-                    dataKey: 'name',
-                    width: '*'
-                },
-                {
-                    Header: <Th>LAST<Sorter directions={['des']} by='number' /></Th>,
-                    dataKey: 'last'
-                },
-                {
-                    Header: <Th>CHG<Sorter directions={['asc', 'des']} /></Th>,
-                    dataKey: 'chg'
-                },
-                {
-                    Header: <Th>CHG %<Sorter directions={['asc', 'des']} by={custom} /></Th>,
-                    dataKey: 'chgp'
-                }
-            ]}
-            defaultSorter={{
-                dataKey: 'last',
-                direction: 'des'
-            }}
-            sorter={sorter}
-            onChangeSorter={({ dataKey, direction }) => {
-                setSorter({ dataKey, direction })
-            }}
-            data={data}
-        />
+        <div>
+            <Table
+                style={{ height: 300 }}
+                columns={[
+                    { Header: 'Exchange', dataKey: 'exg' },
+                    { Header: 'Sector', dataKey: 'sec', width: 200, fixed: 'left' },
+                    { Header: 'Industry', dataKey: 'instry' },
+                    { Header: '1 Year Target', dataKey: '1YT' },
+                    { Header: 'Share Volume', dataKey: 'sv' },
+                    { Header: '50 Day Average Vol.', dataKey: '50DAvg' },
+                    { Header: 'Previous Close', dataKey: 'Prev' },
+                    { Header: 'Market Cap', dataKey: 'MC', fixed: 'right' },
+                    { Header: 'P/E Ratio', dataKey: 'PE', fixed: 'right' },
+                    { Header: 'Forward P/E 1 Yr', dataKey: 'FPE1.' },
+                    { Header: 'Earnings Per Share', dataKey: 'EPS' },
+                    { Header: 'Annualized Dividend', dataKey: 'AD' },
+                    { Header: 'Ex Dividend Date', dataKey: 'Ex' },
+                    { Header: 'Dividend Pay Date', dataKey: 'Dividend' },
+                    { Header: 'Current Yield', dataKey: 'CYield' }
+                ]}
+                data={data}
+            >
+                <Thead tr={({ cells }) => <tr style={{ height: 80 }}>{cells}</tr>} />
+                <Tbody />
+            </Table>
+        </div>
     )
 }

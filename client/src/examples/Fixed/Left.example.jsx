@@ -21,7 +21,7 @@ const one = {
 
 const data = (function () {
     const r = []
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 5; i++) {
         r.push(one)
     }
     return r
@@ -30,30 +30,8 @@ const data = (function () {
 export default function () {
     return (
         <div>
-            <table style={{minWidth: 0}}>
-                <tbody>
-                    <tr style={{height: 38}}>
-                        <td style={{height: 38}}>
-                            NASDAQ
-                    </td>
-                        <td style={{height: 38}}>
-                            Consumer Services</td>
-                        <td style={{height: 38}}>
-                            Catalog</td></tr></tbody>
-                <colgroup>
-                    <col style={{width: 93}}>
-
-                    </col>
-                    <col style={{width: 205}}>
-
-                    </col>
-                    <col style={{width: 80}}>
-
-                    </col>
-                </colgroup>
-            </table>
             <Table
-                style={{ height: 400 }}
+                style={{ height: 300 }}
                 columns={[
                     { Header: 'Exchange', dataKey: 'exg' },
                     { Header: 'Sector', dataKey: 'sec', width: 200, fixed: 'left' },
@@ -62,8 +40,8 @@ export default function () {
                     { Header: 'Share Volume', dataKey: 'sv' },
                     { Header: '50 Day Average Vol.', dataKey: '50DAvg' },
                     { Header: 'Previous Close', dataKey: 'Prev' },
-                    { Header: 'Market Cap', dataKey: 'MC', fixed: 'right' },
-                    { Header: 'P/E Ratio', dataKey: 'PE', fixed: 'right' },
+                    { Header: 'Market Cap', dataKey: 'MC' },
+                    { Header: 'P/E Ratio', dataKey: 'PE' },
                     { Header: 'Forward P/E 1 Yr', dataKey: 'FPE1.' },
                     { Header: 'Earnings Per Share', dataKey: 'EPS' },
                     { Header: 'Annualized Dividend', dataKey: 'AD' },
