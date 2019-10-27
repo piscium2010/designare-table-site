@@ -63,7 +63,7 @@ export default function () {
                     { Header: '50 Day Average Vol.', dataKey: '50DAvg' },
                     { Header: 'Previous Close', dataKey: 'Prev' },
                     { Header: 'Market Cap', dataKey: 'MC', fixed: 'right' },
-                    { Header: 'P/E Ratio', dataKey: 'PE' },
+                    { Header: 'P/E Ratio', dataKey: 'PE', fixed: 'right' },
                     { Header: 'Forward P/E 1 Yr', dataKey: 'FPE1.' },
                     { Header: 'Earnings Per Share', dataKey: 'EPS' },
                     { Header: 'Annualized Dividend', dataKey: 'AD' },
