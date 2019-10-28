@@ -16,6 +16,7 @@ import Events from './examples/Events'
 import EditCell from './examples/EditCell'
 import EditRow from './examples/EditRow'
 import EditRowWithValidation from './examples/EditRowWithValidation'
+import Pagination from './examples/Pagination'
 import './app.less'
 
 class App extends React.Component {
@@ -134,6 +135,12 @@ class App extends React.Component {
                         <Tree.One />
                     </Flipper.Tab>
                 </Flipper> */}
+                <h2>Pagination</h2>
+                <Flipper defaultActiveIndex={0}>
+                    <Flipper.Tab title='Basic' index={0}>
+                        <Pagination.One />
+                    </Flipper.Tab>
+                </Flipper>
                 {/* <h2>Fixed</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Header' index={0}>
