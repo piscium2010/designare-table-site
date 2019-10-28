@@ -14,6 +14,7 @@ import Tree from './examples/Tree'
 import Fixed from './examples/Fixed'
 import Events from './examples/Events'
 import EditCell from './examples/EditCell'
+import EditRow from './examples/EditRow'
 import './app.less'
 
 class App extends React.Component {
@@ -21,7 +22,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <h2>Usage</h2>
+                {/* <h2>Usage</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Usage.One />
@@ -47,7 +48,7 @@ class App extends React.Component {
                     <Flipper.Tab title='Basic' index={0}>
                         <Selection.One />
                     </Flipper.Tab>
-                </Flipper>
+                </Flipper> */}
                 {/* <h2>Loading</h2>
                 <Flipper defaultActiveIndex={2}>
                     <Flipper.Tab title='Basic' index={0}>
@@ -132,7 +133,7 @@ class App extends React.Component {
                         <Tree.One />
                     </Flipper.Tab>
                 </Flipper> */}
-                <h2>Fixed</h2>
+                {/* <h2>Fixed</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Header' index={0}>
                         <Fixed.One />
@@ -157,6 +158,12 @@ class App extends React.Component {
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <EditCell.One />
+                    </Flipper.Tab>
+                </Flipper> */}
+                <h2>Edit Row</h2>
+                <Flipper defaultActiveIndex={0}>
+                    <Flipper.Tab title='Basic' index={0}>
+                        <EditRow.One />
                     </Flipper.Tab>
                 </Flipper>
             </div>
