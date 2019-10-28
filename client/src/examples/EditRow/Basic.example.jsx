@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react'
-import Table, { Th, Td } from 'designare-table'
+import React, { useState, useEffect } from 'react'
+import Table, { Td } from 'designare-table'
 
 const originData = [
     { id: 0, name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
@@ -16,13 +16,13 @@ export default function () {
     const [map] = useState(new Map())
 
     const onToggle = (evt, id) => {
-        const { checked } = evt.target
+        if (isEditing) return
         const s = new Set(selection)
-        checked ? s.add(id) : s.delete(id)
+        evt.target.checked ? s.add(id) : s.delete(id)
         setSelection([...s])
     }
 
-    const onEdit = evt => {
+    const onEdit = () => {
         map.clear()
         selection.forEach(id => {
             const one = data.find(i => i.id === id)
@@ -40,36 +40,41 @@ export default function () {
         setData(Array.from(data))
     }
 
-    const onCancel = () => { setEditing(false) }
+    const onCancel = () => setEditing(false)
 
     const EditableCell = ({ value, row, dataKey }) => {
         const [txt, setTxt] = useState('')
-        const [size, setSize] = useState(3)
+        const [size, setSize] = useState(4)
+
         const onChange = newValue => {
             map.get(row.id)[dataKey] = newValue
             setTxt(newValue)
         }
+
+        const onEnter = evt => evt.keyCode === 13 ? onSave() : undefined
+
         useEffect(() => {
             let str = value + ''
             isEditing ? setTxt(str) : undefined
-            // isEditing ? setSize(Math.max(3, str.length)) : undefined
+            isEditing ? setSize(Math.max(4, str.length)) : undefined
         }, [isEditing])
+
         return (
             <Td>
                 {
                     isEditing && selection.includes(row.id)
                         ? <input
                             value={txt}
+                            onKeyUp={onEnter}
                             onChange={evt => onChange(evt.target.value)}
                             style={{ fontSize: 'inherit' }}
-                            // size={size}
+                            size={size}
                         />
                         : value
                 }
             </Td>
         )
     }
-
 
     return (
         <div>
@@ -81,17 +86,19 @@ export default function () {
                 columns={[
                     {
                         Header: '',
-                        Cell: ({ row }) => {
-                            const checked = selection.includes(row.id)
-                            return (
-                                <Td>
-                                    <input type='checkbox' onChange={evt => onToggle(evt, row.id)} checked={checked} />
-                                </Td>
-                            )
-                        }
+                        Cell: ({ row }) => (
+                            <Td>
+                                <input
+                                    type='checkbox'
+                                    style={{ cursor: isEditing ? 'not-allowed' : 'pointer' }}
+                                    onChange={evt => onToggle(evt, row.id)}
+                                    checked={selection.includes(row.id)}
+                                />
+                            </Td>
+                        )
                     },
                     {
-                        Header: <Th style={{ background: '#fbfbfb' }}>COMPANY</Th>,
+                        Header: 'COMPANY',
                         dataKey: 'name',
                         Cell: EditableCell
                     },
