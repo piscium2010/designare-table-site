@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Table, { Td } from 'designare-table'
 
 const originData = [
@@ -42,33 +42,24 @@ export default function () {
 
     const onCancel = () => setEditing(false)
 
-    const EditableCell = ({ value, row, dataKey }) => {
-        const [txt, setTxt] = useState('')
-        const [size, setSize] = useState(4)
+    const EditableCell = ({ row, dataKey }) => {
+        const value = row[dataKey] + ''
+        const [state, setState] = useState({ txt: value, size: value.length })
 
         const onChange = newValue => {
             map.get(row.id)[dataKey] = newValue
-            setTxt(newValue)
+            setState({ ...state, txt: newValue })
         }
-
-        const onEnter = evt => evt.keyCode === 13 ? onSave() : undefined
-
-        useEffect(() => {
-            let str = value + ''
-            isEditing ? setTxt(str) : undefined
-            isEditing ? setSize(Math.max(4, str.length)) : undefined
-        }, [isEditing])
 
         return (
             <Td>
                 {
                     isEditing && selection.includes(row.id)
                         ? <input
-                            value={txt}
-                            onKeyUp={onEnter}
+                            value={state.txt}
                             onChange={evt => onChange(evt.target.value)}
                             style={{ fontSize: 'inherit' }}
-                            size={size}
+                            size={state.size}
                         />
                         : value
                 }

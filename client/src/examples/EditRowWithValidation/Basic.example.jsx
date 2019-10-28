@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, Fragment } from 'react'
 import Table, { Td, Thead, Tbody } from 'designare-table'
 import VForm, { v } from '@piscium2010/v-form'
 
@@ -13,9 +13,9 @@ const originData = [
 
 const rules = {
     'name': v.expect('required'),
-    'last': v.expect('required'),
-    'chg': v.expect('required'),
-    'chgp': v.expect('required')
+    'last': v.expect('required').expect('should be number', ({last})=> !isNaN(last)),
+    'chg': v.expect('required').expect('should be number', ({chg})=> !isNaN(chg)),
+    'chgp': v.expect('required').expect('should be number', ({chgp})=> !isNaN(chgp))
 }
 
 export default function () {
@@ -58,35 +58,24 @@ export default function () {
 
     // Validation Field - capable of showing error message according to validation rules
     const Field = VForm.fieldFactory(({ row, dataKey, v, message: errMsg }) => {
-        const [txt, setTxt] = useState('')
-        const [size, setSize] = useState(4)
+        const value = row[dataKey] + ''
+        const [state, setState] = useState({ txt: value, size: value.length })
         const editingRow = editingRows.get(row.id)
 
         const onChange = newValue => {
-            const validationResult = v.test({ [dataKey]: newValue })
-
-            if (validationResult.pass) {
-                editingRow[dataKey] = newValue
-                editingRow['err'] = false
-            } else {
-                editingRow['err'] = true
-            }
-            setTxt(newValue)
+            const result = v.test({ [dataKey]: newValue })
+            result.pass ? editingRow[dataKey] = newValue : undefined
+            result.pass ? editingRow['err'] = false : editingRow['err'] = true
+            setState({ ...state, txt: newValue })
         }
-
-        useEffect(() => {
-            const str = row[dataKey] + ''
-            isEditing ? setTxt(str) : undefined
-            isEditing ? setSize(Math.max(4, str.length)) : undefined
-        }, [isEditing])
 
         return (
             <Fragment>
                 <input
-                    value={txt}
+                    value={state.txt}
                     onChange={evt => onChange(evt.target.value)}
                     style={{ fontSize: 'inherit' }}
-                    size={size}
+                    size={state.size}
                 />
                 {
                     errMsg &&
@@ -95,7 +84,6 @@ export default function () {
             </Fragment>
         )
     })
-
 
     const EditableCell = ({ value, row, dataKey }) => (
         <Td>
@@ -156,13 +144,9 @@ export default function () {
                     ({ row, cells }) => {
                         const validationOfRow = v.create(rules)
                         return (
-                            <tr>
-                                {
-                                    isEditingMode(row)
-                                        ? <VForm validation={validationOfRow}>{cells}</VForm>
-                                        : <Fragment>{cells}</Fragment>
-                                }
-                            </tr>
+                            isEditingMode(row)
+                                ? <VForm validation={validationOfRow}><tr>{cells}</tr></VForm>
+                                : <tr>{cells}</tr>
                         )
                     }}
                 />
