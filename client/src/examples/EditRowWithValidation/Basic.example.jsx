@@ -1,5 +1,7 @@
-const md = `import React, { useState, useEffect } from 'react'
-import Table, { Td } from 'designare-table'
+import React, { useState, useEffect, Fragment } from 'react'
+import Table, { Td, Thead, Tbody } from 'designare-table'
+import VForm, { v } from '@piscium2010/v-form'
+
 
 const originData = [
     { id: 0, name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
@@ -9,11 +11,19 @@ const originData = [
     { id: 4, name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: -0.09 }
 ]
 
+const rules = {
+    'name': v.expect('required'),
+    'last': v.expect('required'),
+    'chg': v.expect('required'),
+    'chgp': v.expect('required')
+}
+
 export default function () {
     const [data, setData] = useState(originData)
     const [isEditing, setEditing] = useState(false)
     const [selection, setSelection] = useState([])
-    const [map] = useState(new Map())
+    const [editingRows] = useState(new Map())
+    const isEditingMode = row => isEditing && selection.includes(row.id)
 
     const onToggle = (evt, id) => {
         if (isEditing) return
@@ -23,18 +33,22 @@ export default function () {
     }
 
     const onEdit = () => {
-        map.clear()
+        editingRows.clear()
         selection.forEach(id => {
             const one = data.find(i => i.id === id)
-            map.set(id, { ...one })
+            editingRows.set(id, { ...one })
         })
         setEditing(true)
     }
 
     const onSave = () => {
-        map.forEach((newValue, id) => {
+        let hasError = false
+        editingRows.forEach(r => hasError = r.err ? true : hasError)
+        if (hasError) return
+
+        editingRows.forEach((r, id) => {
             const one = data.find(i => i.id === id)
-            Object.assign(one, newValue)
+            Object.assign(one, r)
         })
         setEditing(false)
         setData(Array.from(data))
@@ -42,46 +56,62 @@ export default function () {
 
     const onCancel = () => setEditing(false)
 
-    const EditableCell = ({ value, row, dataKey }) => {
+    // Validation Field - capable of showing error message according to validation rules
+    const Field = VForm.fieldFactory(({ row, dataKey, v, message: errMsg }) => {
         const [txt, setTxt] = useState('')
         const [size, setSize] = useState(4)
+        const editingRow = editingRows.get(row.id)
 
         const onChange = newValue => {
-            map.get(row.id)[dataKey] = newValue
+            const validationResult = v.test({ [dataKey]: newValue })
+
+            if (validationResult.pass) {
+                editingRow[dataKey] = newValue
+                editingRow['err'] = false
+            } else {
+                editingRow['err'] = true
+            }
             setTxt(newValue)
         }
 
-        const onEnter = evt => evt.keyCode === 13 ? onSave() : undefined
-
         useEffect(() => {
-            let str = value + ''
+            const str = row[dataKey] + ''
             isEditing ? setTxt(str) : undefined
             isEditing ? setSize(Math.max(4, str.length)) : undefined
         }, [isEditing])
 
         return (
-            <Td>
+            <Fragment>
+                <input
+                    value={txt}
+                    onChange={evt => onChange(evt.target.value)}
+                    style={{ fontSize: 'inherit' }}
+                    size={size}
+                />
                 {
-                    isEditing && selection.includes(row.id)
-                        ? <input
-                            value={txt}
-                            onKeyUp={onEnter}
-                            onChange={evt => onChange(evt.target.value)}
-                            style={{ fontSize: 'inherit' }}
-                            size={size}
-                        />
-                        : value
+                    errMsg &&
+                    <div style={{ color: '#b51a28', fontSize: 'small', position: 'absolute' }}>{errMsg}</div>
                 }
-            </Td>
+            </Fragment>
         )
-    }
+    })
+
+
+    const EditableCell = ({ value, row, dataKey }) => (
+        <Td>
+            {
+                isEditingMode(row)
+                    ? <Field name={dataKey} row={row} dataKey={dataKey} />
+                    : value
+            }
+        </Td>
+    )
 
     return (
         <div>
             {isEditing && <button onClick={onSave}>Save</button>}
             {isEditing && <button onClick={onCancel}>Cancel</button>}
             {!isEditing && <button onClick={onEdit} disabled={selection.length === 0}>Edit</button>}
-
             <Table
                 columns={[
                     {
@@ -119,8 +149,24 @@ export default function () {
                     }
                 ]}
                 data={data}
-            />
+                rowHeight={50}
+            >
+                <Thead />
+                <Tbody tr={
+                    ({ row, cells }) => {
+                        const validationOfRow = v.create(rules)
+                        return (
+                            <tr>
+                                {
+                                    isEditingMode(row)
+                                        ? <VForm validation={validationOfRow}>{cells}</VForm>
+                                        : <Fragment>{cells}</Fragment>
+                                }
+                            </tr>
+                        )
+                    }}
+                />
+            </Table>
         </div>
     )
-}`
-export default md
+}

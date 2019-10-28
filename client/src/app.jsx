@@ -15,6 +15,7 @@ import Fixed from './examples/Fixed'
 import Events from './examples/Events'
 import EditCell from './examples/EditCell'
 import EditRow from './examples/EditRow'
+import EditRowWithValidation from './examples/EditRowWithValidation'
 import './app.less'
 
 class App extends React.Component {
@@ -164,6 +165,12 @@ class App extends React.Component {
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <EditRow.One />
+                    </Flipper.Tab>
+                </Flipper>
+                <h2>Validation</h2>
+                <Flipper defaultActiveIndex={0}>
+                    <Flipper.Tab title='Basic' index={0}>
+                        <EditRowWithValidation.One />
                     </Flipper.Tab>
                 </Flipper>
             </div>

@@ -1,5 +1,6 @@
 const md = `import React, { useState, useEffect } from 'react'
-import Table, { Td } from 'designare-table'
+import Table, { Td, Thead, Tbody } from 'designare-table'
+import VForm, { v } from '@piscium2010/v-form'
 
 const originData = [
     { id: 0, name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
@@ -42,13 +43,23 @@ export default function () {
 
     const onCancel = () => setEditing(false)
 
-    const EditableCell = ({ value, row, dataKey }) => {
+
+    const EditableCell = ({
+        value,
+        row,
+        dataKey,
+        v, // injected by VForm.fieldFactory
+        errMsg, // injected by VForm.fieldFactory
+    }) => {
         const [txt, setTxt] = useState('')
         const [size, setSize] = useState(4)
 
         const onChange = newValue => {
             map.get(row.id)[dataKey] = newValue
+            const rowData = map.get(row.id)
+            const validationResult = v.test({ [dataKey]: newValue })
             setTxt(newValue)
+            validationResult.pass ? rowData[dataKey] = newValue : undefined
         }
 
         const onEnter = evt => evt.keyCode === 13 ? onSave() : undefined
@@ -72,9 +83,13 @@ export default function () {
                         />
                         : value
                 }
+                {errMsg && <span style={{ color: 'red' }}>{errMsg}</span>}
             </Td>
         )
     }
+
+    // Validation Field - showing error message according to validation rules
+    const VField = VForm.fieldFactory(EditableCell)
 
     return (
         <div>
@@ -119,7 +134,23 @@ export default function () {
                     }
                 ]}
                 data={data}
-            />
+            >
+                <Thead />
+                <Tbody tr={({ rowIndex, cells }) => {
+                    const validationOfRow = v.create({
+                        name: v.expect('required'),
+                        last: v.expect('required'),
+                        chg: v.expect('required'),
+                        chgp: v.expect('required')
+                    })
+                    return (
+                        <VForm validation={validationOfRow}>
+                            <tr>{cells}</tr>
+                        </VForm>
+                    )
+                }}
+                />
+            </Table>
         </div>
     )
 }`
