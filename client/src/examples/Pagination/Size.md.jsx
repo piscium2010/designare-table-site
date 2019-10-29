@@ -1,4 +1,4 @@
-import React from 'react'
+const md = `import React from 'react'
 import Table from 'designare-table'
 
 const data = [
@@ -46,4 +46,5 @@ export default function () {
             pageSize={5}
         />
     )
-}
+}`
+export default md

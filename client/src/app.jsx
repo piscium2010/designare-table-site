@@ -136,9 +136,15 @@ class App extends React.Component {
                     </Flipper.Tab>
                 </Flipper> */}
                 <h2>Pagination</h2>
-                <Flipper defaultActiveIndex={0}>
+                <Flipper defaultActiveIndex={2}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Pagination.One />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Page Size' index={1}>
+                        <Pagination.Two />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='By Server' index={2}>
+                        <Pagination.Three />
                     </Flipper.Tab>
                 </Flipper>
                 {/* <h2>Fixed</h2>

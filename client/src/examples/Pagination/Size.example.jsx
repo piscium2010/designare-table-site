@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Table from 'designare-table'
 
-const serverData = [
+const data = [
     { name: 'UnitedHealth Group Inc.', last: 243.67, chg: 6.68, chgp: 2.82 },
     { name: 'Walgreens Boots Alliance Inc.', last: 55.94, chg: 1.28, chgp: 2.34 },
     { name: 'Dow Inc.', last: 47.81, chg: 0.69, chgp: 1.46 },
@@ -21,34 +21,7 @@ const serverData = [
     { name: 'Pfizer Inc.', last: 36.46, chg: 0.12, chgp: 0.33 }
 ]
 
-const fakeFetch = (pageNo, pageSize) => {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            const start = (pageNo - 1) * pageSize
-            const end = Math.min(serverData.length, start + pageSize)
-            const data = serverData.slice(start, end)
-            resolve({ data, total: serverData.length })
-        }, 1000)
-    })
-}
-
 export default function () {
-    const [loading, setLoading] = useState(true)
-    const [state, setState] = useState({
-        pageNo: 1,
-        pageSize: 5,
-        total: 0,
-        data: []
-    })
-
-    useEffect(() => {
-        // initial load
-        fakeFetch(state.pageNo, state.pageSize).then(({ data, total }) => {
-            setState({ ...state, data, total })
-            setLoading(false)
-        })
-    }, [])
-
     return (
         <Table
             columns={[
@@ -69,20 +42,9 @@ export default function () {
                     dataKey: 'chgp'
                 }
             ]}
-            data={state.data}
-            pageSize={state.pageSize}
-            pageSizeOptions={[5, 10]}
-            pageNo={state.pageNo}
-            total={state.total}
-            loading={loading}
-            onChangePaging={({ pageNo, pageSize }) => {
-                setLoading(true)
-                fakeFetch(pageNo, pageSize).then(({ data, total }) => {
-                    setState({ pageNo, pageSize, data, total })
-                    setLoading(false)
-                })
-            }}
-            style={{ minHeight: 300 }}
+            data={data}
+            defaultPageSize={5}
+            pageSizeOptions={[5,10]}
         />
     )
 }
