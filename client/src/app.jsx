@@ -17,6 +17,7 @@ import EditCell from './examples/EditCell'
 import EditRow from './examples/EditRow'
 import EditRowWithValidation from './examples/EditRowWithValidation'
 import Pagination from './examples/Pagination'
+import DnD from './examples/DnD'
 import './app.less'
 
 class App extends React.Component {
@@ -135,7 +136,7 @@ class App extends React.Component {
                         <Tree.One />
                     </Flipper.Tab>
                 </Flipper> */}
-                <h2>Pagination</h2>
+                {/* <h2>Pagination</h2>
                 <Flipper defaultActiveIndex={2}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Pagination.One />
@@ -146,7 +147,7 @@ class App extends React.Component {
                     <Flipper.Tab title='By Server' index={2}>
                         <Pagination.Three />
                     </Flipper.Tab>
-                </Flipper>
+                </Flipper> */}
                 {/* <h2>Fixed</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Header' index={0}>
@@ -174,7 +175,7 @@ class App extends React.Component {
                         <EditCell.One />
                     </Flipper.Tab>
                 </Flipper> */}
-                <h2>Edit Row</h2>
+                {/* <h2>Edit Row</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <EditRow.One />
@@ -184,6 +185,15 @@ class App extends React.Component {
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <EditRowWithValidation.One />
+                    </Flipper.Tab>
+                </Flipper> */}
+                <h2>Drag and Drop</h2>
+                <Flipper defaultActiveIndex={0}>
+                    <Flipper.Tab title='Basic' index={0}>
+                        <DnD.One />
+                    </Flipper.Tab>
+                    <Flipper.Tab title='Page Size' index={1}>
+                        <DnD.Two />
                     </Flipper.Tab>
                 </Flipper>
             </div>

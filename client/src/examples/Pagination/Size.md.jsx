@@ -43,7 +43,8 @@ export default function () {
                 }
             ]}
             data={data}
-            pageSize={5}
+            defaultPageSize={5}
+            pageSizeOptions={[5,10]}
         />
     )
 }`
