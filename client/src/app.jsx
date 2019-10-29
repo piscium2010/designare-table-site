@@ -148,8 +148,8 @@ class App extends React.Component {
                         <Pagination.Three />
                     </Flipper.Tab>
                 </Flipper> */}
-                {/* <h2>Fixed</h2>
-                <Flipper defaultActiveIndex={0}>
+                <h2>Fixed</h2>
+                <Flipper defaultActiveIndex={1}>
                     <Flipper.Tab title='Header' index={0}>
                         <Fixed.One />
                     </Flipper.Tab>
@@ -174,7 +174,7 @@ class App extends React.Component {
                     <Flipper.Tab title='Basic' index={0}>
                         <EditCell.One />
                     </Flipper.Tab>
-                </Flipper> */}
+                </Flipper>
                 {/* <h2>Edit Row</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
