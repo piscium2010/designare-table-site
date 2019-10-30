@@ -163,7 +163,7 @@ class App extends React.Component {
                         <Fixed.Four />
                     </Flipper.Tab>
                 </Flipper>
-                <h2>Click Row</h2>
+                {/* <h2>Click Row</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Events.One />
@@ -174,7 +174,7 @@ class App extends React.Component {
                     <Flipper.Tab title='Basic' index={0}>
                         <EditCell.One />
                     </Flipper.Tab>
-                </Flipper>
+                </Flipper> */}
                 {/* <h2>Edit Row</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
