@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Table, { DraggableTh } from 'designare-table'
 
 const data = [
@@ -10,38 +10,78 @@ const data = [
 ]
 
 export default function () {
-    return (
-        <Table
-            columns={[
+    const [columns, setColumns] = useState([
+        {
+            Header: <DraggableTh>COMPANY</DraggableTh>,
+            dataKey: 'name'
+        },
+        {
+            Header: <DraggableTh>LAST</DraggableTh>,
+            children: [
                 {
-                    Header: <DraggableTh>COMPANY</DraggableTh>,
-                    dataKey: 'name',
-                    width: '*'
+                    Header: <DraggableTh>F</DraggableTh>,
+                    dataKey: 'last'
                 },
                 {
-                    Header: <DraggableTh>LAST</DraggableTh>,
-                    children:[
-                        {
-                            Header: <DraggableTh>F</DraggableTh>,
-                            dataKey: 'last'
-                        },
-                        {
-                            Header: <DraggableTh>L</DraggableTh>,
-                            dataKey: 'last'
-                        }
-                    ]
-                },
-                {
-                    Header: <DraggableTh>CHG</DraggableTh>,
-                    dataKey: 'chg'
-                },
-                {
-                    Header: <DraggableTh>CHG %</DraggableTh>,
-                    dataKey: 'chgp'
+                    Header: <DraggableTh>L</DraggableTh>,
+                    dataKey: 'last'
                 }
-            ]}
-            data={data}
-            // rowHeight={60}
-        />
+            ]
+        },
+        {
+            Header: <DraggableTh>CHG</DraggableTh>,
+            dataKey: 'chg'
+        },
+        {
+            Header: <DraggableTh>CHG %</DraggableTh>,
+            dataKey: 'chgp'
+        }
+    ])
+    return (
+        <div>
+            <Table
+                columns={columns}
+                data={data}
+                onChangeColumns={columns => {
+                    console.log(`change`,columns)
+                    setColumns(columns)
+                }}
+            />
+            {/* <Table
+                columns={[
+                    {
+                        Header: <DraggableTh>LAST</DraggableTh>,
+                        children: [
+                            {
+                                Header: <DraggableTh>F</DraggableTh>,
+                                dataKey: 'last'
+                            },
+                            {
+                                Header: <DraggableTh>L</DraggableTh>,
+                                dataKey: 'last'
+                            }
+                        ]
+                    },
+                    {
+                        Header: <DraggableTh>COMPANY</DraggableTh>,
+                        dataKey: 'name'
+                    },
+                    {
+                        Header: <DraggableTh>CHG</DraggableTh>,
+                        dataKey: 'chg'
+                    },
+                    {
+                        Header: <DraggableTh>CHG %</DraggableTh>,
+                        dataKey: 'chgp'
+                    }
+                ]}
+                data={data}
+                onChangeColumns={columns => {
+                    console.log(`change`,columns)
+                    setColumns(columns)
+                }}
+            /> */}
+
+        </div>
     )
 }
