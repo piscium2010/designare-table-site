@@ -20,7 +20,16 @@ export default function () {
                 },
                 {
                     Header: <DraggableTh>LAST</DraggableTh>,
-                    dataKey: 'last'
+                    children:[
+                        {
+                            Header: <DraggableTh>F</DraggableTh>,
+                            dataKey: 'last'
+                        },
+                        {
+                            Header: <DraggableTh>L</DraggableTh>,
+                            dataKey: 'last'
+                        }
+                    ]
                 },
                 {
                     Header: <DraggableTh>CHG</DraggableTh>,
@@ -32,6 +41,7 @@ export default function () {
                 }
             ]}
             data={data}
+            // rowHeight={60}
         />
     )
 }
