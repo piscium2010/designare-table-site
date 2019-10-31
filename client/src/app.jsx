@@ -188,7 +188,7 @@ class App extends React.Component {
                     </Flipper.Tab>
                 </Flipper> */}
                 <h2>Drag and Drop</h2>
-                <Flipper defaultActiveIndex={0}>
+                <Flipper defaultActiveIndex={1}>
                     <Flipper.Tab title='Basic' index={0}>
                         <DnD.One />
                     </Flipper.Tab>
