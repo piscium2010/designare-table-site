@@ -1,4 +1,4 @@
-const md = `import React, { useState } from 'react'
+import React, { useState } from 'react'
 import Table, { DraggableTh } from 'designare-table'
 
 const data = [
@@ -43,7 +43,7 @@ export default function () {
                 columns={columns}
                 data={data}
                 onChangeColumns={columns => {
-                    console.log(\`change\`,columns)
+                    console.log(`change`,columns)
                     setColumns(columns)
                 }}
             />
@@ -77,12 +77,11 @@ export default function () {
                 ]}
                 data={data}
                 onChangeColumns={columns => {
-                    console.log(\`change\`,columns)
+                    console.log(`change`,columns)
                     setColumns(columns)
                 }}
             /> */}
 
         </div>
     )
-}`
-export default md
+}

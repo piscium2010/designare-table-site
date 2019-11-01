@@ -18,6 +18,7 @@ import EditRow from './examples/EditRow'
 import EditRowWithValidation from './examples/EditRowWithValidation'
 import Pagination from './examples/Pagination'
 import DnD from './examples/DnD'
+import Resize from './examples/Resize'
 import './app.less'
 
 class App extends React.Component {
@@ -188,7 +189,7 @@ class App extends React.Component {
                     </Flipper.Tab>
                 </Flipper> */}
                 <h2>Drag and Drop</h2>
-                <Flipper defaultActiveIndex={1}>
+                <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <DnD.One />
                     </Flipper.Tab>
@@ -196,6 +197,12 @@ class App extends React.Component {
                         <DnD.Two />
                     </Flipper.Tab>
                 </Flipper>
+                {/* <h2>Resize</h2>
+                <Flipper defaultActiveIndex={0}>
+                    <Flipper.Tab title='Basic' index={0}>
+                        <DnD.One />
+                    </Flipper.Tab>
+                </Flipper> */}
             </div>
         )
     }
