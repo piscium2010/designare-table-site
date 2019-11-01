@@ -149,7 +149,7 @@ class App extends React.Component {
                         <Pagination.Three />
                     </Flipper.Tab>
                 </Flipper> */}
-                {/* <h2>Fixed</h2>
+                <h2>Fixed</h2>
                 <Flipper defaultActiveIndex={1}>
                     <Flipper.Tab title='Header' index={0}>
                         <Fixed.One />
@@ -163,7 +163,7 @@ class App extends React.Component {
                     <Flipper.Tab title='Expansion' index={3}>
                         <Fixed.Four />
                     </Flipper.Tab>
-                </Flipper> */}
+                </Flipper>
                 {/* <h2>Click Row</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
@@ -197,12 +197,12 @@ class App extends React.Component {
                         <DnD.Two />
                     </Flipper.Tab>
                 </Flipper>
-                {/* <h2>Resize</h2>
+                <h2>Resize</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
-                        <DnD.One />
+                        <Resize.One />
                     </Flipper.Tab>
-                </Flipper> */}
+                </Flipper>
             </div>
         )
     }

@@ -34,9 +34,9 @@ export default function () {
                 style={{ height: 300 }}
                 columns={[
                     { Header: 'Exchange', dataKey: 'exg' },
-                    { Header: 'Sector', dataKey: 'sec', width: 200, fixed: 'left' },
+                    // { Header: 'Sector', dataKey: 'sec', width: 200, fixed: 'left' },
                     { Header: 'Industry', dataKey: 'instry', fixed: 'right' },
-                    { Header: '1 Year Target', dataKey: '1YT', fixed: 'left' },
+                    // { Header: '1 Year Target', dataKey: '1YT', fixed: 'left' },
                     { Header: 'Share Volume', dataKey: 'sv' },
                     { Header: '50 Day Average Vol.', dataKey: '50DAvg' },
                     { Header: 'Previous Close', dataKey: 'Prev' },
