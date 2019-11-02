@@ -5,6 +5,7 @@ let id = 0
 export const SideAnchorContext = React.createContext({})
 
 export default function SideAnchor(props) {
+    const [store] = useState(new Map())
     const [map] = useState(new Map())
     const [titles, setTitles] = useState([])
     const [activeTitle, setActiveTitle] = useState()
@@ -13,26 +14,27 @@ export default function SideAnchor(props) {
         let done = false,
             next = keys.next(),
             prevValue = next.value,
+            top,
+            el,
             result
         while (!done && next) {
-            const el = map.get(next.value)
+            el = map.get(next.value)
             if (el.offsetTop > scrollTop) {
                 done = true
-                const top = el.getBoundingClientRect().top
+                top = el.getBoundingClientRect().top
                 result = top < window.innerHeight ? next.value : prevValue
             }
             prevValue = next.value
             next = keys.next()
         }
         setActiveTitle(result)
-        // return result
     }
     const onScroll = evt => {
         id++
         const eventId = id, scrollTop = evt.target.scrollTop
-        map.set('eventId', eventId)
+        store.set('eventId', eventId)
         setTimeout(() => {
-            if (eventId === map.get('eventId')) {
+            if (eventId === store.get('eventId')) {
                 findActiveAnchor(scrollTop)
             }
         }, 100)
@@ -41,6 +43,10 @@ export default function SideAnchor(props) {
     const update = () => {
         const scrollTop = document.getElementById('app').scrollTop
         findActiveAnchor(scrollTop)
+    }
+
+    const onClick = evt => {
+        map.get(evt.target.textContent).scrollIntoView()
     }
 
     useEffect(() => {
@@ -59,18 +65,16 @@ export default function SideAnchor(props) {
     }, [])
 
     return (
-        <SideAnchorContext.Provider value={{update}}>
+        <SideAnchorContext.Provider value={{ update }}>
             {props.children}
             <div className='side-anchor'>
                 <ul>
                     {
-                        titles.map((t, i) => {
-                            return (
-                                <li key={i} className={`${activeTitle === t ? 'active' : ''}`}>
-                                    <a role='button'>{t}</a>
-                                </li>
-                            )
-                        })
+                        titles.map((t, i) => (
+                            <li key={i} className={`${activeTitle === t ? 'active' : ''}`} onClick={onClick}>
+                                <a role='button'>{t}</a>
+                            </li>
+                        ))
                     }
                 </ul>
             </div>

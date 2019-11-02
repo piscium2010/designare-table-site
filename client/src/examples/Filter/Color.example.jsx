@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import Table, { Th, Filter } from 'designare-table'
 
 const data = [
@@ -25,14 +25,8 @@ export default function () {
                                 defaultColor='#bfbfbf'
                                 by={by}>
                                 {
-                                    ({ filterValue = '', trigger }) => {
-                                        useEffect(()=>{
-                                            console.log(`layer did mount`,)
-                                            return ()=>{
-                                                console.log(`layer unmount`,)
-                                            }
-                                        },[])
-                                        return (<div>
+                                    ({ filterValue = '', trigger }) => (
+                                        <div>
                                             <div style={{ padding: 10, borderBottom: '1px dashed rgba(0,0,0,.12)' }}>
                                                 <input value={filterValue} onChange={evt => {
                                                     trigger(evt.target.value || undefined)
@@ -48,8 +42,8 @@ export default function () {
                                                     Reset
                                                 </span>
                                             </div>
-                                        </div>)
-                                    }
+                                        </div>
+                                    )
                                 }
                             </Filter>
                         </Th>
@@ -70,6 +64,7 @@ export default function () {
                 }
             ]}
             data={data}
+            resizable
         />
     )
 }

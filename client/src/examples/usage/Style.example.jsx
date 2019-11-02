@@ -33,14 +33,13 @@ export default function () {
             ]}
             data={data}
         >
-            <Thead style={{ backgroundColor: 'white', textAlign: 'left' }} />
+            <Thead style={{ backgroundColor: '#fff', textAlign: 'left' }} />
             <Tbody tr={
                 ({ rowIndex, cells }) => (
-                    <tr style={{ backgroundColor: rowIndex % 2 === 0 ? '#f2f2f2' : 'white' }}>
+                    <tr style={{ backgroundColor: rowIndex % 2 === 0 ? '#f2f2f2' : '#fff' }}>
                         {cells}
                     </tr>
-                )
-            }
+                )}
             />
         </Table>
     )

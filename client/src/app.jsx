@@ -21,11 +21,9 @@ import EditRowWithValidation from './examples/EditRowWithValidation'
 import Pagination from './examples/Pagination'
 import DnD from './examples/DnD'
 import Resize from './examples/Resize'
-
 import './app.less'
 
 class App extends React.Component {
-    static a = 1
     render() {
         return (
             <div>
@@ -40,7 +38,7 @@ class App extends React.Component {
                                 <Tabs.Tab title='Cell' index={1}>
                                     <Usage.Two />
                                 </Tabs.Tab>
-                                <Tabs.Tab title='Style' index={2}>
+                                <Tabs.Tab title='Custom' index={2}>
                                     <Usage.Three />
                                 </Tabs.Tab>
                             </Tabs>
@@ -66,9 +64,6 @@ class App extends React.Component {
                                 </Tabs.Tab>
                                 <Tabs.Tab title='Custom' index={1}>
                                     <Loading.Two />
-                                </Tabs.Tab>
-                                <Tabs.Tab title='Custom' index={2}>
-                                    <Loading.Three />
                                 </Tabs.Tab>
                             </Tabs>
                             <h2>Sorter</h2>
@@ -144,7 +139,7 @@ class App extends React.Component {
                                 </Tabs.Tab>
                             </Tabs>
                             <h2>Pagination</h2>
-                            <Tabs defaultActiveIndex={0}>
+                            <Tabs defaultActiveIndex={2}>
                                 <Tabs.Tab title='Basic' index={0}>
                                     <Pagination.One />
                                 </Tabs.Tab>
