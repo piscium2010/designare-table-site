@@ -10,7 +10,7 @@ const data = [
 ]
 
 export default function () {
-    const style = { borderRightColor: 'rgba(0, 0, 0, 0.12)' }
+    const style = { borderRight: '1px solid rgba(0, 0, 0, 0.12)' }
     return (
         <div>
             <Table
