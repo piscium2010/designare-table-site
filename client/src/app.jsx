@@ -148,7 +148,7 @@ class App extends React.Component {
                                 </Tabs.Tab>
                             </Tabs>
                             <h2>Fixed</h2>
-                            <Tabs defaultActiveIndex={0}>
+                            <Tabs defaultActiveIndex={1}>
                                 <Tabs.Tab title='Header' index={0}>
                                     <Fixed.One />
                                 </Tabs.Tab>
@@ -165,7 +165,7 @@ class App extends React.Component {
                                     <Fixed.Five />
                                 </Tabs.Tab>
                             </Tabs>
-                            <h2>Click Row</h2>
+                            {/* <h2>Click Row</h2>
                             <Tabs defaultActiveIndex={0}>
                                 <Tabs.Tab title='Basic' index={0}>
                                     <Events.One />
@@ -203,7 +203,7 @@ class App extends React.Component {
                                 <Tabs.Tab title='Basic' index={0}>
                                     <Resize.One />
                                 </Tabs.Tab>
-                            </Tabs>
+                            </Tabs> */}
                         </div>
                     </div>
                 </SideAnchor>

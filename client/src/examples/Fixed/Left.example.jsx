@@ -21,7 +21,7 @@ const one = {
 
 const data = (function () {
     const r = []
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 16; i++) {
         r.push(one)
     }
     return r
@@ -31,7 +31,7 @@ export default function () {
     return (
         <div>
             <Table
-                style={{ height: 300 }}
+                style={{ height: 280 }}
                 columns={[
                     { Header: 'Exchange', dataKey: 'exg' },
                     { Header: 'Sector', dataKey: 'sec', width: 200, fixed: 'left' },

@@ -41,7 +41,7 @@ export default function () {
     return (
         <div>
             <Table
-                style={{ height: 300 }}
+                style={{ height: 280 }}
                 columns={[
                     {
                         Header: '',

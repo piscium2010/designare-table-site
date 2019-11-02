@@ -31,7 +31,7 @@ export default function () {
     return (
         <div>
             <Table
-                style={{ height: 300 }}
+                style={{ height: 280 }}
                 columns={[
                     { Header: 'Exchange', dataKey: 'exg' },
                     { Header: 'Sector', dataKey: 'sec', width: 200, fixed: 'left' },
