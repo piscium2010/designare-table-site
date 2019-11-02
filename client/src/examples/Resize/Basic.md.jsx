@@ -1,5 +1,5 @@
 const md = `import React, { useState } from 'react'
-import Table, { DraggableTh } from 'designare-table'
+import Table, { Th, Td, Thead, Tbody } from 'designare-table'
 
 const data = [
     { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
@@ -10,78 +10,36 @@ const data = [
 ]
 
 export default function () {
-    const [columns, setColumns] = useState([
-        {
-            Header: <DraggableTh>COMPANY</DraggableTh>,
-            dataKey: 'name'
-        },
-        {
-            Header: <DraggableTh>LAST</DraggableTh>,
-            children: [
-                {
-                    Header: <DraggableTh>F</DraggableTh>,
-                    dataKey: 'last'
-                },
-                {
-                    Header: <DraggableTh>L</DraggableTh>,
-                    dataKey: 'last'
-                }
-            ]
-        },
-        {
-            Header: <DraggableTh>CHG</DraggableTh>,
-            dataKey: 'chg'
-        },
-        {
-            Header: <DraggableTh>CHG %</DraggableTh>,
-            dataKey: 'chgp'
-        }
-    ])
+    const style = { borderRight: '1px solid rgba(0, 0, 0, 0.12)' }
     return (
         <div>
             <Table
-                columns={columns}
-                data={data}
-                onChangeColumns={columns => {
-                    console.log(\`change\`,columns)
-                    setColumns(columns)
-                }}
-            />
-            {/* <Table
                 columns={[
                     {
-                        Header: <DraggableTh>LAST</DraggableTh>,
-                        children: [
-                            {
-                                Header: <DraggableTh>F</DraggableTh>,
-                                dataKey: 'last'
-                            },
-                            {
-                                Header: <DraggableTh>L</DraggableTh>,
-                                dataKey: 'last'
-                            }
-                        ]
+                        Header: <Th style={style}>COMPANY</Th>,
+                        dataKey: 'name',
+                        Cell: ({ value }) => <Td style={style}>{value}</Td>
                     },
                     {
-                        Header: <DraggableTh>COMPANY</DraggableTh>,
-                        dataKey: 'name'
+                        Header: <Th style={style}>LAST</Th>,
+                        dataKey: 'last',
+                        Cell: ({ value }) => <Td style={style}>{value}</Td>
                     },
                     {
-                        Header: <DraggableTh>CHG</DraggableTh>,
-                        dataKey: 'chg'
+                        Header: <Th style={style}>CHG</Th>,
+                        dataKey: 'chg',
+                        Cell: ({ value }) => <Td style={style}>{value}</Td>
                     },
                     {
-                        Header: <DraggableTh>CHG %</DraggableTh>,
-                        dataKey: 'chgp'
+                        Header: <Th>CHG %</Th>,
+                        dataKey: 'chgp',
+                        Cell: ({ value }) => <Td>{value}</Td>
                     }
                 ]}
                 data={data}
-                onChangeColumns={columns => {
-                    console.log(\`change\`,columns)
-                    setColumns(columns)
-                }}
-            /> */}
-
+                resizable
+            >
+            </Table>
         </div>
     )
 }`

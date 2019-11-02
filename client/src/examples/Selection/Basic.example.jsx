@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Table, { Th, Td } from 'designare-table'
+import Table, { Th, Td, Thead, Tbody } from 'designare-table'
 
 const data = [
     { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
@@ -25,6 +25,8 @@ export default function () {
         setSelectedKeys([...s])
     }
 
+    const isChecked = rowIndex => selectAll || selectedKeys.includes(rowIndex)
+
     return (
         <Table
             columns={[
@@ -43,7 +45,7 @@ export default function () {
                             <input
                                 type='checkbox'
                                 onChange={evt => onToggle(evt, rowIndex)}
-                                checked={selectAll || selectedKeys.includes(rowIndex)}
+                                checked={isChecked(rowIndex)}
                             />
                         </Td>
                     ),
@@ -67,6 +69,15 @@ export default function () {
                 }
             ]}
             data={data}
-        />
+        >
+            <Thead />
+            <Tbody tr={
+                ({ cells, rowIndex }) => (
+                    <tr style={{ backgroundColor: isChecked(rowIndex) ? '#f0f8ff' : '' }}>
+                        {cells}
+                    </tr>
+                )}
+            />
+        </Table>
     )
 }

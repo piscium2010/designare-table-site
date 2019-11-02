@@ -26,7 +26,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                {/* <h2>Usage</h2>
+                <h2>Usage</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Usage.One />
@@ -52,7 +52,7 @@ class App extends React.Component {
                     <Flipper.Tab title='Basic' index={0}>
                         <Selection.One />
                     </Flipper.Tab>
-                </Flipper> */}
+                </Flipper>
                 {/* <h2>Loading</h2>
                 <Flipper defaultActiveIndex={2}>
                     <Flipper.Tab title='Basic' index={0}>
@@ -150,7 +150,7 @@ class App extends React.Component {
                     </Flipper.Tab>
                 </Flipper> */}
                 <h2>Fixed</h2>
-                <Flipper defaultActiveIndex={1}>
+                <Flipper defaultActiveIndex={4}>
                     <Flipper.Tab title='Header' index={0}>
                         <Fixed.One />
                     </Flipper.Tab>
@@ -163,8 +163,11 @@ class App extends React.Component {
                     <Flipper.Tab title='Expansion' index={3}>
                         <Fixed.Four />
                     </Flipper.Tab>
+                    <Flipper.Tab title='Hover' index={4}>
+                        <Fixed.Five />
+                    </Flipper.Tab>
                 </Flipper>
-                {/* <h2>Click Row</h2>
+                <h2>Click Row</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
                         <Events.One />
@@ -175,7 +178,7 @@ class App extends React.Component {
                     <Flipper.Tab title='Basic' index={0}>
                         <EditCell.One />
                     </Flipper.Tab>
-                </Flipper> */}
+                </Flipper>
                 {/* <h2>Edit Row</h2>
                 <Flipper defaultActiveIndex={0}>
                     <Flipper.Tab title='Basic' index={0}>
