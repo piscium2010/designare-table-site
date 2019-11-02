@@ -2,12 +2,17 @@ import React, { useContext } from 'react'
 import Markdown from '../Markdown'
 import Icons from '../Icons'
 import MessageBox from '../MessageBox'
-import { FlipperContext } from '../Flipper'
+import { TabsContext } from '../Tabs'
+import { SideAnchorContext } from '../SideAnchor'
 
 export default function CodeBlock(props) {
     const { md } = props
-    const { expansion, setExpansion } = useContext(FlipperContext)
-    const onClickCode = evt => setExpansion(!expansion)
+    const { expansion, setExpansion } = useContext(TabsContext)
+    const { update } = useContext(SideAnchorContext)
+    const onClickCode = evt => {
+        setExpansion(!expansion)
+        window.requestAnimationFrame(update)
+    }
     const onClickClone = evt => {
         copyToClipboard(md)
         MessageBox.show('Code Copied')

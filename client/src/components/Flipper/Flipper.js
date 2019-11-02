@@ -41,7 +41,7 @@ export default function Flipper(props) {
                     </div>
                 </div>
                 <div className="content">
-                    <div style={{ width: '90%', margin: 'auto' }}>
+                    <div style={{ margin: 'auto' }}>
                         {props.children}
                     </div>
                 </div>
