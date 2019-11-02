@@ -64,7 +64,6 @@ export default function () {
                 }
             ]}
             data={data}
-            resizable
         />
     )
 }

@@ -9,14 +9,30 @@ const data = [
     { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: -0.09 }
 ]
 
+const Header = () => (
+    <div style={{ padding: '0 16px', borderBottom: '1px solid rgba(0,0,0,.12)' }}>
+        <h3>Dow Jones</h3>
+    </div>
+)
+
+const Footer = () => (
+    <div style={{
+        padding: '6px 16px',
+        fontSize: 12,
+        color: '#b4b4b4',
+        fontWeight: 300
+    }}
+    >Powered by designare
+    </div>
+)
+
 export default function () {
     return (
         <Table
             columns={[
                 {
                     Header: 'COMPANY',
-                    dataKey: 'name',
-                    width: '*'
+                    dataKey: 'name'
                 },
                 {
                     Header: 'LAST',
@@ -33,10 +49,14 @@ export default function () {
             ]}
             data={data}
         >
-            <div style={{ padding: '0 16px', borderBottom: '1px solid rgba(0,0,0,.12)' }}><h3>Dow Jones</h3></div>
-            <Thead tr={({ cells }) => <tr style={{ height: 50 }}>{cells}</tr>} />
+            <Header />
+            <Thead tr={
+                ({ cells }) => (
+                    <tr style={{ height: 50 }}>{cells}</tr>
+                )}
+            />
             <Tbody />
-            <div style={{ padding: '6px 16px', fontSize: 12 }}>Powered by designare</div>
+            <Footer />
         </Table>
     )
 }
