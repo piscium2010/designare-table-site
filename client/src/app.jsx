@@ -134,12 +134,9 @@ class App extends React.Component {
                                 <Tabs.Tab title='Basic' index={0}>
                                     <Tree.One />
                                 </Tabs.Tab>
-                                <Tabs.Tab title='Basic' index={1}>
-                                    <Tree.One />
-                                </Tabs.Tab>
                             </Tabs>
                             <h2>Pagination</h2>
-                            <Tabs defaultActiveIndex={2}>
+                            <Tabs defaultActiveIndex={0}>
                                 <Tabs.Tab title='Basic' index={0}>
                                     <Pagination.One />
                                 </Tabs.Tab>

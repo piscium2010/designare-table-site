@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Table, { Td, Icons, Tree } from 'designare-table'
 
 const style = { display: 'flex', alignItems: 'center', userSelect: 'none', cursor: 'pointer' }
-const Button = props => <button style={{margin: '10px 10px 10px 0', padding: 5}} {...props}></button>
+const Button = props => <span role='button' style={{lineHeight: '30px', marginRight: 10, fontSize:'small'}} {...props}></span>
 const treeData = [
     {
         name: 'AMERICAS', last: '26,827.64', chg: '57.44', chgp: '0.21',
