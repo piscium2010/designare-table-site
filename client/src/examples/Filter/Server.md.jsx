@@ -1,5 +1,5 @@
 const md = `import React, { useState } from 'react'
-import Table, { Th, Sorter, Filter } from 'designare-table'
+import Table, { Th, Filter } from 'designare-table'
 
 const serverData = [
     { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
@@ -32,6 +32,36 @@ export default function () {
     const [filters, setFilters] = useState([])
     const [loading, setLoading] = useState(false)
 
+    const companyFilter = ({ filterValue = '', trigger }) => (
+        <div style={{ fontSize: 'small' }}>
+            <div style={{ padding: 10 }}>
+                <input
+                    value={filterValue}
+                    onChange={evt => {
+                        trigger(evt.target.value || undefined)
+                    }}
+                />
+            </div>
+            <div
+                style={{
+                    padding: '0 10px',
+                    height: 28,
+                    textAlign: 'right',
+                    color: '#bfbfbf',
+                    borderTop: '1px dashed rgba(0,0,0,.12)'
+                }}
+            >
+                <span
+                    role='button'
+                    style={{ lineHeight: '28px' }}
+                    onClick={evt => trigger(/* pass undefined to cancel filter */)}
+                >
+                    Reset
+                </span>
+            </div>
+        </div>
+    )
+
     return (
         <Table
             loading={loading}
@@ -49,32 +79,10 @@ export default function () {
                     Header: (
                         <Th>
                             COMPANY
-                            <Sorter />
                             <Filter
                                 operator='contains' // user defined prop
                             >
-                                {
-                                    ({ filterValue = '', trigger }) => (
-                                        <div style={{ fontSize: 'small' }}>
-                                            <div style={{ padding: 10, borderBottom: '1px dashed rgba(0,0,0,.12)' }}>
-                                                <input value={filterValue} onChange={evt => {
-                                                    const value = evt.target.value
-                                                    value ? trigger(value) : trigger()
-                                                }}
-                                                />
-                                            </div>
-                                            <div style={{ padding: '0 10px', height: 28, textAlign: 'right', color: '#bfbfbf' }}>
-                                                <span
-                                                    role='button'
-                                                    style={{ lineHeight: '28px' }}
-                                                    onClick={evt => trigger(/* pass undefined to cancel filter */)}
-                                                >
-                                                    Reset
-                                                    </span>
-                                            </div>
-                                        </div>
-                                    )
-                                }
+                                {companyFilter}
                             </Filter>
                         </Th>
                     ),

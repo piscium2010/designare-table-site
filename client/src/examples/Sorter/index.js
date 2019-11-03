@@ -30,21 +30,30 @@ const Two = () => (
         />
     </CodeBlock>
 )
-const Three = () => (<CodeBlock md={ControlMD}><Control />
-    <P
-        zh="请不要同时指定defaultSorter和sorter, 如果你这样做，我会打你。"
-    />
-</CodeBlock>)
-const Four = () => (<CodeBlock md={ServerMD}><Server />
-    <P
-        zh="如果by不等于‘number'，也不是一个function，就不会触发内建的前端排序。"
-    />
-</CodeBlock>)
-const Five = () => (<CodeBlock md={ColorMD}><Color />
-    <P
-        zh="activeColor 和 defaultColor 可以传给Sorter 也可以传给Table。 后者将同时作用于Sorter和Filter"
-    />
-</CodeBlock>)
+const Three = () => (
+    <CodeBlock md={ControlMD}>
+        <Control />
+        <P
+            zh="请不要同时指定defaultSorter和sorter, 如果你这样做，我会打你。"
+        />
+    </CodeBlock>
+)
+const Four = () => (
+    <CodeBlock md={ServerMD}>
+        <Server />
+        <P
+            zh="如果by不等于‘number'，也不是一个function，就不会触发内建的前端排序。"
+        />
+    </CodeBlock>
+)
+const Five = () => (
+    <CodeBlock md={ColorMD}>
+        <Color />
+        <P
+            zh="activeColor 和 defaultColor 可以传给Sorter 也可以传给Table。 后者将同时作用于Sorter和Filter"
+        />
+    </CodeBlock>
+)
 
 const Six = () => (
     <CodeBlock md={StyleMD}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Table, { Th, Filter } from 'designare-table'
+import Table, { Th, Filter, Sorter } from 'designare-table'
 
 const data = [
     { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
@@ -18,6 +18,34 @@ const Icon = () => (
 const by = ({ dataKey, row, filterValue }) => row[dataKey].toLowerCase().indexOf(filterValue) >= 0
 
 export default function () {
+    const companyFilter = ({ filterValue = '', trigger }) => (
+        <div>
+            <div style={{ padding: 10 }}>
+                <input
+                    value={filterValue}
+                    onChange={evt =>
+                        trigger(evt.target.value || undefined)
+                    }
+                />
+            </div>
+            <div
+                style={{
+                    padding: '0 10px',
+                    textAlign: 'right',
+                    color: '#bfbfbf',
+                    borderTop: '1px dashed rgba(0,0,0,.12)'
+                }}
+            >
+                <span
+                    role='button'
+                    style={{ lineHeight: '28px', fontSize: 'small' }}
+                    onClick={evt => trigger(/* pass undefined to cancel filter */)}
+                >
+                    Reset
+                </span>
+            </div>
+        </div>
+    )
     return (
         <Table
             columns={[
@@ -25,32 +53,13 @@ export default function () {
                     Header: (
                         <Th>
                             COMPANY
+                            <Sorter />
                             <Filter
                                 style={{ width: 25 }}
                                 render={() => <Icon />}
                                 by={by}
                             >
-                                {
-                                    ({ filterValue = '', trigger }) => (
-                                        <div>
-                                            <div style={{ padding: 10, borderBottom: '1px dashed rgba(0,0,0,.12)' }}>
-                                                <input value={filterValue} onChange={evt => {
-                                                    trigger(evt.target.value || undefined)
-                                                }}
-                                                />
-                                            </div>
-                                            <div style={{ padding: '0 10px', textAlign: 'right', color: '#bfbfbf' }}>
-                                                <span
-                                                    role='button'
-                                                    style={{ lineHeight: '28px', fontSize: 'small' }}
-                                                    onClick={evt => trigger(/* pass undefined to cancel filter */)}
-                                                >
-                                                    Reset
-                                                </span>
-                                            </div>
-                                        </div>
-                                    )
-                                }
+                                {companyFilter}
                             </Filter>
                         </Th>
                     ),

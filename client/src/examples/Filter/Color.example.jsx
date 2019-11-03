@@ -9,9 +9,39 @@ const data = [
     { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: 0.09 }
 ]
 
-const by = ({ dataKey, row, filterValue }) => row[dataKey].toLowerCase().indexOf(filterValue) >= 0
 
 export default function () {
+    const by = ({ dataKey, row, filterValue }) => row[dataKey].toLowerCase().indexOf(filterValue) >= 0
+    
+    const companyFilter = ({ filterValue = '', trigger }) => (
+        <div>
+            <div style={{ padding: 10 }}>
+                <input
+                    value={filterValue}
+                    onChange={evt =>
+                        trigger(evt.target.value || undefined)
+                    }
+                />
+            </div>
+            <div
+                style={{
+                    padding: '0 10px',
+                    textAlign: 'right',
+                    color: '#bfbfbf',
+                    borderTop: '1px dashed rgba(0,0,0,.12)'
+                }}
+            >
+                <span
+                    role='button'
+                    style={{ lineHeight: '28px', fontSize: 'small' }}
+                    onClick={evt => trigger(/* pass undefined to cancel filter */)}
+                >
+                    Reset
+                </span>
+            </div>
+        </div>
+    )
+
     return (
         <Table
             defaultFilters={[{ dataKey: 'name', filterValue: 'c' }]}
@@ -23,28 +53,9 @@ export default function () {
                             <Filter
                                 activeColor='#9dd411'
                                 defaultColor='#bfbfbf'
-                                by={by}>
-                                {
-                                    ({ filterValue = '', trigger }) => (
-                                        <div>
-                                            <div style={{ padding: 10, borderBottom: '1px dashed rgba(0,0,0,.12)' }}>
-                                                <input value={filterValue} onChange={evt => {
-                                                    trigger(evt.target.value || undefined)
-                                                }}
-                                                />
-                                            </div>
-                                            <div style={{ padding: '0 10px', textAlign: 'right', color: '#bfbfbf' }}>
-                                                <span
-                                                    role='button'
-                                                    style={{ lineHeight: '28px', fontSize: 'small' }}
-                                                    onClick={evt => trigger(/* pass undefined to cancel filter */)}
-                                                >
-                                                    Reset
-                                                </span>
-                                            </div>
-                                        </div>
-                                    )
-                                }
+                                by={by}
+                            >
+                                {companyFilter}
                             </Filter>
                         </Th>
                     ),

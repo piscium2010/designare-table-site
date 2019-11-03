@@ -12,13 +12,27 @@ import Color from './Color.example'
 import ColorMD from './Color.md'
 import Style from './Style.example'
 import StyleMD from './Style.md'
+import P from '../../components/P'
 
-const One = () => (<CodeBlock md={BasicMD}><Basic /></CodeBlock>)
+const One = () => (<CodeBlock md={BasicMD}><Basic /><P zh='Filter组件内置了图标与下拉框，你只需专注于filter内容与逻辑的实现。' /></CodeBlock>)
 const Two = () => (<CodeBlock md={DefaultMD}><DefaultE /></CodeBlock>)
 const Three = () => (<CodeBlock md={ControlMD}><Control /></CodeBlock>)
-const Four = () => (<CodeBlock md={ServerMD}><Server /></CodeBlock>)
-const Five = () => (<CodeBlock md={ColorMD}><Color /></CodeBlock>)
-const Six = () => (<CodeBlock md={StyleMD}><Style /></CodeBlock>)
+const Four = () => (<CodeBlock md={ServerMD}><Server /><P zh='省略by，以回避前端过滤。' /></CodeBlock>)
+const Five = () => (
+    <CodeBlock md={ColorMD}><Color />
+        <P
+            zh="activeColor 和 defaultColor 可以传给Filter 也可以传给Table。 后者将同时作用于Sorter和Filter"
+        />
+    </CodeBlock>
+)
+const Six = () => (
+    <CodeBlock md={StyleMD}>
+        <Style />
+        <P
+            zh='通过render更换图标。'
+        />
+    </CodeBlock>
+)
 
 export default {
     One,
