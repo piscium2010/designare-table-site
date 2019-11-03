@@ -9,10 +9,13 @@ const originalData = [
     { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: -0.09 }
 ]
 
+const style = { cursor: 'move' }
+
 export default function () {
     const [data, setData] = useState(originalData)
     return (
         <Table
+            data={data}
             columns={[
                 {
                     Header: 'COMPANY',
@@ -31,7 +34,6 @@ export default function () {
                     dataKey: 'chgp'
                 }
             ]}
-            data={data}
             onChangeRows={data => {
                 setData(data)
             }}
@@ -42,6 +44,7 @@ export default function () {
                     <DraggableTr
                         row={row}
                         getRowId={row => row.name}
+                        style={style}
                     >
                         {cells}
                     </DraggableTr>

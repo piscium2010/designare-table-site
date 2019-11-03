@@ -1,5 +1,5 @@
 const md = `import React from 'react'
-import Table, { Td, Th } from 'designare-table'
+import Table, { Td } from 'designare-table'
 
 const data = [
     { name: 'Chevron Corp.', last: 115.35, chg: 0.24, chgp: 0.21 },
@@ -9,41 +9,38 @@ const data = [
     { name: 'Exxon Mobil Corp.', last: 68.14, chg: -0.09, chgp: -0.13 }
 ]
 
-export default function() {
+export default function () {
     const Cell = ({ value }) => (
         <Td style={{ color: value > 0 ? '#0f9d58' : '#b51a28' }}>
             {value}
         </Td>
     )
-    const headerStyle = { textAlign: 'left' }
 
     return (
-        <div>
-            <Table
-                columns={[
-                    {
-                        Header: <Th style={headerStyle}>COMPANY</Th>,
-                        dataKey: 'name',
-                        width: '*'
-                    },
-                    {
-                        Header: <Th style={headerStyle}>LAST</Th>,
-                        dataKey: 'last'
-                    },
-                    {
-                        Header: <Th style={headerStyle}>CHG</Th>,
-                        dataKey: 'chg',
-                        Cell
-                    },
-                    {
-                        Header: <Th style={headerStyle}>CHG %</Th>,
-                        dataKey: 'chgp',
-                        Cell
-                    }
-                ]}
-                data={data}
-            />
-        </div>
+        <Table
+            columns={[
+                {
+                    Header: 'COMPANY',
+                    dataKey: 'name',
+                    width: '*'
+                },
+                {
+                    Header: 'LAST',
+                    dataKey: 'last'
+                },
+                {
+                    Header: 'CHG',
+                    dataKey: 'chg',
+                    Cell
+                },
+                {
+                    Header: 'CHG %',
+                    dataKey: 'chgp',
+                    Cell
+                }
+            ]}
+            data={data}
+        />
     )
 }`
 export default md

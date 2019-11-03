@@ -13,9 +13,9 @@ const originData = [
 
 const rules = {
     'name': v.expect('required'),
-    'last': v.expect('required').expect('should be number', ({last})=> !isNaN(last)),
-    'chg': v.expect('required').expect('should be number', ({chg})=> !isNaN(chg)),
-    'chgp': v.expect('required').expect('should be number', ({chgp})=> !isNaN(chgp))
+    'last': v.expect('required').expect('should be number', ({ last }) => !isNaN(last)),
+    'chg': v.expect('required').expect('should be number', ({ chg }) => !isNaN(chg)),
+    'chgp': v.expect('required').expect('should be number', ({ chgp }) => !isNaN(chgp))
 }
 
 export default function () {
@@ -79,7 +79,15 @@ export default function () {
                 />
                 {
                     errMsg &&
-                    <div style={{ color: '#b51a28', fontSize: 'small', position: 'absolute' }}>{errMsg}</div>
+                    <div style={{
+                        color: '#b51a28',
+                        fontSize: 'small',
+                        position: 'absolute',
+                        width: 150,
+                        left: 16
+                    }}
+                    >{errMsg}
+                    </div>
                 }
             </Fragment>
         )
@@ -113,7 +121,8 @@ export default function () {
                                     checked={selection.includes(row.id)}
                                 />
                             </Td>
-                        )
+                        ),
+                        width: 60
                     },
                     {
                         Header: 'COMPANY',

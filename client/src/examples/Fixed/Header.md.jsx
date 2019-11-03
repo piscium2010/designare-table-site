@@ -1,5 +1,5 @@
 const md = `import React from 'react'
-import Table, { Th, Sorter } from 'designare-table'
+import Table from 'designare-table'
 
 const data = [
     { name: 'UnitedHealth Group Inc.', last: 243.67, chg: 6.68, chgp: 2.82 },
@@ -19,7 +19,7 @@ const data = [
 export default function () {
     return (
         <Table
-            style={{height: 228}}
+            style={{height: 280}}
             columns={[
                 {
                     Header: 'COMPANY',

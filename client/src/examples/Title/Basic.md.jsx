@@ -16,7 +16,14 @@ const Header = () => (
 )
 
 const Footer = () => (
-    <div style={{ padding: '6px 16px', fontSize: 12 }}>Powered by designare</div>
+    <div style={{
+        padding: '6px 16px',
+        fontSize: 12,
+        color: '#b4b4b4',
+        fontWeight: 300
+    }}
+    >Powered by designare
+    </div>
 )
 
 export default function () {
@@ -25,8 +32,7 @@ export default function () {
             columns={[
                 {
                     Header: 'COMPANY',
-                    dataKey: 'name',
-                    width: '*'
+                    dataKey: 'name'
                 },
                 {
                     Header: 'LAST',
@@ -43,10 +49,14 @@ export default function () {
             ]}
             data={data}
         >
-            <Header/>
-            <Thead tr={({ cells }) => <tr style={{ height: 50 }}>{cells}</tr>} />
+            <Header />
+            <Thead tr={
+                ({ cells }) => (
+                    <tr style={{ height: 50 }}>{cells}</tr>
+                )}
+            />
             <Tbody />
-            <Footer/>
+            <Footer />
         </Table>
     )
 }`

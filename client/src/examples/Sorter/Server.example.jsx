@@ -60,15 +60,16 @@ export default function () {
                     dataKey: 'chgp'
                 }
             ]}
+            data={data}
             sorter={sorter}
             onChangeSorter={({ dataKey, direction, by }) => {
-                if (by === 'server')
+                if (by === 'server') {
                     fakeFetch(dataKey, direction).then(data => {
                         setData(data)
                         setSorter({ dataKey, direction })
                     })
+                }
             }}
-            data={data}
         />
     )
 }

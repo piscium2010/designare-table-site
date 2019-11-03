@@ -15,25 +15,25 @@ export default function () {
         const right = b.replace('%', '') / 1
         return left - right
     }
-    
+
     return (
         <Table
             columns={[
                 {
-                    Header: <Th>COMPANY<Sorter directions={['asc']} /></Th>,
+                    Header: <Th>COMPANY<Sorter /></Th>,
                     dataKey: 'name',
                     width: '*'
                 },
                 {
-                    Header: <Th>LAST<Sorter directions={['des']} by='number' /></Th>,
+                    Header: <Th>LAST<Sorter by='number' /></Th>,
                     dataKey: 'last'
                 },
                 {
-                    Header: <Th>CHG<Sorter directions={['asc', 'des']} /></Th>,
+                    Header: <Th>CHG<Sorter /></Th>,
                     dataKey: 'chg'
                 },
                 {
-                    Header: <Th>CHG %<Sorter directions={['asc', 'des']} by={custom} /></Th>,
+                    Header: <Th>CHG %<Sorter by={custom} /></Th>,
                     dataKey: 'chgp'
                 }
             ]}

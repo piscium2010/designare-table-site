@@ -97,6 +97,26 @@ p {
       .content {
           padding: 30px 12px 0px 12px;
       }
+
+      p {
+          position: relative;
+          margin: 48px 0 16px;
+          padding-top: 16px;
+          border-top: 1px solid rgba(0,0,0,.12);
+
+          &::before {
+              content: 'Note';
+              font-style: italic;
+              position: absolute;
+              top: -15px;
+              left: 10px;
+              display: block;
+              height: 30px;
+              line-height: 30px;
+              padding: 0 5px;
+              background-color: white;
+          }
+      }
   }
 
 .flipper {
