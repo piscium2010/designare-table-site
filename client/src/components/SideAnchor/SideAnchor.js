@@ -17,16 +17,24 @@ export default function SideAnchor(props) {
             top,
             el,
             result
-        while (!done && next) {
-            el = map.get(next.value)
-            if (el.offsetTop - scrollTop > -10) {
-                done = true
-                top = el.getBoundingClientRect().top
-                result = top < window.innerHeight ? next.value : prevValue
+        while (!done && next.value) {
+            try {
+                el = map.get(next.value)
+                if (el.offsetTop - scrollTop > -10) {
+                    done = true
+                    top = el.getBoundingClientRect().top
+                    result = top < window.innerHeight ? next.value : prevValue
+                }
+                prevValue = next.value
+                next = keys.next()
             }
-            prevValue = next.value
-            next = keys.next()
+            catch (e) {
+                console.log(`error`,e)
+                console.log(`next.value`,next.value)
+                done = true
+            }
         }
+        result = result || prevValue
         setActiveTitle(result)
     }
     const onScroll = evt => {

@@ -96,7 +96,10 @@ export default function () {
                                     element = <td colSpan={leftSpan}>Left Desc</td>
                                     break;
                                 case 'right':
-                                    element = <td colSpan={rightSpan}>Right Desc</td>
+                                    element = [
+                                        <td key={0} colSpan={leftSpan + span} style={{zIndex:0}}>&nbsp;</td>,
+                                        <td key={1} colSpan={rightSpan}>Right Desc</td>,
+                                    ]
                                     break
                                 default:
                                     element = [

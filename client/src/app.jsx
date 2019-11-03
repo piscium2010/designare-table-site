@@ -30,7 +30,7 @@ class App extends React.Component {
                 <SideAnchor>
                     <div className='main'>
                         <div style={{padding:'0 6px'}}>
-                            <h2>Usage</h2>
+                            {/* <h2>Usage</h2>
                             <Tabs defaultActiveIndex={0}>
                                 <Tabs.Tab title='Basic' index={0}>
                                     <Usage.One />
@@ -165,7 +165,7 @@ class App extends React.Component {
                                     <Fixed.Five />
                                 </Tabs.Tab>
                             </Tabs>
-                            {/* <h2>Click Row</h2>
+                            <h2>Click Row</h2>
                             <Tabs defaultActiveIndex={0}>
                                 <Tabs.Tab title='Basic' index={0}>
                                     <Events.One />
@@ -188,13 +188,13 @@ class App extends React.Component {
                                 <Tabs.Tab title='Basic' index={0}>
                                     <EditRowWithValidation.One />
                                 </Tabs.Tab>
-                            </Tabs>
+                            </Tabs> */}
                             <h2>Drag and Drop</h2>
                             <Tabs defaultActiveIndex={0}>
-                                <Tabs.Tab title='Basic' index={0}>
+                                <Tabs.Tab title='Header' index={0}>
                                     <DnD.One />
                                 </Tabs.Tab>
-                                <Tabs.Tab title='Page Size' index={1}>
+                                <Tabs.Tab title='Row' index={1}>
                                     <DnD.Two />
                                 </Tabs.Tab>
                             </Tabs>
@@ -203,7 +203,7 @@ class App extends React.Component {
                                 <Tabs.Tab title='Basic' index={0}>
                                     <Resize.One />
                                 </Tabs.Tab>
-                            </Tabs> */}
+                            </Tabs>
                         </div>
                     </div>
                 </SideAnchor>
