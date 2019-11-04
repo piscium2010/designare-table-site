@@ -149,7 +149,7 @@ function App() {
                                 <Tabs.Tab title='Basic' index={0}>
                                     <Pagination.One />
                                 </Tabs.Tab>
-                                <Tabs.Tab title='Page Size' index={1}>
+                                <Tabs.Tab title='Page Size Option' index={1}>
                                     <Pagination.Two />
                                 </Tabs.Tab>
                                 <Tabs.Tab title='By Server' index={2}>

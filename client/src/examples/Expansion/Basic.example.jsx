@@ -13,10 +13,34 @@ const style = { display: 'flex', alignItems: 'center', userSelect: 'none', curso
 
 export default function () {
     const [keys, setKeys] = useState(new Set())
-
     const onToggle = index => {
         keys.has(index) ? keys.delete(index) : keys.add(index)
         setKeys(new Set(keys))
+    }
+
+    const checkbox = ({ rowIndex }) => {
+        const collapsed = keys.has(rowIndex)
+        return (
+            <Td>
+                <div
+                    className='designare-transition'
+                    style={{ ...style, color: collapsed ? '#1890ff' : 'gray' }}
+                    onClick={evt => onToggle(rowIndex)}>
+                    {
+                        collapsed
+                            ? <Icons.MinusSquare />
+                            : <Icons.PlusSquare />
+                    }
+                </div>
+            </Td>
+        )
+    }
+
+    const expandableTr = ({ row, rowIndex, cells, getColumns }) => {
+        const Desc = () => keys.has(rowIndex)
+            ? <tr><td colSpan={getColumns().length}>{row['desc']}</td></tr>
+            : null
+        return [<tr key={0}>{cells}</tr>, <Desc key={1} />]
     }
 
     return (
@@ -24,23 +48,7 @@ export default function () {
             columns={[
                 {
                     Header: '',
-                    Cell: ({ rowIndex }) => {
-                        const collapsed = keys.has(rowIndex)
-                        return (
-                            <Td>
-                                <div
-                                    className='designare-transition'
-                                    style={{ ...style, color: collapsed ? '#1890ff' : 'gray' }}
-                                    onClick={evt => onToggle(rowIndex)}>
-                                    {
-                                        collapsed
-                                            ? <Icons.MinusSquare />
-                                            : <Icons.PlusSquare />
-                                    }
-                                </div>
-                            </Td>
-                        )
-                    }
+                    Cell: checkbox
                 },
                 {
                     Header: 'COMPANY',
@@ -63,14 +71,7 @@ export default function () {
             data={data}
         >
             <Thead />
-            <Tbody
-                tr={({ row, rowIndex, cells, getColumns }) => {
-                    const Desc = () => keys.has(rowIndex)
-                        ? <tr><td colSpan={getColumns().length}>{row['desc']}</td></tr>
-                        : null
-                    return [<tr key={0}>{cells}</tr>, <Desc key={1} />]
-                }}
-            />
+            <Tbody tr={expandableTr} />
         </Table>
     )
 }

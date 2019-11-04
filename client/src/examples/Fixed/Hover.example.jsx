@@ -42,6 +42,17 @@ export default function () {
         }, 100)
     }
 
+    const tr = ({ cells, rowIndex }) => (
+        <tr
+            style={{ backgroundColor: rowIndex == hoverIndex ? '#f0f8ff' : '' }}
+            data-i={rowIndex}
+            onMouseOver={onMouseOver}
+            onMouseLeave={onMouseLeave}
+        >
+            {cells}
+        </tr>
+    )
+
     return (
         <Table
             columns={[
@@ -64,18 +75,7 @@ export default function () {
             data={data}
         >
             <Thead />
-            <Tbody tr={
-                ({ cells, rowIndex }) => (
-                    <tr
-                        style={{ backgroundColor: rowIndex == hoverIndex ? '#f0f8ff' : '' }}
-                        data-i={rowIndex}
-                        onMouseOver={onMouseOver}
-                        onMouseLeave={onMouseLeave}
-                    >
-                        {cells}
-                    </tr>
-                )}
-            />
+            <Tbody tr={tr} />
         </Table >
     )
 }

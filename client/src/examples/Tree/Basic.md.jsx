@@ -2,7 +2,7 @@ const md = `import React, { useState } from 'react'
 import Table, { Td, Icons, Tree } from 'designare-table'
 
 const style = { display: 'flex', alignItems: 'center', userSelect: 'none', cursor: 'pointer' }
-const Button = props => <span role='button' style={{lineHeight: '30px', marginRight: 10, fontSize:'small'}} {...props}></span>
+const Button = props => <span role='button' style={{ lineHeight: '30px', marginRight: 10, fontSize: 'small' }} {...props}></span>
 const treeData = [
     {
         name: 'AMERICAS', last: '26,827.64', chg: '57.44', chgp: '0.21',
@@ -39,7 +39,40 @@ export default function () {
     const tree = Tree({
         'treeId': ({ row, index, parentKey }) => row.name
     })
+
+    // flatten treeData into normal data
     const data = tree.flatten(treeData, selection)
+
+    const expandableCell = ({ row }) => {
+        const { treeId } = row // injected by tree.flatten
+        const collapsed = selection.includes(treeId)
+        return (
+            <Td>
+                {
+                    row.children &&
+                    <div
+                        className='designare-transition'
+                        style={{ ...style, color: collapsed ? '#1890ff' : 'gray' }}
+                        onClick={evt => onToggle(treeId)}>
+                        {
+                            collapsed
+                                ? <Icons.MinusSquare />
+                                : <Icons.PlusSquare />
+                        }
+                    </div>
+                }
+            </Td>
+        )
+    }
+
+    const companyCell = ({ value, row }) => {
+        const { depth } = row // injected by tree.flatten
+        return (
+            <Td>
+                <span style={{ marginLeft: 10 + 20 * depth }}>{value}</span>
+            </Td>
+        )
+    }
 
     return (
         <div>
@@ -49,39 +82,12 @@ export default function () {
                 columns={[
                     {
                         Header: '',
-                        Cell: ({ row }) => {
-                            const { treeId } = row // injected by tree.flatten
-                            const collapsed = selection.includes(treeId)
-                            return (
-                                <Td>
-                                    {
-                                        row.children &&
-                                        <div
-                                            className='designare-transition'
-                                            style={{ ...style, color: collapsed ? '#1890ff' : 'gray' }}
-                                            onClick={evt => onToggle(treeId)}>
-                                            {
-                                                collapsed
-                                                    ? <Icons.MinusSquare />
-                                                    : <Icons.PlusSquare />
-                                            }
-                                        </div>
-                                    }
-                                </Td>
-                            )
-                        }
+                        Cell: expandableCell
                     },
                     {
                         Header: 'COMPANY',
                         dataKey: 'name',
-                        Cell: ({ value, row }) => {
-                            const { depth } = row // injected by tree.flatten
-                            return (
-                                <Td>
-                                    <span style={{ marginLeft: 10 + 20 * depth }}>{value}</span>
-                                </Td>
-                            )
-                        },
+                        Cell: companyCell,
                         width: '*'
                     },
                     {

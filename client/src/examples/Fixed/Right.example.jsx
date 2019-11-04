@@ -28,6 +28,7 @@ const data = (function () {
 })()
 
 export default function () {
+    const tr = ({ cells }) => <tr style={{ height: 80 }}>{cells}</tr>
     return (
         <div>
             <Table
@@ -51,7 +52,7 @@ export default function () {
                 ]}
                 data={data}
             >
-                <Thead tr={({ cells }) => <tr style={{ height: 80 }}>{cells}</tr>} />
+                <Thead tr={tr} />
                 <Tbody />
             </Table>
         </div>

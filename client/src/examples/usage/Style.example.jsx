@@ -10,6 +10,13 @@ const data = [
 ]
 
 export default function () {
+
+    const tr = ({ rowIndex, cells }) => (
+        <tr style={{ backgroundColor: rowIndex % 2 === 0 ? '#f2f2f2' : '#fff' }}>
+            {cells}
+        </tr>
+    )
+    
     return (
         <Table
             columns={[
@@ -34,13 +41,7 @@ export default function () {
             data={data}
         >
             <Thead style={{ backgroundColor: '#fff', textAlign: 'left' }} />
-            <Tbody tr={
-                ({ rowIndex, cells }) => (
-                    <tr style={{ backgroundColor: rowIndex % 2 === 0 ? '#f2f2f2' : '#fff' }}>
-                        {cells}
-                    </tr>
-                )}
-            />
+            <Tbody tr={tr} />
         </Table>
     )
 }

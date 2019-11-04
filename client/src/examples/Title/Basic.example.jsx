@@ -50,11 +50,7 @@ export default function () {
             data={data}
         >
             <Header />
-            <Thead tr={
-                ({ cells }) => (
-                    <tr style={{ height: 50 }}>{cells}</tr>
-                )}
-            />
+            <Thead />
             <Tbody />
             <Footer />
         </Table>

@@ -42,7 +42,7 @@ export default function () {
 
     const onCancel = () => setEditing(false)
 
-    const EditableCell = ({ row, dataKey }) => {
+    const editableCell = ({ row, dataKey }) => {
         const value = row[dataKey] + ''
         const [state, setState] = useState({ txt: value, size: value.length })
 
@@ -67,6 +67,17 @@ export default function () {
         )
     }
 
+    const checkbox = ({ row }) => (
+        <Td>
+            <input
+                type='checkbox'
+                style={{ cursor: isEditing ? 'not-allowed' : 'pointer' }}
+                onChange={evt => onToggle(evt, row.id)}
+                checked={selection.includes(row.id)}
+            />
+        </Td>
+    )
+
     return (
         <div>
             {isEditing && <button onClick={onSave}>Save</button>}
@@ -77,36 +88,27 @@ export default function () {
                 columns={[
                     {
                         Header: '',
-                        Cell: ({ row }) => (
-                            <Td>
-                                <input
-                                    type='checkbox'
-                                    style={{ cursor: isEditing ? 'not-allowed' : 'pointer' }}
-                                    onChange={evt => onToggle(evt, row.id)}
-                                    checked={selection.includes(row.id)}
-                                />
-                            </Td>
-                        )
+                        Cell: checkbox
                     },
                     {
                         Header: 'COMPANY',
                         dataKey: 'name',
-                        Cell: EditableCell
+                        Cell: editableCell
                     },
                     {
                         Header: 'Last',
                         dataKey: 'last',
-                        Cell: EditableCell
+                        Cell: editableCell
                     },
                     {
                         Header: 'CHG',
                         dataKey: 'chg',
-                        Cell: EditableCell
+                        Cell: editableCell
                     },
                     {
                         Header: 'CHG %',
                         dataKey: 'chgp',
-                        Cell: EditableCell
+                        Cell: editableCell
                     }
                 ]}
                 data={data}

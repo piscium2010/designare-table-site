@@ -10,7 +10,7 @@ const data = [
 ]
 
 export default function () {
-    const Cell = ({ value }) => (
+    const cell = ({ value }) => (
         <Td style={{ color: value > 0 ? '#0f9d58' : '#b51a28' }}>
             {value}
         </Td>
@@ -31,12 +31,12 @@ export default function () {
                 {
                     Header: 'CHG',
                     dataKey: 'chg',
-                    Cell
+                    Cell: cell
                 },
                 {
                     Header: 'CHG %',
                     dataKey: 'chgp',
-                    Cell
+                    Cell: cell
                 }
             ]}
             data={data}

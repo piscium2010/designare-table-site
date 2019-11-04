@@ -20,10 +20,10 @@ export default function SideAnchor(props) {
         while (!done && next.value) {
             try {
                 el = map.get(next.value)
-                if (el.offsetTop - scrollTop > -10) {
+                if (el.offsetTop - scrollTop > -200) {
                     done = true
                     top = el.getBoundingClientRect().top
-                    result = top < window.innerHeight ? next.value : prevValue
+                    result = top < window.innerHeight / 2 ? next.value : prevValue
                 }
                 prevValue = next.value
                 next = keys.next()

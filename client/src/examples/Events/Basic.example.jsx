@@ -10,7 +10,15 @@ const data = [
 ]
 
 export default function () {
-    const onClickRow = row => alert(`click row ${row['name']}`)
+    const tr = ({ cells, row }) => (
+        <tr
+            style={{ cursor: 'pointer' }}
+            onClick={evt => alert(`click row ${row['name']}`)}
+        >
+            {cells}
+        </tr>
+    )
+
     return (
         <Table
             columns={[
@@ -34,13 +42,7 @@ export default function () {
             data={data}
         >
             <Thead />
-            <Tbody tr={({ cells, row }) => (
-                <tr
-                    style={{ cursor: 'pointer' }}
-                    onClick={evt => onClickRow(row)}>{cells}
-                </tr>
-            )}
-            />
+            <Tbody tr={tr} />
         </Table >
     )
 }

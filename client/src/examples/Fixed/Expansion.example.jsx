@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Table, { Thead, Tbody, Td, Icons } from 'designare-table'
 
+const style = { display: 'flex', alignItems: 'center', userSelect: 'none', cursor: 'pointer' }
 const one = {
     'exg': 'NASDAQ',
     'sec': 'Consumer Services',
@@ -19,7 +20,6 @@ const one = {
     'CYield': '0%',
     'desc': 'Lorem ipsum dolor sit amet.'
 }
-
 const data = (
     function (result = []) {
         for (let i = 0; i < 14; i++) {
@@ -29,13 +29,60 @@ const data = (
     }
 )()
 
-const style = { display: 'flex', alignItems: 'center', userSelect: 'none', cursor: 'pointer' }
-
 export default function () {
     const [keys, setKeys] = useState(new Set())
     const onToggle = index => {
         keys.has(index) ? keys.delete(index) : keys.add(index)
         setKeys(new Set(keys))
+    }
+
+    const headerTr = ({ cells }) => <tr style={{ height: 80 }}>{cells}</tr>
+
+    const bodyTr = ({ row, rowIndex, cells, getColumns, fixed }) => {
+        const Desc = () => {
+            const cols = getColumns()
+            const leftSpan = cols.filter(c => c.fixed == 'left').length
+            const rightSpan = cols.filter(c => c.fixed == 'right').length
+            const span = cols.filter(c => !c.fixed).length
+            let element
+            switch (fixed) {
+                case 'left':
+                    element = <td colSpan={leftSpan}>Left Desc</td>
+                    break
+                case 'right':
+                    element = [
+                        <td key={0} colSpan={leftSpan + span} style={{ zIndex: 0 }}>&nbsp;</td>,
+                        <td key={1} colSpan={rightSpan}>Right Desc</td>,
+                    ]
+                    break
+                default:
+                    element = [
+                        <td key={0} colSpan={leftSpan}>&nbsp;</td>,
+                        <td key={1} colSpan={span}>{row['desc']}</td>,
+                        <td key={2} colSpan={rightSpan}>&nbsp;</td>
+                    ]
+            }
+            return <tr>{element}</tr>
+        }
+        return [<tr key={0}>{cells}</tr>, keys.has(rowIndex) ? <Desc key={1} /> : null]
+    }
+
+    const expandableCell = ({ rowIndex }) => {
+        const collapsed = keys.has(rowIndex)
+        return (
+            <Td>
+                <div
+                    className='designare-transition'
+                    style={{ ...style, color: collapsed ? '#1890ff' : 'gray' }}
+                    onClick={evt => onToggle(rowIndex)}>
+                    {
+                        collapsed
+                            ? <Icons.MinusSquare />
+                            : <Icons.PlusSquare />
+                    }
+                </div>
+            </Td>
+        )
     }
 
     return (
@@ -45,23 +92,7 @@ export default function () {
                 columns={[
                     {
                         Header: '',
-                        Cell: ({ rowIndex }) => {
-                            const collapsed = keys.has(rowIndex)
-                            return (
-                                <Td>
-                                    <div
-                                        className='designare-transition'
-                                        style={{ ...style, color: collapsed ? '#1890ff' : 'gray' }}
-                                        onClick={evt => onToggle(rowIndex)}>
-                                        {
-                                            collapsed
-                                                ? <Icons.MinusSquare />
-                                                : <Icons.PlusSquare />
-                                        }
-                                    </div>
-                                </Td>
-                            )
-                        },
+                        Cell: expandableCell,
                         fixed: 'left'
                     },
                     { Header: 'Exchange', dataKey: 'exg' },
@@ -82,37 +113,8 @@ export default function () {
                 ]}
                 data={data}
             >
-                <Thead tr={({ cells }) => <tr style={{ height: 80 }}>{cells}</tr>} />
-                <Tbody
-                    tr={({ row, rowIndex, cells, getColumns, fixed }) => {
-                        const Desc = () => {
-                            const cols = getColumns()
-                            const leftSpan = cols.filter(c => c.fixed == 'left').length
-                            const rightSpan = cols.filter(c => c.fixed == 'right').length
-                            const span = cols.filter(c => !c.fixed).length
-                            let element
-                            switch (fixed) {
-                                case 'left':
-                                    element = <td colSpan={leftSpan}>Left Desc</td>
-                                    break;
-                                case 'right':
-                                    element = [
-                                        <td key={0} colSpan={leftSpan + span} style={{zIndex:0}}>&nbsp;</td>,
-                                        <td key={1} colSpan={rightSpan}>Right Desc</td>,
-                                    ]
-                                    break
-                                default:
-                                    element = [
-                                        <td key={0} colSpan={leftSpan}>&nbsp;</td>,
-                                        <td key={1} colSpan={span}>{row['desc']}</td>,
-                                        <td key={2} colSpan={rightSpan}>&nbsp;</td>
-                                    ]
-                            }
-                            return <tr>{element}</tr>
-                        }
-                        return [<tr key={0}>{cells}</tr>, keys.has(rowIndex) ? <Desc key={1} /> : null]
-                    }}
-                />
+                <Thead tr={headerTr} />
+                <Tbody tr={bodyTr} />
             </Table>
         </div>
     )

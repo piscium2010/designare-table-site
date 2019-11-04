@@ -12,7 +12,7 @@ const originData = [
 export default function () {
     const [data, setData] = useState(originData)
 
-    const CompanyEditor = ({ value, row, dataKey }) => {
+    const companyEditor = ({ value, row, dataKey }) => {
         const ref = useRef(null)
         const [isEditing, setEditing] = useState(false)
         const [txt, setTxt] = useState('')
@@ -54,7 +54,7 @@ export default function () {
                 {
                     Header: <Th style={{ background: '#fbfbfb' }}>COMPANY</Th>,
                     dataKey: 'name',
-                    Cell: CompanyEditor
+                    Cell: companyEditor
                 },
                 {
                     Header: 'Last',
