@@ -78,6 +78,8 @@ export default function () {
                     dataKey: 'chgp'
                 }
             ]}
+            defaultSorter={{dataKey:'name',direction:'des'}}
+            defaultFilters={[{dataKey:'name',filterValue:'c'}]}
             data={data}
         />
     )

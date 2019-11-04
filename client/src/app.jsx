@@ -106,7 +106,7 @@ function App() {
                                 </Tabs.Tab>
                             </Tabs>
                             <h2>Filter</h2>
-                            <Tabs defaultActiveIndex={0}>
+                            <Tabs defaultActiveIndex={5}>
                                 <Tabs.Tab title='Basic' index={0}>
                                     <Filter.One />
                                 </Tabs.Tab>
