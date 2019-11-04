@@ -8,7 +8,7 @@ const One = () => (
     <CodeBlock md={BasicMD}>
         <Basic />
         <P
-            zh='无需额外的API，只是把Header放在了它该有的位置，自然就成为了Title。'
+            zh='无需额外的API，只是把div放在了它该有的位置，自然就成为了Title。'
         />
     </CodeBlock>
 )

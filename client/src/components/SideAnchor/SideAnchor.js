@@ -10,33 +10,46 @@ export default function SideAnchor(props) {
     const [titles, setTitles] = useState([])
     const [activeTitle, setActiveTitle] = useState()
     const findActiveAnchor = scrollTop => {
-        const keys = map.keys()
-        let done = false,
-            next = keys.next(),
-            prevValue = next.value,
-            top,
-            el,
-            result
-        while (!done && next.value) {
-            try {
-                el = map.get(next.value)
-                if (el.offsetTop - scrollTop > -200) {
-                    done = true
-                    top = el.getBoundingClientRect().top
-                    result = top < window.innerHeight / 2 ? next.value : prevValue
-                }
-                prevValue = next.value
-                next = keys.next()
+        let result
+        const activeKey = store.get('activeKey') || 0
+        const current = map.get(activeKey)
+        const innerHeight = window.innerHeight
+        const down = current.getBoundingClientRect().top < innerHeight / 2 ? true : false
+
+        for (let i = activeKey, len = map.size; true; i = down ? i + 1 : i - 1) {
+            let el, key = i, top, offsetTop, prev, next
+            if (key < 0) {
+                result = 0
+                break
             }
-            catch (e) {
-                console.log(`error`,e)
-                console.log(`next.value`,next.value)
-                done = true
+            if (key >= len) {
+                result = len - 1
+                break
+            }
+            el = map.get(key)
+            offsetTop = el.offsetTop
+
+            if (down) {
+                if (offsetTop - scrollTop > 0) {
+                    prev = Math.max(key - 1, 0)
+                    top = el.getBoundingClientRect().top
+                    result = top < innerHeight / 2 ? key : prev
+                    break
+                }
+            } else {
+                if (offsetTop - scrollTop <= 0) {
+                    next = Math.min(key + 1, len - 1)
+                    top = map.get(next).getBoundingClientRect().top
+                    result = top < innerHeight / 2 ? next : key
+                    break
+                }
             }
         }
-        result = result || prevValue
-        setActiveTitle(result)
+
+        store.set('activeKey', result)
+        setActiveTitle(map.get(result).textContent)
     }
+
     const onScroll = evt => {
         id++
         const eventId = id, scrollTop = evt.target.scrollTop
@@ -64,7 +77,7 @@ export default function SideAnchor(props) {
 
         for (let i = 0, len = titles.length; i < len; i++) {
             r.push(titles[i].textContent)
-            map.set(titles[i].textContent, titles[i])
+            map.set(i, titles[i])
         }
         setTitles(r)
         app.addEventListener('scroll', onScroll)
