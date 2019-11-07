@@ -9,7 +9,7 @@ const data = [
     { name: 'Walmart Inc.', last: 119.42, chg: -0.11, chgp: -0.09 }
 ]
 
-const Header = () => (
+const Title = () => (
     <div style={{ padding: '0 16px', borderBottom: '1px solid rgba(0,0,0,.12)' }}>
         <h3>Dow Jones</h3>
     </div>
@@ -49,7 +49,7 @@ export default function () {
             ]}
             data={data}
         >
-            <Header />
+            <Title />
             <Thead />
             <Tbody />
             <Footer />

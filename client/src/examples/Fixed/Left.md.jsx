@@ -19,13 +19,12 @@ const one = {
     'CYield': '0%'
 }
 
-const data = (function () {
-    const r = []
-    for (let i = 0; i < 16; i++) {
-        r.push(one)
+const data = (
+    function (result = []) {
+        for (let i = 0; i < 16; i++) result.push(one)
+        return result
     }
-    return r
-})()
+)()
 
 export default function () {
     const tr = ({ cells }) => <tr style={{ height: 80 }}>{cells}</tr>

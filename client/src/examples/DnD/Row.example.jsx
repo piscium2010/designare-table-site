@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Table, { Thead, Tbody, DraggableTr } from 'designare-table'
+import Table, { Thead, Tbody, DragTr } from 'designare-table'
 
 const originalData = [
     { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
@@ -13,6 +13,16 @@ const style = { cursor: 'move' }
 
 export default function () {
     const [data, setData] = useState(originalData)
+    const draggableTr = ({ cells, row }) => (
+        <DragTr
+            row={row}
+            getRowId={row => row.name}
+            style={style}
+        >
+            {cells}
+        </DragTr>
+    )
+
     return (
         <Table
             data={data}
@@ -34,22 +44,12 @@ export default function () {
                     dataKey: 'chgp'
                 }
             ]}
-            onChangeRows={data => {
+            onChangeRows={data =>
                 setData(data)
-            }}
+            }
         >
             <Thead />
-            <Tbody tr={
-                ({ cells, row }) => (
-                    <DraggableTr
-                        row={row}
-                        getRowId={row => row.name}
-                        style={style}
-                    >
-                        {cells}
-                    </DraggableTr>
-                )}
-            />
+            <Tbody tr={draggableTr} />
         </Table>
     )
 }

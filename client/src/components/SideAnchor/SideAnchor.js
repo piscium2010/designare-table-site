@@ -66,8 +66,8 @@ export default function SideAnchor(props) {
         findActiveAnchor(scrollTop)
     }
 
-    const onClick = evt => {
-        map.get(evt.target.textContent).scrollIntoView()
+    const onClick = i => {
+        map.get(i).scrollIntoView()
     }
 
     useEffect(() => {
@@ -92,7 +92,11 @@ export default function SideAnchor(props) {
                 <ul>
                     {
                         titles.map((t, i) => (
-                            <li key={i} className={`${activeTitle === t ? 'active' : ''}`} onClick={onClick}>
+                            <li
+                                key={i}
+                                className={`${activeTitle === t ? 'active' : ''}`}
+                                onClick={evt => onClick(i)}
+                            >
                                 <a role='button'>{t}</a>
                             </li>
                         ))

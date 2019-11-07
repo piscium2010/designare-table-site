@@ -1,5 +1,5 @@
 const md = `import React, { useState } from 'react'
-import Table, { DraggableTh, Th } from 'designare-table'
+import Table, { DragTh, Th } from 'designare-table'
 
 const data = [
     { name: 'Johnson & Johnson', last: 135.7, chg: 2.33, chgp: 1.75 },
@@ -14,11 +14,11 @@ const style = { cursor: 'move' }
 export default function () {
     const [columns, setColumns] = useState([
         {
-            Header: <DraggableTh style={style}>COMPANY</DraggableTh>,
+            Header: <DragTh style={style}>COMPANY</DragTh>,
             dataKey: 'name'
         },
         {
-            Header: <DraggableTh style={style}>LAST</DraggableTh>,
+            Header: <DragTh style={style}>LAST</DragTh>,
             children: [
                 {
                     Header: <Th>F</Th>,
@@ -31,11 +31,11 @@ export default function () {
             ]
         },
         {
-            Header: <DraggableTh style={style}>CHG</DraggableTh>,
+            Header: <DragTh style={style}>CHG</DragTh>,
             dataKey: 'chg'
         },
         {
-            Header: <DraggableTh style={style}>CHG %</DraggableTh>,
+            Header: <DragTh style={style}>CHG %</DragTh>,
             dataKey: 'chgp'
         }
     ])
