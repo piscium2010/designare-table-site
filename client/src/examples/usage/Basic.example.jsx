@@ -30,6 +30,7 @@ export default function() {
                     Header: 'CHG %',
                     dataKey: 'chgp'
                 }
+                
             ]}
             data={data}
         />

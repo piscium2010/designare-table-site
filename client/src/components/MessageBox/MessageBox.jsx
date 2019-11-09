@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import '@piscium2010/lime/lime.css'
 
 const wrapperStyle = {
     display: 'flex',
