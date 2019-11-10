@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import Tabs from './components/Tabs'
 import SideAnchor from './components/SideAnchor'
 import Usage from './examples/Usage'
-import GroupHeader from './examples/Group'
+import Group from './examples/Group'
 import Selection from './examples/Selection'
 import Loading from './examples/Loading'
 import Sorter from './examples/Sorter'
@@ -22,6 +22,7 @@ import DnD from './examples/DnD'
 import Resize from './examples/Resize'
 import Language from './components/Language'
 import P from './components/P'
+import Lazy from './components/Lazy'
 import './app.less'
 
 export const LanguageContext = React.createContext('zh')
@@ -62,10 +63,10 @@ function App() {
                             <h2>Group</h2>
                             <Tabs defaultActiveIndex={0}>
                                 <Tabs.Tab title='Header' index={0}>
-                                    <GroupHeader.One />
+                                    <Group.One />
                                 </Tabs.Tab>
                                 <Tabs.Tab title='Row' index={1}>
-                                    <GroupHeader.Two />
+                                    <Group.Two />
                                 </Tabs.Tab>
                             </Tabs>
                             <h2>Selection</h2>

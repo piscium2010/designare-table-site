@@ -1,5 +1,5 @@
 import React from 'react'
-import Table, { Thead, Tbody } from './node_modules/designare-table'
+import Table, { Thead, Tbody } from 'designare-table'
 
 
 const data = [
