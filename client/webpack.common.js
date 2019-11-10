@@ -11,9 +11,9 @@ module.exports = {
         path: path.resolve(__dirname, 'public')
     },
     resolve: {
-        alias: {
-            'designare-table': path.join(__dirname, '../../designare-table/dist')
-        },
+        // alias: {
+        //     'designare-table': path.join(__dirname, '../../designare-table/dist')
+        // },
         modules:[path.join(__dirname, './node_modules')],
         extensions: ['.js', '.jsx']
     },
@@ -41,7 +41,6 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Lime',
             filename: 'index.html',
             template: './index.html'
         })
