@@ -22,7 +22,6 @@ import DnD from './examples/DnD'
 import Resize from './examples/Resize'
 import Language from './components/Language'
 import P from './components/P'
-import Lazy from './components/Lazy'
 import './app.less'
 
 export const LanguageContext = React.createContext('zh')

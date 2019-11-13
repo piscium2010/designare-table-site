@@ -3,15 +3,15 @@ import React from 'react'
 export default class Lazy extends React.Component {
     state = { loading: false, component: null }
 
-    componentDidMount() {
-        this.setState({ loading: true })
-        import('../../examples/' + this.props.name).then(module => {
-            this.setState({
-                loading: false,
-                component: module.default
-            })
-        })
-    }
+    // componentDidMount() {
+    //     this.setState({ loading: true })
+    //     import('../../examples/' + this.props.name).then(module => {
+    //         this.setState({
+    //             loading: false,
+    //             component: module.default
+    //         })
+    //     })
+    // }
 
     render() {
         const style = {

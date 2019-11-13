@@ -6,7 +6,8 @@
     "start": "npm run build:md && webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js && npm run toWebapp",
     "toWebapp": "babel ./public --out-dir ../server/src/main/webapp --copy-files",
-    "build:md": "node ./src/util/makeMD.js"
+    "build:md": "node ./src/util/makeMD.js",
+    "ba": "babel src/app.jsx --out-dir public"
   },
   "keywords": [],
   "author": "",
@@ -24,10 +25,11 @@
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/plugin-syntax-object-rest-spread": "^7.2.0",
-    "@babel/preset-react": "^7.0.0",
     "@babel/plugin-proposal-decorators": "^7.4.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-object-rest-spread": "^7.2.0",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.4.3",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^2.0.1",
