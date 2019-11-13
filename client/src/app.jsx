@@ -1,3 +1,4 @@
+import "@babel/polyfill"
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import Tabs from './components/Tabs'
