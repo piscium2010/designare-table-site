@@ -16,20 +16,20 @@ export default function () {
         <Table
             columns={[
                 {
-                    Header: <Th>COMPANY<Sorter directions={['asc']} /></Th>,
+                    Header: <Th><span>COMPANY</span><Sorter directions={['asc']} /></Th>,
                     dataKey: 'name',
                     width: '*'
                 },
                 {
-                    Header: <Th>LAST<Sorter directions={['des']} by='number' /></Th>,
+                    Header: <Th><span>LAST</span><Sorter directions={['des']} by='number' /></Th>,
                     dataKey: 'last'
                 },
                 {
-                    Header: <Th>CHG<Sorter directions={['asc', 'des']} /></Th>,
+                    Header: <Th><span>CHG</span><Sorter directions={['asc', 'des']} /></Th>,
                     dataKey: 'chg'
                 },
                 {
-                    Header: <Th>CHG %<Sorter directions={['asc', 'des']} /></Th>,
+                    Header: <Th><span>CHG %</span><Sorter directions={['asc', 'des']} /></Th>,
                     dataKey: 'chgp'
                 }
             ]}

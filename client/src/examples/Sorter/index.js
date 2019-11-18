@@ -60,7 +60,7 @@ const Six = () => (
         <Style />
         <P
             zh={
-                <span>自己喜欢的<strike style={{ color: 'red' }}><span style={{ color: 'rgba(0, 0, 0, .87)' }}>妹子</span></strike>图标得自己找。 通过类名designare-transition，可使用颜色过度效果。</span>
+                <span>自己喜欢的<strike style={{ color: 'red' }}><span style={{ color: 'rgba(0, 0, 0, .87)' }}>妹子</span></strike>图标得自己找。 通过类名designare-transition，轻松使用过度效果。</span>
             }
         />
     </CodeBlock>
