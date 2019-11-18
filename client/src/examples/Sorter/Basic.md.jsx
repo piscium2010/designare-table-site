@@ -20,20 +20,20 @@ export default function () {
         <Table
             columns={[
                 {
-                    Header: <Th>COMPANY<Sorter /></Th>,
+                    Header: <Th><span>COMPANY</span><Sorter /></Th>,
                     dataKey: 'name',
                     width: '*'
                 },
                 {
-                    Header: <Th>LAST<Sorter by='number' /></Th>,
+                    Header: <Th><span>LAST</span><Sorter by='number' /></Th>,
                     dataKey: 'last'
                 },
                 {
-                    Header: <Th>CHG<Sorter /></Th>,
+                    Header: <Th><span>CHG</span><Sorter /></Th>,
                     dataKey: 'chg'
                 },
                 {
-                    Header: <Th>CHG %<Sorter by={custom} /></Th>,
+                    Header: <Th><span>CHG %</span><Sorter by={custom} /></Th>,
                     dataKey: 'chgp'
                 }
             ]}

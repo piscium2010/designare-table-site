@@ -70,7 +70,7 @@ export default function () {
                 {
                     Header: (
                         <Th>
-                            CHG
+                            <span>CHG</span>
                             <Filter by={by}>{chgFilter}</Filter>
                         </Th>
                     ),

@@ -52,7 +52,7 @@ export default function () {
                 {
                     Header: (
                         <Th>
-                            COMPANY
+                            <span>COMPANY</span>
                             <Sorter />
                             <Filter
                                 style={{ width: 25 }}
