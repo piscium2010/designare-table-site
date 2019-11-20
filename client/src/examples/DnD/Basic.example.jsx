@@ -46,6 +46,7 @@ export default function () {
             onChangeColumns={columns => {
                 setColumns(columns)
             }}
+            rowHeight={50}
         />
     )
 }
