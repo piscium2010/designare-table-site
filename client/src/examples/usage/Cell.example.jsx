@@ -34,7 +34,7 @@ export default function () {
                     Cell: cell
                 },
                 {
-                    Header: 'CHG %',
+                    Header: 'CHG%',
                     dataKey: 'chgp',
                     Cell: cell
                 }

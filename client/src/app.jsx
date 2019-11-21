@@ -65,9 +65,6 @@ function App() {
                                 <Tabs.Tab title='Header' index={0}>
                                     <Group.One />
                                 </Tabs.Tab>
-                                <Tabs.Tab title='Row' index={1}>
-                                    <Group.Two />
-                                </Tabs.Tab>
                             </Tabs>
                             <h2>Selection</h2>
                             <Tabs defaultActiveIndex={0}>

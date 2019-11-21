@@ -106,7 +106,7 @@ export default function () {
                         Cell: editableCell
                     },
                     {
-                        Header: 'CHG %',
+                        Header: 'CHG%',
                         dataKey: 'chgp',
                         Cell: editableCell
                     }

@@ -19,16 +19,7 @@ export default function () {
         },
         {
             Header: <DragTh style={style}>LAST</DragTh>,
-            children: [
-                {
-                    Header: <Th>F</Th>,
-                    dataKey: 'last'
-                },
-                {
-                    Header: <Th>L</Th>,
-                    dataKey: 'last'
-                }
-            ]
+            dataKey: 'last'
         },
         {
             Header: <DragTh style={style}>CHG</DragTh>,
@@ -46,7 +37,6 @@ export default function () {
             onChangeColumns={columns => {
                 setColumns(columns)
             }}
-            rowHeight={50}
         />
     )
 }

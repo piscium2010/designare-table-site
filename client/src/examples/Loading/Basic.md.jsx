@@ -27,7 +27,7 @@ export default function () {
                     dataKey: 'chg'
                 },
                 {
-                    Header: 'CHG %',
+                    Header: 'CHG%',
                     dataKey: 'chgp'
                 }
             ]}
