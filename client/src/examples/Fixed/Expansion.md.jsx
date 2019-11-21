@@ -2,16 +2,16 @@ const md = `import React, { useState } from 'react'
 import Table, { Thead, Tbody, Td, Icons } from 'designare-table'
 
 const style = { display: 'flex', alignItems: 'center', userSelect: 'none', cursor: 'pointer' }
-const one = {
+const one = i => ({
     'exg': 'NASDAQ',
-    'sec': 'Consumer Services',
+    'sec': 'Consumer Services ' + i,
     'instry': 'Catalog',
     '1YT': '\$2,250.00',
     'sv': '5,123,142',
     '50DAvg': '2,984,212',
     'Prev': '\$1,762.17',
     'MC': '880,873,538,392',
-    'PE': '73.89',
+    'PE': 73.89 + i,
     'FPE1.': '74.66822033898305',
     'EPS': '\$24.10',
     'AD': 'N/A',
@@ -19,11 +19,11 @@ const one = {
     'Dividend': 'N/A',
     'CYield': '0%',
     'desc': 'Lorem ipsum dolor sit amet.'
-}
+})
 const data = (
     function (result = []) {
         for (let i = 0; i < 14; i++) {
-            result.push(one)
+            result.push(one(i))
         }
         return result
     }
