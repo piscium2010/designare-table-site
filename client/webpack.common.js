@@ -3,6 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    target: 'web',
     entry: {
         app: './src/app.jsx'
     },
@@ -32,7 +33,7 @@ module.exports = {
             },
             {
                 test: /\.jsx?/,
-                exclude: /node_modules/,
+                exclude: /node_modules|util/,
                 // include: /designare/,
                 loader: 'babel-loader',
             }

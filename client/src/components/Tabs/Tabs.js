@@ -80,7 +80,7 @@ function LazyTab(props) {
 
     useEffect(() => {
         load
-            ? import('../../' + load).then(module => setState({ loading: false, C: module.default }))
+            ? import('../../examples/' + load).then(module => setState({ loading: false, C: module.default }))
             : undefined
     }, [])
 

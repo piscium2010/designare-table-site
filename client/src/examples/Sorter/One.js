@@ -4,7 +4,7 @@ import Basic from './Basic.example'
 import BasicMD from './Basic.md'
 import P from '../../components/P'
 
-const One = () => (
+export default () => (
     <CodeBlock md={BasicMD}>
         <Basic />
         <P
@@ -12,5 +12,3 @@ const One = () => (
         />
     </CodeBlock>
 )
-
-export default One

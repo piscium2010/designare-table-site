@@ -7,7 +7,7 @@ import Usage from './examples/Usage/One'
 import Group from './examples/Group'
 import Selection from './examples/Selection'
 import Loading from './examples/Loading/One'
-import Sorter from './examples/Sorter'
+import Sorter from './examples/Sorter/One'
 import Filter from './examples/Filter'
 import RowHeight from './examples/RowHeight'
 import Title from './examples/Title'
@@ -47,8 +47,8 @@ function App() {
                                 <Tabs.Tab title='Basic' index={0}>
                                     <Usage/>
                                 </Tabs.Tab>
-                                <Tabs.LazyTab title='Cell' index={1} load='examples/Usage/Two' />
-                                <Tabs.LazyTab title='Custom' index={2} load='examples/Usage/Three' />
+                                <Tabs.LazyTab title='Cell' index={1} load='Usage/Two' />
+                                <Tabs.LazyTab title='Custom' index={2} load='Usage/Three' />
                             </Tabs>
                             <h2>RowHeight</h2>
                             <Tabs defaultActiveIndex={0}>
@@ -71,30 +71,20 @@ function App() {
                             <h2>Loading</h2>
                             <Tabs defaultActiveIndex={0}>
                                 <Tabs.Tab title='Basic' index={0}>
-                                    <Loading.One />
+                                    <Loading />
                                 </Tabs.Tab>
-                                <Tabs.LazyTab title='Custom' index={1} load='examples/Loading/Two'/>
+                                <Tabs.LazyTab title='Custom' index={1} load='Loading/Two'/>
                             </Tabs>
                             <h2>Sorter</h2>
                             <Tabs defaultActiveIndex={0}>
                                 <Tabs.Tab title='Basic' index={0}>
-                                    <Sorter.One />
+                                    <Sorter />
                                 </Tabs.Tab>
-                                <Tabs.Tab title='Default' index={1}>
-                                    <Sorter.Two />
-                                </Tabs.Tab>
-                                <Tabs.Tab title='Control' index={2}>
-                                    <Sorter.Three />
-                                </Tabs.Tab>
-                                <Tabs.Tab title='Sort by Server' index={3}>
-                                    <Sorter.Four />
-                                </Tabs.Tab>
-                                <Tabs.Tab title='Color' index={4}>
-                                    <Sorter.Five />
-                                </Tabs.Tab>
-                                <Tabs.Tab title='Style' index={5}>
-                                    <Sorter.Six />
-                                </Tabs.Tab>
+                                <Tabs.LazyTab title='Default' index={1} load='Sorter/Two'/>
+                                <Tabs.LazyTab title='Control' index={2}  load='Sorter/Three'/>
+                                <Tabs.LazyTab title='Sort by Server' index={3}  load='Sorter/Four'/>
+                                <Tabs.LazyTab title='Color' index={4} load='Sorter/Five' />
+                                <Tabs.LazyTab title='Style' index={5} load='Sorter/Six' />
                             </Tabs>
                             <h2>Filter</h2>
                             <Tabs defaultActiveIndex={5}>
