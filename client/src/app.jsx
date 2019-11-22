@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import Tabs from './components/Tabs'
 import SideAnchor from './components/SideAnchor'
-import Usage from './examples/Usage'
+import Usage from './examples/Usage/One'
 import Group from './examples/Group'
 import Selection from './examples/Selection'
-import Loading from './examples/Loading'
+import Loading from './examples/Loading/One'
 import Sorter from './examples/Sorter'
 import Filter from './examples/Filter'
 import RowHeight from './examples/RowHeight'
@@ -45,14 +45,10 @@ function App() {
                             <h2>Usage</h2>
                             <Tabs defaultActiveIndex={0}>
                                 <Tabs.Tab title='Basic' index={0}>
-                                    <Usage.One />
+                                    <Usage/>
                                 </Tabs.Tab>
-                                <Tabs.Tab title='Cell' index={1}>
-                                    <Usage.Two />
-                                </Tabs.Tab>
-                                <Tabs.Tab title='Custom' index={2}>
-                                    <Usage.Three />
-                                </Tabs.Tab>
+                                <Tabs.LazyTab title='Cell' index={1} load='examples/Usage/Two' />
+                                <Tabs.LazyTab title='Custom' index={2} load='examples/Usage/Three' />
                             </Tabs>
                             <h2>RowHeight</h2>
                             <Tabs defaultActiveIndex={0}>
@@ -77,9 +73,7 @@ function App() {
                                 <Tabs.Tab title='Basic' index={0}>
                                     <Loading.One />
                                 </Tabs.Tab>
-                                <Tabs.Tab title='Custom' index={1}>
-                                    <Loading.Two />
-                                </Tabs.Tab>
+                                <Tabs.LazyTab title='Custom' index={1} load='examples/Loading/Two'/>
                             </Tabs>
                             <h2>Sorter</h2>
                             <Tabs defaultActiveIndex={0}>

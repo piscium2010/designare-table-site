@@ -52,6 +52,7 @@ export default function Tabs(props) {
 }
 
 Tabs.Tab = Tab
+Tabs.LazyTab = LazyTab
 
 function Tab(props) {
     const { activeIndex, titles, setTitles } = useContext(TabsContext)
@@ -62,13 +63,34 @@ function Tab(props) {
         setTitles(titles)
     }, [title])
 
-    return (
-        <React.Fragment>
+    return activeIndex == index
+        ? <div>{props.children}</div>
+        : null
+}
+
+function LazyTab(props) {
+    const [state, setState] = useState({ loading: true, C: null })
+    const { activeIndex, titles, setTitles } = useContext(TabsContext)
+    const { title, index, load = '' } = props
+
+    useEffect(() => {
+        titles[index] = title
+        setTitles(titles)
+    }, [title])
+
+    useEffect(() => {
+        load
+            ? import('../../' + load).then(module => setState({ loading: false, C: module.default }))
+            : undefined
+    }, [])
+
+    const { loading, C } = state
+    return activeIndex == index &&
+        <div>
             {
-                activeIndex == index
-                    ? <div>{props.children}</div>
-                    : null
+                loading
+                    ? <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 200 }}>Loading...</div>
+                    : <C />
             }
-        </React.Fragment>
-    )
+        </div>
 }
