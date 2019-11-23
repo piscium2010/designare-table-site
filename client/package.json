@@ -4,10 +4,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build:md && webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js && npm run toWebapp",
+    "build": "webpack --config webpack.prod.js --profile --json > build-log.json && npm run toWebapp",
     "toWebapp": "babel ./public --out-dir ../server/src/main/webapp --copy-files",
     "build:md": "node ./src/util/makeMD.js",
-    "ba": "babel src/app.jsx --out-dir public"
+    "report": "webpack-bundle-analyzer build-log.json ./public -m static -s gzip"
   },
   "keywords": [],
   "author": "",
@@ -48,6 +48,7 @@
     "terser-webpack-plugin": "^1.2.3",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1",
     "webpack-merge": "^4.2.1"

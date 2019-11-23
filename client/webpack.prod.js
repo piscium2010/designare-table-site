@@ -29,6 +29,10 @@ module.exports = merge({
         ]
     },
     optimization: {
+        splitChunks: {
+            chunks: 'all'
+        },
+        minimize: true,
         minimizer: [
             new TerserJSPlugin(),
             new OptimizeCSSAssetsPlugin({})
