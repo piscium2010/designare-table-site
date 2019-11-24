@@ -9,6 +9,7 @@ export default () => (
         <Control />
         <P
             zh="请不要同时指定defaultSorter和sorter, 如果你这样做，我会打你。"
+            en="sorter overrides defaultSorter. They are not supposed to be present at the same time."
         />
     </CodeBlock>
 )

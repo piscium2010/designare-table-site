@@ -9,6 +9,7 @@ const One = () => (
         <Basic />
         <P
             zh='把树形结构的数据“打平”后，像平常一样使用Table。使用工具类Tree“打平”数据。'
+            en='Flatten tree to normal data, then use Table as usual.'
         />
     </CodeBlock>
 )

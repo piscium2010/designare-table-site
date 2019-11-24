@@ -9,6 +9,7 @@ const One = () => (
         <Basic />
         <P
             zh='无需额外的API，只是把div放在了它该有的位置，自然就成为了Title。'
+            en='By putting div on the right place, you make a title。No api is needed.'
         />
     </CodeBlock>
 )

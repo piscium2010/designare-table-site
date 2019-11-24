@@ -9,6 +9,7 @@ const One = () => (
         <Basic />
         <P
             zh='当行高不明确时，可以不指定。designare-table会根据需要自动撑开行高。'
+            en='rowHeight is an optional prop. designare-table will adjust the height according to the td content.'
         />
     </CodeBlock>
 )

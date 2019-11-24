@@ -7,7 +7,10 @@ import P from '../../components/P'
 const One = () => (
     <CodeBlock md={BasicMD}>
         <Basic />
-        <P zh='onClickRow API? 不需要的，只需要一个普通的onClick。'/>
+        <P
+            zh='onClickRow API? 不需要，只需要一个普通的onClick。'
+            en='onClickRow API? not required，only needs an onClick as usual。'
+        />
     </CodeBlock>
 )
 

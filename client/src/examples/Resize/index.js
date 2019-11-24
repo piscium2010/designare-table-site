@@ -8,7 +8,8 @@ const One = () => (
     <CodeBlock md={BasicMD}>
         <Basic />
         <P
-            zh='react-resizable? 不需要的。只需要一个resizable'
+            zh='react-resizable? 不需要。只需要打开resizable'
+            en='react-resizable? not required. Only needs a resizable prop.'
         />
     </CodeBlock>
 )

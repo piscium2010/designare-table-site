@@ -35,11 +35,13 @@ function App() {
             <div className='main'>
                 <div style={{ padding: '0 6px' }}>
                     <LanguageContext.Provider value={lang}>
-                        <h1>Designare Table</h1>
-                        <Language onClick={evt => setLang(lang === 'zh' ? 'en' : 'zh')} />
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <h1>Designare Table</h1>
+                            <Language onClick={evt => setLang(lang === 'zh' ? 'en' : 'zh')} />
+                        </div>
                         <P
-                            zh={`它以朴素的样式为底，留有再设计的空间；以企业功能为诉求，也保留再定制的余地。它轻，没有繁重的依赖，巧，没有过度的API设计。在简洁与灵活的两端中追求平衡。`}
-                            en={'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita laudantium quaerat possimus dolorum soluta. Esse, porro, reiciendis impedit asperiores corrupti itaque labore optio animi accusamus dolorum tenetur deleniti earum accusantium odio debitis, quod iure beatae sit illo rerum fugiat nostrum? Laboriosam quasi voluptas cupiditate odit esse magnam voluptatibus autem numquam!'}
+                            zh={`以朴素的UI为底，留有设计的空间；以企业功能为诉求，也留有定制的余地。它轻，没有繁重的依赖就；巧，没有过度的API设计。试图在灵活与简洁的两端中追求平衡。`}
+                            en={'With plain UI output, it spares room for re-designing; Common features included, but it is still customizable. It has light size and less API. It is trying to reach the balance point between code brevity and feature flexibility.'}
                         />
                         <h2>Usage</h2>
                         <Tabs>

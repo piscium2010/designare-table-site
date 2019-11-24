@@ -9,6 +9,7 @@ const One = () => (
         <Basic />
         <P
             zh='如果你有常用的React UI库，可以用其替换例子中原生的checkbox。'
+            en='Feel free to replace the checkbox with your favourable UI library.'
         />
     </CodeBlock>
 )
