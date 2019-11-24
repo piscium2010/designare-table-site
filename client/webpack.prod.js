@@ -7,6 +7,10 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = merge({
     mode: 'production',
+    externals: {
+        react: 'React',
+        'react-dom': 'ReactDOM'
+    },
     output: {
         publicPath: './'
     },
