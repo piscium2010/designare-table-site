@@ -9,6 +9,7 @@ export default () => (
         <Style />
         <P
             zh='通过render更换图标。'
+            en='Using render to replace icon.'
         />
     </CodeBlock>
 )

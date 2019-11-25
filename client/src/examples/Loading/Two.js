@@ -9,6 +9,7 @@ const Two = () => (
         <Style />
         <P
             zh='通过类名designare-spin，可以使用内建的旋转动效。当然也不介意你重新开发一个自己喜欢的动效。'
+            en='Class name designare-spin offers a built-in spinning animation.'
         />
     </CodeBlock>
 )

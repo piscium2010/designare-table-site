@@ -9,7 +9,10 @@ export default () => (
         <Style />
         <P
             zh={
-                <span>自己喜欢的<strike style={{ color: 'red' }}><span style={{ color: 'rgba(0, 0, 0, .87)' }}>妹子</span></strike>图标得自己找。 通过类名designare-transition，轻松使用过度效果。</span>
+                <span>通过类名designare-transition，轻松使用过度效果。</span>
+            }
+            en={
+                <span>Class designare-transition offers a built-in color transition.</span>
             }
         />
     </CodeBlock>

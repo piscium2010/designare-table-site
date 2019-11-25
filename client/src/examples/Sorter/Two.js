@@ -8,7 +8,8 @@ export default () => (
     <CodeBlock md={DefaultMD}>
         <DefaultE />
         <P
-            zh="directions 的有效值有 'asc'和'des'。特殊有效值为'default', 无需显示指定。"
+            zh="directions 的值可为有 'asc'，'des' 和 ‘default'。其中'default', 无需显示指定。"
+            en="directions includes 'asc'，'des' and ’defualt‘. 'default' could be omitted."
         />
     </CodeBlock>
 )

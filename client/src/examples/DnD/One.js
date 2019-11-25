@@ -8,7 +8,8 @@ export default () => (
     <CodeBlock md={BasicMD}>
         <Basic />
         <P
-            zh='react-dnd? 不需要的。DragTh，DragTr即插即用，减少代码量。'
+            zh='react-dnd? 不需要。DragTh，DragTr即插即用，减少代码量。'
+            en='react-dnd? not required。Using DragTh，DragTr to implement drag and drop width less code'
         />
     </CodeBlock>
 )

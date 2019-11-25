@@ -9,6 +9,7 @@ export default () => (
         <Server />
         <P
             zh="如果by不等于‘number'，也不是一个function，就不会触发内建的前端排序。"
+            en="If by is neither 'number' nor a function, it bypasses front-end sorting."
         />
     </CodeBlock>
 )
