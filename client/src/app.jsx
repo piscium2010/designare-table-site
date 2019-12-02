@@ -22,6 +22,7 @@ import DnD from './examples/DnD/One'
 import Resize from './examples/Resize'
 import Language from './components/Language'
 import P from './components/P'
+import GitLink from './components/GithubLink'
 import './app.less'
 
 export const LanguageContext = React.createContext('zh')
@@ -31,6 +32,7 @@ function App() {
 
     return (
         <SideAnchor>
+            <GitLink/>
             <div className='main'>
                 <div style={{ padding: '0 6px' }}>
                     <LanguageContext.Provider value={lang}>

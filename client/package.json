@@ -16,7 +16,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.7.0",
     "@piscium2010/v-form": "^1.4.2",
-    "designare-table": "^1.2.6",
+    "designare-table": "^1.2.7",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-syntax-highlighter": "^10.0.0",
